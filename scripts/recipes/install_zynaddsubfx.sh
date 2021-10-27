@@ -30,7 +30,7 @@ sed -i -- "s/-march=armv7-a -mfloat-abi=hard -mfpu=neon -mcpu=cortex-a9 -mtune=c
 cmake ..
 
 # Compile & Install
-make -j 4
+make -j$(nproc)
 make install
 
 #Create soft link to zynbanks => It's included in the data repository

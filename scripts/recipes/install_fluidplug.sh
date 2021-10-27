@@ -15,7 +15,7 @@ sed -i -- 's/^DESTDIR =/DESTDIR =\/zynthian\/zynthian-plugins/' Makefile
 sed -i -- 's/^PREFIX  = \/usr//' Makefile
 sed -i -- 's/\$(PREFIX)\/lib//' Makefile
 
-make -j 4
+make -j$(nproc)
 make install
 ldconfig
 make distclean

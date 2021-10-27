@@ -18,7 +18,7 @@ export LINUX_EMBED=true
 # Caused by https://bugs.launchpad.net/qemu/+bug/1776478
 sed -i 's@\t\@./scripts/generate-ttl.sh@\t@g' Makefile
 
-make -j 3 lv2
+make -j$(nproc) lv2
 make install
 make clean
 make distclean

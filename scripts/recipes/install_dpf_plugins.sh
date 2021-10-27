@@ -17,7 +17,7 @@ sed -i -- 's/cp \-r bin\/glBars/\#cp \-r bin\/glBars/' Makefile
 
 # Build
 export NOOPT=true
-make -j 3
+make -j$(nproc)
 make install
 make clean
 

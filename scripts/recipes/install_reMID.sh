@@ -10,7 +10,7 @@ cd reMID.lv2
 mkdir build
 cd build
 cmake ..
-make -j 2
+make -j$(nproc)
 make install
 make clean
 cd ..

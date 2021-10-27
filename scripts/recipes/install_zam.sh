@@ -14,7 +14,7 @@ git submodule update --init
 
 # Build
 export NOOPT=true
-make -j 4
+make -j$(nproc)
 make install
 make clean
 cd ..

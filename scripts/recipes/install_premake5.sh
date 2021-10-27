@@ -7,7 +7,7 @@ fi
 
 git clone https://github.com/premake/premake-core.git
 cd premake-core
-make -j3 -f Bootstrap.mak linux 
+make -j$(nproc) -f Bootstrap.mak linux 
 #./bin/release/premake5 gmake
 ./bin/release/premake5 embed
 #./bin/release/premake5 test

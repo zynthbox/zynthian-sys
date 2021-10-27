@@ -30,7 +30,7 @@ done
 cd ../..
 
 ./configure
-make -j 2 2>/dev/null
+make -j$(nproc) 2>/dev/null
 make install
 cd ..
 

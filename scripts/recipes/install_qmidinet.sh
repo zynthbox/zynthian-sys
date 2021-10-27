@@ -6,6 +6,6 @@ git clone https://github.com/rncbc/qmidinet.git
 cd qmidinet
 ./autogen.sh
 ./configure
-make -j 3
+make -j$(nproc)
 make install
 cd ..

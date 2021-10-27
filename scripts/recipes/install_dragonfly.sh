@@ -31,9 +31,9 @@ index 8f5dec1..93d1484 100644
 EOF
 
 cd dpf
-make -j 4
+make -j$(nproc)
 cd ..
-make -j 4
+make -j$(nproc)
 cp -rp bin/*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2
 
 cd ..

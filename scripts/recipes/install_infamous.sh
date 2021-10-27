@@ -17,7 +17,7 @@ cmake -DLIBDIR="" -DCMAKE_INSTALL_PREFIX=${ZYNTHIAN_PLUGINS_DIR} ..
 for i in `find src -name cmake_install.cmake`; do
 	sed -i -- "s/lib\/lv2/lv2/" $i
 done
-make -j 4
+make -j$(nproc)
 make install
 mv /zynthian/zynthian-plugins/bin/infamous-rule /usr/local/bin
 make clean

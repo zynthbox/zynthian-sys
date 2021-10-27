@@ -6,6 +6,6 @@ if [ -d "alo" ]; then
 fi
 git clone --recursive https://github.com/devcurmudgeon/alo.git
 cd alo/source
-make -j 3 BASE_OPTS="-O3 -ffast-math -fdata-sections -ffunction-sections"
+make -j$(nproc) BASE_OPTS="-O3 -ffast-math -fdata-sections -ffunction-sections"
 make install
 rm -rf "alo"

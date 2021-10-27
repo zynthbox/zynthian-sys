@@ -25,7 +25,7 @@ cd foo-yc20
 sed -i -- 's/\-Iinclude\//\-Iinclude\/ \-I\.\.\/faust\-0\.9\.73\/architecture\//' Makefile
 sed -i -- 's/NULL/0/' src/faust-dsp-standalone.cpp
 sed -i -- 's/NULL/0/' src/faust-dsp-plugin.cpp
-make -j 1
+make -j$(nproc)
 make install
 make clean
 

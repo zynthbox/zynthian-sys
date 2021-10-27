@@ -17,7 +17,7 @@ rm -f cmake-$VERSION.tar.gz
 cd cmake-$VERSION
 
 ./bootstrap --prefix=/usr/local
-make -j 4
+make -j$(nproc)
 make install
 
 rm -rf cmake-$VERSION

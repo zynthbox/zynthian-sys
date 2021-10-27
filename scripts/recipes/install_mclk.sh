@@ -6,7 +6,7 @@ git clone https://github.com/x42/mclk.lv2.git
 cd mclk.lv2
 sed -i -- 's/-msse -msse2 -mfpmath=sse//' Makefile
 sed -i -- 's/LV2DIR ?= \$(PREFIX)\/$(LIBDIR)\/lv2/LV2DIR ?= \/zynthian\/zynthian-plugins\/lv2/' Makefile
-make -j 4
+make -j$(nproc)
 make install
 cp -R modgui $ZYNTHIAN_PLUGINS_DIR/lv2/mclk.lv2
 cat <<EOF >>$ZYNTHIAN_PLUGINS_DIR/lv2/mclk.lv2/manifest.ttl

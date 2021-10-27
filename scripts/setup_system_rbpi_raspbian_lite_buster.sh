@@ -166,7 +166,7 @@ pip3 install mido python-rtmidi patchage
 #mutagen
 
 # Zynthian QML
-apt install matchbox-window-manager python3-xlib qtvirtualkeyboard-plugin qml-module-qtquick-virtualkeyboard qml-module-qt-labs-folderlistmodel plasma-framework python3-pyside2.qtwidgets qml-module-org-kde-newstuff libwebkit2gtk-4.0-37 libtag1-dev python3-alsaaudio qml-module-qtquick-extras qml-module-qtquick-shapes python3-pyside2* libzl zynthian-quick-components sfizz
+apt install matchbox-window-manager python3-xlib qtvirtualkeyboard-plugin qml-module-qtquick-virtualkeyboard qml-module-qt-labs-folderlistmodel plasma-framework python3-pyside2.qtwidgets qml-module-org-kde-newstuff libwebkit2gtk-4.0-37 libtag1-dev python3-alsaaudio qml-module-qtquick-extras qml-module-qtquick-shapes python3-pyside2* libzl zynthian-quick-components sfizz breeze-icon-theme
 pip3 install soundfile pytaglib
 
 #************************************************

@@ -22,7 +22,7 @@ rm -rf "./bin/Larynx.lv2"
 rm -rf "./bin/Harmless.lv2"
 
 export RASPPI=true
-make -j 3 all
+make -j$(nproc) all
 cp -r bin/*.lv2 $ZYNTHIAN_PLUGINS_DIR/lv2/
 
 cd ..

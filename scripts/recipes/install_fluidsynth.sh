@@ -27,7 +27,7 @@ cmake .. -Denable-alsa=0 -Denable-aufile=0 -Denable-oss=0 -Denable-pulseaudio=0 
 # export LD_PRELOAD=/usr/lib/gcc/arm-linux-gnueabihf/8/libasan.so;
 #/usr/local/bin/fluidsynth -p fluidsynth -a jack -m jack -g 1 -j -o synth.midi-bank-select=mma -o synth.cpu-cores=3 -o synth.polyphony=64
 
-make -j 4
+make -j$(nproc)
 make install
 ldconfig
 

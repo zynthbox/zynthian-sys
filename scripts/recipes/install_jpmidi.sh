@@ -6,7 +6,7 @@ if [ ! -d "jpmidi-0.21" ]; then
 	tar xfvz jpmidi-0.21.tar.gz
 	cd jpmidi-0.21/jpmidi
 	./configure
-	make -j 4
+	make -j$(nproc)
 	cp ./src/jpmidi /usr/local/bin
 	cd ../..
 	rm -f jpmidi-0.21.tar.gz

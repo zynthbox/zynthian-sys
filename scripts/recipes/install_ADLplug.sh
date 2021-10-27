@@ -8,7 +8,7 @@ git clone --recursive https://github.com/jpcima/ADLplug.git
 mkdir ADLplug/build
 cd ADLplug/build
 cmake -DCMAKE_BUILD_TYPE=Release -DADLplug_VST2=OFF -DADLplug_VST3=OFF -DADLplug_LV2=ON -DADLplug_Standalone=OFF -DADLplug_Jack=OFF ..
-make -j 3
+make -j$(nproc)
 cmake --build . --target install
 make clean
 cd ../..

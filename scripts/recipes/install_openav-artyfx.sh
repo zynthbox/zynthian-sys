@@ -14,7 +14,7 @@ cd openAV-ArtyFX
 sed -i -- 's/ lib\/lv2\// \/zynthian\/zynthian-plugins\/lv2\//' CMakeLists.txt
 #cmake -DBUILD_GUI=OFF -DBUILD_SSE=OFF .
 cmake .
-make -j 4
+make -j$(nproc)
 make install
 make clean
 cd ..

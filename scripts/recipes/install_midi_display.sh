@@ -6,7 +6,7 @@ if [ -d "midi-display.lv2" ]; then
 fi
 git clone https://github.com/vallsv/midi-display.lv2.git
 cd midi-display.lv2
-make -j 3
+make -j$(nproc)
 DESTDIR=$ZYNTHIAN_PLUGINS_DIR PREFIX=/lv2 SYSPATH="" make install
 make clean
 cd ..

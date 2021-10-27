@@ -12,7 +12,7 @@ tar xfvz 1.5.tar.gz
 rm -f 1.5.tar.gz
 cd $PLUGIN_DIR 
 sed -i -- 's/^INSTALLDIR = \$(DESTDIR)\/usr\/lib\/lv2\//INSTALLDIR = \/zynthian\/zynthian-plugins\/lv2\//' Makefile
-make -j 2
+make -j$(nproc)
 make install
 make clean
 cd ..

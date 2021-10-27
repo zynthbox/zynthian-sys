@@ -11,7 +11,7 @@ cd qmidiarp
 
 autoreconf -i
 ./configure --enable-lv2plugins
-make -j 3
+make -j$(nproc)
 make install
 cd ..
 

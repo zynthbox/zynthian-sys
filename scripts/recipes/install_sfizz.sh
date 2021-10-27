@@ -16,5 +16,5 @@ mkdir build
 cd build
 git submodule update --init --recursive
 cmake ..
-make -j 4
+make -j$(nproc)
 make install

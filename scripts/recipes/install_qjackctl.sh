@@ -16,7 +16,7 @@ cd qjackctl
 git checkout tags/qjackctl_0_6_3
 ./autogen.sh
 ./configure
-make -j 3
+make -j$(nproc)
 cd src
 make install
 cd ../..

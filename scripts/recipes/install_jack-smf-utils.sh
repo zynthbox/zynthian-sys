@@ -13,7 +13,7 @@ git clone https://github.com/zynthian/jack-smf-utils.git
 cd jack-smf-utils
 
 ./configure
-make -j 4
+make -j$(nproc)
 make install
 make clean
 cd ..

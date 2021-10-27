@@ -13,6 +13,6 @@ cd mod-ttymidi
 # supporting 1-byte system messages. This should be
 # changed when the problem get solved.
 #git checkout 028ce4e537c7c1a6c237f90c3747cf1794d2d843
-make -j 4
+make -j$(nproc)
 make install
 cd ..

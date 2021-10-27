@@ -11,7 +11,7 @@ fi
 git clone https://github.com/moddevices/caps-lv2
 
 cd caps-lv2
-make -j 4
+make -j$(nproc)
 cp -R plugins/* $ZYNTHIAN_PLUGINS_DIR/lv2
 make clean
 

@@ -21,7 +21,7 @@ then
 	then
 		make clean
 	fi
-	make -j 4
+	make -j$(nproc)
 	make install
 	zynth_build_request ready 
 	make clean

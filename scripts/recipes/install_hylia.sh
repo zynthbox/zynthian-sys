@@ -15,7 +15,7 @@ cd $ZYNTHIAN_SW_DIR
 git clone --recursive https://github.com/falkTX/Hylia.git
 cd Hylia
 
-make -j 4
+make -j$(nproc)
 make install
 make clean
 

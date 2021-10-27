@@ -10,7 +10,7 @@ fi
 git clone https://github.com/calf-studio-gear/calf.git
 cd calf
 ./autogen.sh
-make -j 4 2>/dev/null
+make -j$(nproc) 2>/dev/null
 make install
 make clean
 

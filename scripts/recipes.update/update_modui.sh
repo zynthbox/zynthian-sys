@@ -2,7 +2,7 @@
 cd $ZYNTHIAN_SW_DIR/mod-host
 git pull | grep -q -v 'Already up.to.date.' && changed=1
 if [[ "$changed" -eq 1 ]]; then
-	make -j 4
+	make -j$(nproc)
 	make install
 	make clean
 	cd ..
@@ -16,7 +16,7 @@ git checkout zyn-mod-merge
 git reset --hard origin/zyn-mod-merge
 
 cd utils
-make -j 4
+make -j$(nproc)
 
 if [ ! -d "$ZYNTHIAN_SW_DIR/mod-ui/data" ]; then
 	mkdir "$ZYNTHIAN_SW_DIR/mod-ui/data"

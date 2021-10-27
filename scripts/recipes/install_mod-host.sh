@@ -11,6 +11,6 @@ if [[ -n $MOD_HOST_GITSHA ]]; then
 fi
 
 #patch -p1 <"${HOME}/zynthian/zynthian-recipe/mod-host.patch.txt"
-make -j 4
+make -j$(nproc)
 make install
 make clean

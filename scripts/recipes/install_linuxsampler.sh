@@ -13,7 +13,7 @@ autoheader
 automake --force-missing --add-missing
 autoconf 
 ./configure
-make -j 1
+make -j$(nproc)
 make install
 make clean
 cd ..
@@ -25,7 +25,7 @@ autoheader
 automake --force-missing --add-missing
 autoconf 
 ./configure
-make -j 1
+make -j$(nproc)
 make install
 make clean
 cd ..
@@ -48,7 +48,7 @@ cd ../..
 git clone https://github.com/steveb/rpi_linuxsampler_patch.git
 patch -p1 < rpi_linuxsampler_patch/linuxsampler-arm.patch
 # Build LinuxSampler
-make -j 1
+make -j$(nproc)
 make install
 make clean
 cd ..

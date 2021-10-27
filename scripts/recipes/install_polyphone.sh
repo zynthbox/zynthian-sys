@@ -8,7 +8,7 @@ if [ ! -d "polyphone" ]; then
 	sed -i -- "s/\-mfpmath\=387//" polyphone.pro
 	sed -i -- "s/#DEFINES += USE_LOCAL_STK/DEFINES += USE_LOCAL_STK/" polyphone.pro
 	qmake
-	make -j 4
+	make -j$(nproc)
 	make install
 	cd ../..
 fi
