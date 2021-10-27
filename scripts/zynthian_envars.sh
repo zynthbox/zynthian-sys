@@ -21,7 +21,7 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
-export ZYNTHIAN_KIT_VERSION="V4"
+export ZYNTHIAN_KIT_VERSION="Custom"
 
 #Audio Config
 export SOUNDCARD_NAME="Behringer UMC22"
