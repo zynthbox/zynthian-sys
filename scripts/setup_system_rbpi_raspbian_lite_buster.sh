@@ -87,10 +87,9 @@ rm -f kxstudio-repos_10.0.3_all.deb
 wget -O - https://deb.zynthian.org/zynthian-deb.pub | apt-key add -
 echo "deb https://deb.zynthian.org/zynthian-stable buster main" > /etc/apt/sources.list.d/zynthian.list
 
-# Sfizz
-sfizz_url_base="http://download.opensuse.org/repositories/home:/sfztools:/sfizz:/develop/Raspbian_10"
-echo "deb $sfizz_url_base/ /" > /etc/apt/sources.list.d/sfizz-dev.list
-curl -fsSL $sfizz_url_base/Release.key | apt-key add -
+# Zynthbox
+wget -qO - "http://deb.netrunner.com/zynthbox/zynthbox_pub.gpg" | apt-key add -
+echo "deb http://deb.netrunner.com/zynthbox buster main" > /etc/apt/sources.list.d/zynthbox.list
 
 apt-get -y update
 apt-get -y dist-upgrade
@@ -165,6 +164,10 @@ pip3 install tornado==4.1 tornadostreamform websocket-client
 pip3 install jsonpickle oyaml psutil pexpect requests
 pip3 install mido python-rtmidi patchage
 #mutagen
+
+# Zynthian QML
+apt install matchbox-window-manager python3-xlib qtvirtualkeyboard-plugin qml-module-qtquick-virtualkeyboard qml-module-qt-labs-folderlistmodel plasma-framework python3-pyside2.qtwidgets qml-module-org-kde-newstuff libwebkit2gtk-4.0-37 libtag1-dev python3-alsaaudio qml-module-qtquick-extras qml-module-qtquick-shapes python3-pyside2* libzl zynthian-quick-components sfizz
+pip3 install soundfile pytaglib
 
 #************************************************
 #------------------------------------------------

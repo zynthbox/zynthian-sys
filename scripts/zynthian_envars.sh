@@ -24,17 +24,17 @@
 export ZYNTHIAN_KIT_VERSION="V4"
 
 #Audio Config
-export SOUNDCARD_NAME="HifiBerry DAC+ ADC PRO"
-export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadcpro"
-export SOUNDCARD_MIXER="Digital Left,ADC Left,Digital Right,ADC Right,ADC Left Input,ADC Right Input"
-export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:sndrpihifiberry -r 44100 -p 256 -n 2 -X raw"
+export SOUNDCARD_NAME="Behringer UMC22"
+export SOUNDCARD_CONFIG=""
+export SOUNDCARD_MIXER="CODEC,Mic"
+export JACKD_OPTIONS="-R -P 90 -d alsa -C hw:CODEC -P hw:CODEC -r 48000 -p 1024 -n 3 -s -X raw"
 
 #Display Config
-export DISPLAY_NAME="ZynScreen 3.5 (v1)"
-export DISPLAY_CONFIG="dtoverlay=piscreen2r-notouch,rotate=270\ndtoverlay=ads7846,speed=2000000,cs=1,penirq=17,penirq_pull=2,swapxy=1,xohms=100,pmax=255"
-export DISPLAY_WIDTH="480"
-export DISPLAY_HEIGHT="320"
-export FRAMEBUFFER="/dev/fb1"
+export DISPLAY_NAME="WaveShare 7 HDMI+USB 1024x600"
+export DISPLAY_CONFIG="hdmi_force_hotplug=1,hdmi_drive=1,hdmi_group=2,hdmi_mode=1,hdmi_mode=87,hdmi_cvt 1024 600 60 6 0 0 0,dtoverlay=vc4-fkms-v3d"
+export DISPLAY_WIDTH="1024"
+export DISPLAY_HEIGHT="600"
+export FRAMEBUFFER="/dev/fb0"
 
 # Zynthian Wiring Config
 export ZYNTHIAN_WIRING_LAYOUT="MCP23017_ZynScreen"
