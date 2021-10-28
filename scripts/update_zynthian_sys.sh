@@ -34,7 +34,12 @@ ZYNTHIAN_OS_CODEBASE=`lsb_release -cs`
 # Load Environment Variables
 #------------------------------------------------------------------------------
 
-source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
+if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
+	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
+else
+	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
+fi
+
 source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 #------------------------------------------------------------------------------
@@ -220,7 +225,9 @@ fi
 #------------------------------------------------------------------------------
 
 # Copy default envars file
-cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
+if [ ! -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
+	cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
+fi
 
 # Install zynthian repository public key
 if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then

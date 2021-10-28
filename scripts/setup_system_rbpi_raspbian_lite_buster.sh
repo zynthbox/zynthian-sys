@@ -261,6 +261,9 @@ if [ "$ZYNTHIAN_CHANGE_HOSTNAME" == "yes" ]; then
     sed -i -e "s/127\.0\.1\.1.*$/127.0.1.1\tzynthian/" /etc/hosts
 fi
 
+# Copy default envars
+cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
+
 # Run configuration script
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
