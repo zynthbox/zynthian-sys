@@ -9,8 +9,8 @@ export OPTIMIZATIONS=""
 
 git clone git://github.com/x42/fil4.lv2.git
 cd fil4.lv2
-make submodules
-make
+make -j$(nproc) submodules
+make -j$(nproc)
 make install PREFIX=/usr/local
 cd ..
 

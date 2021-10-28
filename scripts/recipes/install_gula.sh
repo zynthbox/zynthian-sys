@@ -6,7 +6,7 @@ rm -rf gula-plugins
 git clone https://github.com/steveb/gula-plugins.git
 cd gula-plugins
 
-make all
+make -j$(nproc) all
 cp -r lv2/* $ZYNTHIAN_PLUGINS_DIR/lv2/
 
 cd ..

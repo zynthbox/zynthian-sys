@@ -2,7 +2,7 @@
 
 # Build and install lv2_ttl_generator
 cd $ZYNTHIAN_PLUGINS_SRC_DIR/helm/builds/linux/LV2
-make ttl_generator
+make -j$(nproc) ttl_generator
 cp ./lv2_ttl_generator /usr/local/bin
 
 # Generate presets for some plugins
