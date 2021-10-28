@@ -31,7 +31,7 @@ export JACKD_OPTIONS="-R -P 90 -d alsa -C hw:CODEC -P hw:CODEC -r 48000 -p 1024 
 
 #Display Config
 export DISPLAY_NAME="WaveShare 7 HDMI+USB 1024x600"
-export DISPLAY_CONFIG="hdmi_force_hotplug=1,hdmi_drive=1,hdmi_group=2,hdmi_mode=1,hdmi_mode=87,hdmi_cvt 1024 600 60 6 0 0 0,dtoverlay=vc4-fkms-v3d"
+export DISPLAY_CONFIG="hdmi_force_hotplug=1\nhdmi_drive=1\nhdmi_group=2\nhdmi_mode=1\nhdmi_mode=87\nhdmi_cvt 1024 600 60 6 0 0 0\ndtoverlay=vc4-fkms-v3d"
 export DISPLAY_WIDTH="1024"
 export DISPLAY_HEIGHT="600"
 export FRAMEBUFFER="/dev/fb0"
