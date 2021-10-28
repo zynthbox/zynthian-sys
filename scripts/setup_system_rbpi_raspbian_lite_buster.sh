@@ -160,9 +160,11 @@ if [ "$ZYNTHIAN_INCLUDE_PIP" == "yes" ]; then
     apt-get -y install python-pip python3-pip
 fi
 
+apt-get -y install patchage
+
 pip3 install tornado==4.1 tornadostreamform websocket-client
 pip3 install jsonpickle oyaml psutil pexpect requests
-pip3 install mido python-rtmidi patchage
+pip3 install mido python-rtmidi
 #mutagen
 
 # Zynthian QML
