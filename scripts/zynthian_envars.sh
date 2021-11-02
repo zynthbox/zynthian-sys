@@ -24,10 +24,10 @@
 export ZYNTHIAN_KIT_VERSION="Custom"
 
 #Audio Config
-export SOUNDCARD_NAME="Behringer UMC22"
-export SOUNDCARD_CONFIG=""
-export SOUNDCARD_MIXER="CODEC,Mic"
-export JACKD_OPTIONS="-R -P 90 -d alsa -C hw:CODEC -P hw:CODEC -r 48000 -p 1024 -n 3 -s -X raw"
+export SOUNDCARD_NAME="RBPi Headphones"
+export SOUNDCARD_CONFIG="dtparam=audio=on\naudio_pwm_mode=2"
+export SOUNDCARD_MIXER="Headphone Left,Headphone Right"
+export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:Headphones -r 44100 -p 512 -n 3 -X raw"
 
 #Display Config
 export DISPLAY_NAME="WaveShare 7 HDMI+USB 1024x600"
