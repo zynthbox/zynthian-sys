@@ -197,7 +197,15 @@ git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
 
 # Zynthian UI
 cd $ZYNTHIAN_DIR
-git clone -b "${ZYNTHIAN_UI_BRANCH}" "${ZYNTHIAN_UI_REPO}" "zynthian-ui"
+
+if [ "$ZYNTHIANOS_IMG_TYPE" == "dev" ]; then
+	# Clone from git repository if build type is dev
+	git clone -b "${ZYNTHIAN_UI_BRANCH}" "${ZYNTHIAN_UI_REPO}" "zynthian-ui"
+else
+	# Install package if build type is not dev
+	apt-get -y install zynthian-qml
+fi
+
 cd $ZYNTHIAN_UI_DIR
 if [ -d "zynlibs" ]; then
 	find ./zynlibs -type f -name build.sh -exec {} \;
@@ -510,6 +518,9 @@ apt-mark hold raspberrypi-sys-mods
 touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # Clean
+
+rm -rf /root/.gitconfig # Remove github personal access token
+
 apt-get -y autoremove # Remove unneeded packages
 if [[ "$ZYNTHIAN_SETUP_APT_CLEAN" == "yes" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
     apt-get clean
