@@ -27,7 +27,7 @@ export ZYNTHIAN_KIT_VERSION="Custom"
 export SOUNDCARD_NAME="RBPi Headphones"
 export SOUNDCARD_CONFIG="dtparam=audio=on\naudio_pwm_mode=2"
 export SOUNDCARD_MIXER="Headphone Left,Headphone Right"
-export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d hw:Headphones -r 44100 -p 512 -n 3 -X raw"
+export JACKD_OPTIONS="-P 70 -t 2000 -s -d alsa -d plughw:Headphones -r 44100 -p 512 -n 3 -X raw"
 
 #Display Config
 export DISPLAY_NAME="WaveShare 7 HDMI+USB 1024x600"
