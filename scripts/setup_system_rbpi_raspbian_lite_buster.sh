@@ -291,6 +291,7 @@ systemctl disable hostapd
 systemctl disable dnsmasq
 systemctl disable unattended-upgrades
 systemctl disable apt-daily.timer
+systemctl disable getty@tty1.service
 #systemctl mask packagekit
 #systemctl mask polkit
 #systemctl disable serial-getty@ttyAMA0.service
