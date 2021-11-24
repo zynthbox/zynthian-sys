@@ -1,0 +1,10 @@
+[Unit]
+Description=Check ttymidi CPU Usage
+
+[Service]
+Environment=HOME=/root
+Type=oneshot
+ExecStart=#ZYNTHIAN_SYS_DIR#/sbin/check-ttymidi-usage.sh
+
+[Install]
+WantedBy=multi-user.target

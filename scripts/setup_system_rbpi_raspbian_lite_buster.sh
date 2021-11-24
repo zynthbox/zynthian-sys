@@ -299,6 +299,8 @@ systemctl disable getty@tty1.service
 #systemctl disable sys-devices-platform-soc-3f201000.uart-tty-ttyAMA0.device
 systemctl enable backlight
 systemctl enable cpu-performance
+systemctl enable check-ttymidi-usage.service
+systemctl enable check-ttymidi-usage.timer
 systemctl enable splash-screen
 systemctl enable wifi-setup
 systemctl enable jack2
