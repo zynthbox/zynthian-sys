@@ -1,8 +1,8 @@
 [Unit]
-Description=Check for ttymidi CPU Usage every 15 minutes
+Description=Check for ttymidi CPU Usage every minute
 
 [Timer]
-OnCalendar=*:0/15
+OnCalendar=*:0/1
 
 [Install]
 WantedBy=timers.target
