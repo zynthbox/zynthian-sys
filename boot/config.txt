@@ -118,3 +118,7 @@ dtoverlay=midi-uart0
 #dtparam=uart0_clkrate=3000000
 #[all]
 
+# Overclocking settings
+arm_freq=1750
+gpu_freq=750
+over_voltage=6
