@@ -168,7 +168,7 @@ pip3 install mido python-rtmidi
 #mutagen
 
 # Zynthian QML
-apt-get -y install matchbox-window-manager python3-xlib qtvirtualkeyboard-plugin qml-module-qtquick-virtualkeyboard qml-module-qt-labs-folderlistmodel plasma-framework python3-pyside2.qtwidgets qml-module-org-kde-newstuff libwebkit2gtk-4.0-37 libtag1-dev python3-alsaaudio qml-module-qtquick-extras qml-module-qtquick-shapes python3-pyside2* libzl zynthian-quick-components zynthbox-meta zynthbox-bootsplash sfizz breeze-icon-theme
+apt-get -y install matchbox-window-manager python3-xlib qtvirtualkeyboard-plugin qml-module-qtquick-virtualkeyboard qml-module-qt-labs-folderlistmodel plasma-framework python3-pyside2.qtwidgets qml-module-org-kde-newstuff libwebkit2gtk-4.0-37 libtag1-dev python3-alsaaudio qml-module-qtquick-extras qml-module-qtquick-shapes python3-pyside2* libzl zynthian-quick-components zynthbox-meta zynthbox-qml zynthbox-bootsplash sfizz breeze-icon-theme
 apt-get -y install --no-install-suggests --no-install-recommends kwin-x11
 pip3 install soundfile pytaglib
 
@@ -199,13 +199,13 @@ git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
 # Zynthian UI
 cd $ZYNTHIAN_DIR
 
-if [ "$ZYNTHIANOS_IMG_TYPE" == "dev" ]; then
-	# Clone from git repository if build type is dev
-	git clone -b "${ZYNTHIAN_UI_BRANCH}" "${ZYNTHIAN_UI_REPO}" "zynthian-ui"
-else
-	# Install package if build type is not dev
-	apt-get -y install zynthian-qml
-fi
+# if [ "$ZYNTHIANOS_IMG_TYPE" == "dev" ]; then
+# 	# Clone from git repository if build type is dev
+# 	git clone -b "${ZYNTHIAN_UI_BRANCH}" "${ZYNTHIAN_UI_REPO}" "zynthian-ui"
+# else
+# 	# Install package if build type is not dev
+# 	apt-get -y install zynthbox-qml
+# fi
 
 cd $ZYNTHIAN_UI_DIR
 if [ -d "zynlibs" ]; then
