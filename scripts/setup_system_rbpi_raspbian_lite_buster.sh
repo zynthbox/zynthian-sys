@@ -274,6 +274,9 @@ fi
 # Copy default envars
 cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
 
+# Copy default engine edit pages config
+cp -a $ZYNTHIAN_SYS_DIR/config/control_page.conf $ZYNTHIAN_CONFIG_DIR
+
 # Run configuration script
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh

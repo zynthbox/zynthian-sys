@@ -229,6 +229,11 @@ if [ ! -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
 fi
 
+# Copy engine edit page config
+if [ ! -f "$ZYNTHIAN_CONFIG_DIR/control_page.conf" ]; then
+	cp -a $ZYNTHIAN_SYS_DIR/config/control_page.conf $ZYNTHIAN_CONFIG_DIR
+fi
+
 # Install zynthian repository public key
 if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
 	apt-key add $ZYNTHIAN_SYS_DIR/etc/apt/pubkeys/zynthian.pub
