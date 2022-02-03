@@ -20,6 +20,7 @@ ExecStop=/usr/local/bin/send_osc 1370 /CUIA/EXIT_UI
 #ExecStop=/bin/sh -c "/usr/bin/tail --pid=$MAINPID -f /dev/null"
 Restart=always
 RestartSec=5
+TimeoutSec=10
 
 [Install]
 WantedBy=multi-user.target
