@@ -170,7 +170,7 @@ pip3 install mido python-rtmidi
 # Zynthian QML
 apt-get -y install matchbox-window-manager python3-xlib qtvirtualkeyboard-plugin qml-module-qtquick-virtualkeyboard qml-module-qt-labs-folderlistmodel plasma-framework python3-pyside2.qtwidgets qml-module-org-kde-newstuff libwebkit2gtk-4.0-37 libtag1-dev python3-alsaaudio qml-module-qtquick-extras qml-module-qtquick-shapes python3-pyside2* libzl zynthian-quick-components zynthbox-meta zynthbox-qml zynthbox-bootsplash sfizz breeze-icon-theme
 apt-get -y install --no-install-suggests --no-install-recommends kwin-x11
-pip3 install soundfile pytaglib pynput
+pip3 install soundfile pytaglib pynput rpi_ws281x
 
 #************************************************
 #------------------------------------------------
