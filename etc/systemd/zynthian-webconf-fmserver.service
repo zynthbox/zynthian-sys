@@ -1,0 +1,18 @@
+[Unit]
+Description=Zynthian Webconf FM Server
+After=zynthian-webconf.service
+Requires=zynthian-webconf.service
+
+[Service]
+Environment=PATH=/usr/local/bin:/zynthian/zynthian-sys/sbin:/bin:/usr/bin:/sbin:/usr/sbin
+Environment=HOME=/root
+Environment=ZYNTHIAN_DIR=/zynthian
+Environment=ZYNTHIAN_CONFIG_DIR=/zynthian/config
+WorkingDirectory=/zynthian/zynthian-webconf/metaheader
+ExecStart=pm2 start --name webconf-fm-server /zynthian/zynthian-webconf/metaheader/server.js
+ExecStop=pm2 stop webconf-fm-server
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

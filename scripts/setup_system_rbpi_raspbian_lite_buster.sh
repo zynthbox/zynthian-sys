@@ -170,7 +170,7 @@ pip3 install mido python-rtmidi
 # Zynthian QML
 apt-get -y install matchbox-window-manager python3-xlib qtvirtualkeyboard-plugin qml-module-qtquick-virtualkeyboard qml-module-qt-labs-folderlistmodel plasma-framework python3-pyside2.qtwidgets qml-module-org-kde-newstuff libwebkit2gtk-4.0-37 libtag1-dev python3-alsaaudio qml-module-qtquick-extras qml-module-qtquick-shapes python3-pyside2* libzl zynthian-quick-components zynthbox-meta zynthbox-qml zynthbox-bootsplash sfizz breeze-icon-theme
 apt-get -y install --no-install-suggests --no-install-recommends kwin-x11
-pip3 install soundfile pytaglib
+pip3 install soundfile pytaglib pynput
 
 #************************************************
 #------------------------------------------------
@@ -224,8 +224,12 @@ cd $ZYNTHIAN_DIR
 git clone -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
 
 # Zynthian Webconf Tool
+apt-get -y install npm
 cd $ZYNTHIAN_DIR
 git clone -b "${ZYNTHIAN_WEBCONF_BRANCH}" "${ZYNTHIAN_WEBCONF_REPO}"
+cd $ZYNTHIAN_DIR/zynthian-webconf/metaheader
+npm install
+npm install -g pm2
 
 # Create needed directories
 #mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
@@ -311,6 +315,7 @@ systemctl enable mod-ttymidi
 systemctl enable a2jmidid
 systemctl enable zynthian
 systemctl enable zynthian-webconf
+systemctl enable zynthian-webconf-fmserver
 systemctl enable zynthian-config-on-boot
 
 # Setup loading of Zynthian Environment variables ...
