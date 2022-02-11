@@ -9,8 +9,7 @@ Environment=HOME=/root
 Environment=ZYNTHIAN_DIR=/zynthian
 Environment=ZYNTHIAN_CONFIG_DIR=/zynthian/config
 WorkingDirectory=/zynthian/zynthian-webconf/metaheader
-ExecStart=pm2 start --name webconf-fm-server /zynthian/zynthian-webconf/metaheader/server.js
-ExecStop=pm2 stop webconf-fm-server
+ExecStart=node /zynthian/zynthian-webconf/metaheader/server.js
 Restart=always
 RestartSec=5
 
