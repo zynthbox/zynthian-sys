@@ -168,7 +168,7 @@ pip3 install mido python-rtmidi
 #mutagen
 
 # Zynthian QML
-apt-get -y install matchbox-window-manager python3-xlib qtvirtualkeyboard-plugin qml-module-qtquick-virtualkeyboard qml-module-qt-labs-folderlistmodel plasma-framework python3-pyside2.qtwidgets qml-module-org-kde-newstuff libwebkit2gtk-4.0-37 libtag1-dev python3-alsaaudio qml-module-qtquick-extras qml-module-qtquick-shapes python3-pyside2* libzl zynthian-quick-components zynthbox-meta zynthbox-qml zynthbox-bootsplash sfizz breeze-icon-theme
+apt-get -y install matchbox-window-manager python3-xlib qtvirtualkeyboard-plugin qml-module-qtquick-virtualkeyboard qml-module-qt-labs-folderlistmodel plasma-framework python3-pyside2.qtwidgets qml-module-org-kde-newstuff libwebkit2gtk-4.0-37 libtag1-dev python3-alsaaudio qml-module-qtquick-extras qml-module-qtquick-shapes python3-pyside2* libzl zynthian-quick-components zynthbox-meta zynthbox-qml zynthbox-bootsplash sfizz breeze-icon-theme zynthian-webconf zyncoder
 apt-get -y install --no-install-suggests --no-install-recommends kwin-x11
 pip3 install soundfile pytaglib pynput rpi_ws281x
 
@@ -224,12 +224,12 @@ cd $ZYNTHIAN_DIR
 git clone -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
 
 # Zynthian Webconf Tool
-apt-get -y install npm
-cd $ZYNTHIAN_DIR
-git clone -b "${ZYNTHIAN_WEBCONF_BRANCH}" "${ZYNTHIAN_WEBCONF_REPO}"
-cd $ZYNTHIAN_DIR/zynthian-webconf/metaheader
-npm install
-npm install -g pm2
+### Webconf will be installed from zynthbox-repo
+# cd $ZYNTHIAN_DIR
+# git clone -b "${ZYNTHIAN_WEBCONF_BRANCH}" "${ZYNTHIAN_WEBCONF_REPO}"
+# cd $ZYNTHIAN_DIR/zynthian-webconf/metaheader
+# npm install
+# npm install -g pm2
 
 # Create needed directories
 #mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
