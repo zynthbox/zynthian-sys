@@ -345,6 +345,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -an $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
 	cp -an $ZYNTHIAN_SYS_DIR/etc/security/* /etc/security
 	cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
+	cp -a $ZYNTHIAN_SYS_DIR/etc/system.conf.d /etc/systemd/system.conf.d
 	cp -a $ZYNTHIAN_SYS_DIR/etc/sysctl.d/* /etc/sysctl.d
 	cp -a $ZYNTHIAN_SYS_DIR/etc/udev/rules.d/* /etc/udev/rules.d 2>/dev/null
 	cp -a $ZYNTHIAN_SYS_DIR/etc/avahi/* /etc/avahi
