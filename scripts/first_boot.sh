@@ -3,6 +3,19 @@
 # Load Config Envars
 source "/zynthian/config/zynthian_envars.sh"
 
+# Rotate display if XRANDR_ROTATE var is set
+if [ -z ${XRANDR_ROTATE} ]; then
+	echo "not rotating"
+else
+	xrandr -o $XRANDR_ROTATE
+fi
+
+# Throw up a splash screen while we do first boot setup
+if [ ! -p /tmp/mplayer-splash-control ]; then
+	mkfifo /tmp/mplayer-splash-control
+fi
+mplayer -slave -input file=/tmp/mplayer-splash-control -noborder -ontop -geometry 50%:50% /usr/share/zynthbox-bootsplash/zynthbox-bootsplash.mkv -loop 0 &> /dev/null &
+
 # Get System Codebase
 codebase=`lsb_release -cs`
 
