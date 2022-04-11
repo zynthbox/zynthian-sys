@@ -4,7 +4,7 @@ Before=jack2.service
 
 [Service]
 Type=oneshot
-ExecStart=#ZYNTHIAN_SYS_DIR#/scripts/first_boot.sh
+ExecStart=/usr/bin/startx #ZYNTHIAN_SYS_DIR#/scripts/first_boot.sh
 
 [Install]
 WantedBy=multi-user.target

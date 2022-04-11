@@ -10,11 +10,12 @@ else
 	xrandr -o $XRANDR_ROTATE
 fi
 
-# Throw up a splash screen while we do first boot setup
-if [ ! -p /tmp/mplayer-splash-control ]; then
-	mkfifo /tmp/mplayer-splash-control
+# Throw up a splash screen while we do the firstboot setup
+if [ ! -p /tmp/mplayer-firstboot-splash-control ]; then
+	mkfifo /tmp/mplayer-firstboot-splash-control
 fi
-mplayer -slave -input file=/tmp/mplayer-splash-control -noborder -ontop -geometry 50%:50% /usr/share/zynthbox-bootsplash/zynthbox-bootsplash.mkv -loop 0 &> /dev/null &
+
+mplayer -slave -input file=/tmp/mplayer-firstboot-splash-control -noborder -ontop "mf:///usr/share/zynthbox-bootsplash/zynthbox-firstboot.jpg" -loop 0 &> /dev/null &
 
 # Get System Codebase
 codebase=`lsb_release -cs`
