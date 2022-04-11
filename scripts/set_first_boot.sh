@@ -3,7 +3,6 @@
 # Add First Boot Script to /etc/rc.local
 echo "Enabling first boot service ..."
 systemctl enable first_boot
-systemctl enable firstboot-splash-screen
 
 # Clean unneeded packages & apt cache
 echo "Cleaning unused packages and cache ..."

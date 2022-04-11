@@ -10,6 +10,12 @@ else
 	xrandr -o $XRANDR_ROTATE
 fi
 
+# Throw up a splash screen while we do first boot setup
+if [ ! -p /tmp/mplayer-splash-control ]; then
+	mkfifo /tmp/mplayer-splash-control
+fi
+mplayer -slave -input file=/tmp/mplayer-splash-control -noborder -ontop -geometry 50%:50% /usr/share/zynthbox-bootsplash/zynthbox-bootsplash.mkv -loop 0 &> /dev/null &
+
 # Get System Codebase
 codebase=`lsb_release -cs`
 
@@ -33,12 +39,8 @@ if [ -f "first_boot.$codebase.sh" ]; then
 	./first_boot.$codebase.sh
 fi
 
-# Disable first_boot service and splash screen service
+# Disable first_boot service
 systemctl disable first_boot
-systemctl disable firstboot-splash-screen
-
-# Enable generic splash screen service
-systemctl enable splash-screen
 
 # Resize partition
 $ZYNTHIAN_SYS_DIR/scripts/rpi-wiggle.sh

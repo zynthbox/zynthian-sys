@@ -1,7 +1,6 @@
 [Unit]
 Description=First Boot Script
 Before=jack2.service
-After=firstboot-splash-screen.service
 
 [Service]
 Type=oneshot
