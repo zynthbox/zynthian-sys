@@ -260,7 +260,6 @@ mkdir "$ZYNTHIAN_PLUGINS_DIR"
 mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
 
 # Copy default snapshots
-cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000
 cp -a $ZYNTHIAN_SYS_DIR/snapshots/default.zss $ZYNTHIAN_MY_DATA_DIR/snapshots/
 
 #************************************************
