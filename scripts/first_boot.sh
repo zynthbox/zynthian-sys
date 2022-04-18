@@ -43,5 +43,8 @@ fi
 # Disable first_boot service
 systemctl disable first_boot
 
+# Enable splash-screen
+systemctl enable splash-screen
+
 # Resize partition
 $ZYNTHIAN_SYS_DIR/scripts/rpi-wiggle.sh

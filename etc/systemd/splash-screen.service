@@ -1,5 +1,5 @@
 [Unit]
-Description=Splash Zynthian Logo Screen
+Description=Splash Zynthbox Logo
 
 [Service]
 Environment=ZYNTHIAN_DIR=#ZYNTHIAN_DIR#
@@ -9,7 +9,7 @@ Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
 Environment=FRAMEBUFFER=#FRAMEBUFFER#
 Environment=HOME=/root
 Type=oneshot
-ExecStartPre=#ZYNTHIAN_SYS_DIR#/sbin/pre-splash-screen.sh
+#ExecStartPre=#ZYNTHIAN_SYS_DIR#/sbin/pre-splash-screen.sh
 ExecStart=#ZYNTHIAN_SYS_DIR#/sbin/splash-screen.sh
 
 [Install]
