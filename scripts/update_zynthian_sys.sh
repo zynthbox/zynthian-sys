@@ -178,6 +178,11 @@ fi
 if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/boot/cmdline.txt /boot
 	cp -a $ZYNTHIAN_SYS_DIR/boot/config.txt /boot
+	
+	# Copy splash initramfs image and splash configs
+	cp -a $ZYNTHIAN_SYS_DIR/boot/initramfs.img /boot
+	cp -a $ZYNTHIAN_SYS_DIR/boot/zynthian-splash.png /boot
+	cp -a $ZYNTHIAN_SYS_DIR/boot/splash.txt /boot
 
 	if [ "$ZYNTHIAN_LIMIT_USB_SPEED" == "1" ]; then
 		echo "USB SPEED LIMIT ENABLED"

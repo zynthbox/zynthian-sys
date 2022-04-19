@@ -122,3 +122,5 @@ dtoverlay=midi-uart0
 arm_freq=1750
 gpu_freq=750
 over_voltage=6
+
+initramfs initramfs.img
