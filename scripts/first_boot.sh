@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Check if zynthbox-z2.txt file is present in boot dir
+# If file is present, install z2 config and restart device
+if [ -e /boot/zynthbox-z2.txt ]; then
+	if [ -e /boot/zynthbox-z2-config*.deb ]; then
+		dpkg -i /boot/zynthbox-z2-config*.deb
+		rm /boot/zynthbox-z2-config*.deb
+		reboot
+	fi
+fi
+
 # Load Config Envars
 source "/zynthian/config/zynthian_envars.sh"
 
