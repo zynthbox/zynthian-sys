@@ -1,3 +1,0 @@
-## Initramfs-Splash
-image=zynthian-splash.png
-fullscreen=1

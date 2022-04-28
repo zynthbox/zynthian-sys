@@ -1,5 +1,5 @@
 #!/bin/bash
-
+ 
 # Source config
 if [ -d "$ZYNTHIAN_CONFIG_DIR" ]; then
 	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
@@ -11,11 +11,11 @@ fi
 if [ -z ${XRANDR_ROTATE} ]; then
 	# Display Zynthian Boot Splash Screen
 	if [ -c $FRAMEBUFFER ]; then
-		cat /usr/share/zynthbox-bootsplash/zynthbox.raw > $FRAMEBUFFER
+		cat /usr/share/zynthbox-bootsplash/boot-splash.raw > $FRAMEBUFFER
 	fi  
 else
 	# Display Zynthian Boot Splash Screen - Inverted
 	if [ -c $FRAMEBUFFER ]; then
-		cat /usr/share/zynthbox-bootsplash/zynthbox-inverted.raw > $FRAMEBUFFER
+		cat /usr/share/zynthbox-bootsplash/boot-splash-inverted.raw > $FRAMEBUFFER
 	fi  
 fi
