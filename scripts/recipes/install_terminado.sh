@@ -12,6 +12,8 @@ pip3 install XStatic_term.js 2>/dev/null
 
 git clone https://github.com/jupyter/terminado.git
 cd terminado
+git checkout ce1f6a1e7e2d4fc72d10cd5bb7f821996679c5d7
+git submodule update --init --recursive
 python3 ./setup.py install
 cd ..
 

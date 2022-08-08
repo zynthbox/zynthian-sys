@@ -8,6 +8,8 @@ if [ -d lv2 ]; then
 fi
 git clone --recursive https://github.com/lv2/lv2.git
 cd lv2
+git checkout 7f3a2651a3635232d94f7bf9ce23d6b575735732
+git submodule update --init --recursive
 ./waf configure
 ./waf build
 ./waf install
@@ -27,6 +29,8 @@ if [ -d serd ]; then
 fi
 git clone --recursive https://github.com/drobilla/serd.git
 cd serd
+git checkout bcc1c936b15782d8fa59e2ebf471cf686527135c
+git submodule update --init --recursive
 ./waf configure
 ./waf build
 ./waf install
@@ -38,6 +42,8 @@ if [ -d sord ]; then
 fi
 git clone --recursive https://github.com/drobilla/sord.git
 cd sord
+git checkout 1cda90c39e4b2c55c775cd6bd6dcb08aee4d640d
+git submodule update --init --recursive
 ./waf configure
 ./waf build
 ./waf install
@@ -49,6 +55,8 @@ if [ -d sratom ]; then
 fi
 git clone --recursive https://github.com/lv2/sratom.git
 cd sratom
+git checkout ed283b838681ed3fb28e94140a6dc5172945776f
+git submodule update --init --recursive
 ./waf configure
 ./waf build
 ./waf install
@@ -61,6 +69,8 @@ if [ -d lilv ]; then
 fi
 git clone --recursive https://github.com/lv2/lilv.git
 cd lilv
+git checkout 7efa554e1bf876888ff62a2ef3aee9447f748aca
+git submodule update --init --recursive
 
 #Get the destination directory
 rm -rf /usr/local/lib/python3
