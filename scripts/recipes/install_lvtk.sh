@@ -11,7 +11,7 @@ if [ -d lvtk-1 ]; then
 fi
 git clone https://github.com/lvtk/lvtk.git lvtk-1
 cd lvtk-1
-git checkout 1.x
+git checkout v1
 #./waf configure --disable-ui
 ./waf configure
 ./waf build
@@ -26,6 +26,7 @@ if [ -d lvtk-2 ]; then
 fi
 git clone https://github.com/lvtk/lvtk.git lvtk-2
 cd lvtk-2
+git checkout a73feabe772f9650aa071e6a4df660e549ab7c48
 #./waf configure --disable-ui
 ./waf configure
 ./waf build
