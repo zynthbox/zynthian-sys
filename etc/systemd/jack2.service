@@ -1,6 +1,7 @@
 [Unit]
 Description=JACK2 Audio Server
 #After=sound.target
+Requires=mod-ttymidi.service
 
 [Service]
 Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/dbus/system_bus_socket
