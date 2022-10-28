@@ -12,6 +12,9 @@ Environment=ZYNTHIAN_DIR=#ZYNTHIAN_DIR#
 Environment=ZYNTHIAN_UI_DIR=#ZYNTHIAN_UI_DIR#
 Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
 Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
+# Environment=ZYNTHBOX_DEBUG=1
+# Environment=ZYNTHBOX_DEBUG=block
+# Environment=ZYNTHBOX_DEBUG=gdbserver
 WorkingDirectory=#ZYNTHIAN_UI_DIR#
 ExecStart=/usr/bin/startx ./zynthian.sh
 TimeoutStopSec=20
