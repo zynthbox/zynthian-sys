@@ -88,8 +88,13 @@ wget -O - https://deb.zynthian.org/zynthian-deb.pub | apt-key add -
 echo "deb https://deb.zynthian.org/zynthian-stable buster main" > /etc/apt/sources.list.d/zynthian.list
 
 # Zynthbox
-wget -qO - "http://deb.netrunner.com/zynthbox/zynthbox_pub.gpg" | apt-key add -
-echo "deb http://deb.netrunner.com/zynthbox buster main" > /etc/apt/sources.list.d/zynthbox.list
+if [ -z $ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL -o -z $ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE ]; then
+	wget -qO - "http://deb.netrunner.com/zynthbox/zynthbox_pub.gpg" | apt-key add -
+	echo "deb http://deb.netrunner.com/zynthbox buster main" > /etc/apt/sources.list.d/zynthbox.list
+then
+	wget -qO - "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" | apt-key add -
+	echo "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox.list
+fi
 
 apt-get -y update
 apt-get -y dist-upgrade
