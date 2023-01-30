@@ -189,6 +189,13 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 		sed -i '1s/tty1/tty3/' /boot/cmdline.txt
 		sed -i '1s/rootwait/rootwait logo.nologo quiet splash/' /boot/cmdline.txt
 	fi
+	
+	# Find rootfs by PARTUUID instead of block device
+	# This will allow booting zynthian from USB	
+		#Find partition id of rootfs ending with -02
+		PARTID=$(cat /etc/fstab | grep -Eo "PARTUUID=\S*-02")
+		# Replace existing `root=` parameter with PARTUUID
+		sed -i "s/root=\S*/root=$PARTID/" /boot/cmdline.txt
 
 	if [[ "$ZYNTHIAN_DISABLE_RBPI_AUDIO" != "1" ]]; then
 		echo "RBPI AUDIO ENABLED"
