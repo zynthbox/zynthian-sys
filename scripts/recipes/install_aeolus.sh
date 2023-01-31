@@ -10,9 +10,13 @@ fi
 mkdir kokkinizita
 cd kokkinizita
 
+# Dependencies originally downloaded from https://kokkinizita.linuxaudio.org/linuxaudio/downloads/
+# and saved to https://github.com/zynthbox/dependencies/releases/download/v0.5/
+downloads_base_url="https://github.com/zynthbox/dependencies/releases/download/v0.5/"
+
 #ALSA PCMI library
-package_name="zita-alsa-pcmi-0.3.2"
-wget https://kokkinizita.linuxaudio.org/linuxaudio/downloads/$package_name.tar.bz2
+package_name="zita-alsa-pcmi-0.6.1"
+wget $downloads_base_url/$package_name.tar.bz2
 tar -xf $package_name.tar.bz2
 rm -f $package_name.tar.bz2
 cd $package_name/source
@@ -25,7 +29,7 @@ cd ../..
 
 #CLThreads library
 package_name="clthreads-2.4.2"
-wget https://kokkinizita.linuxaudio.org/linuxaudio/downloads/$package_name.tar.bz2
+wget $downloads_base_url/$package_name.tar.bz2
 tar -xf $package_name.tar.bz2
 rm -f $package_name.tar.bz2
 cd $package_name/source
@@ -38,7 +42,7 @@ cd ../..
 
 #CLXClient library
 package_name="clxclient-3.9.2"
-wget https://kokkinizita.linuxaudio.org/linuxaudio/downloads/$package_name.tar.bz2
+wget $downloads_base_url/$package_name.tar.bz2
 tar -xf $package_name.tar.bz2
 rm -f $package_name.tar.bz2
 cd $package_name/source
@@ -52,8 +56,8 @@ make install
 cd ../..
 
 #Aeolus Pipe Organ Emulator
-package_name="aeolus-0.9.7"
-wget https://kokkinizita.linuxaudio.org/linuxaudio/downloads/$package_name.tar.bz2
+package_name="aeolus-0.10.4"
+wget $downloads_base_url/$package_name.tar.bz2
 tar -xf $package_name.tar.bz2
 rm -f $package_name.tar.bz2
 cd $package_name/source
@@ -72,8 +76,8 @@ echo "-u -J -S /usr/share/aeolus/stops" > /etc/aeolus.conf
 
 
 #Aeolus Stops Configuration
-package_name="stops-0.3.0"
-wget https://kokkinizita.linuxaudio.org/linuxaudio/downloads/$package_name.tar.bz2
+package_name="stops-0.4.0"
+wget $downloads_base_url/$package_name.tar.bz2
 tar -xf $package_name.tar.bz2
 rm -f $package_name.tar.bz2
 cd $package_name
