@@ -10,6 +10,10 @@ cd mod-arpeggiator-lv2
 sed -i 's#^PREFIX  := /usr#PREFIX  := #' Makefile
 sed -i 's#^LIBDIR  := $(PREFIX)/lib#LIBDIR  := #' Makefile
 sed -i "s#^DESTDIR :=#DESTDIR := $ZYNTHIAN_PLUGINS_DIR#" Makefile
+
+# Remove -mtune parameter which is causing builds to fail
+sed -i 's/-mtune\S*//g' dpf/Makefile.base.mk
+
 make -j$(nproc)
 make install
 cd ..
