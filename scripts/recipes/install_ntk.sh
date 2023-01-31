@@ -2,7 +2,9 @@
 
 cd $ZYNTHIAN_SW_DIR
 if [ ! -d "ntk" ]; then
-	git clone git://git.tuxfamily.org/gitroot/non/fltk.git ntk
+	wget https://github.com/zynthbox/dependencies/releases/download/v0.5/ntk.zip
+	unzip ntk.zip
+	rm ntk.zip
 	cd ntk
 	./waf configure
 	./waf
