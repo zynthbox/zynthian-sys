@@ -136,7 +136,7 @@ apt-get -y install evtest libts-bin # touchscreen tools
 #------------------------------------------------
 
 #Tools
-apt-get -y --no-install-recommends install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake qt5-default gobjc++ ruby rake xsltproc vorbis-tools zenity
+apt-get -y --no-install-recommends install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake gobjc++ ruby rake xsltproc vorbis-tools zenity
 
 # AV Libraries => WARNING It should be changed on every new debian version!!
 apt-get -y --no-install-recommends install libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev libavcodec-dev
@@ -144,7 +144,7 @@ apt-get -y --no-install-recommends install libavcodec58 libavformat58 libavutil5
 # Libraries
 apt-get -y --no-install-recommends install libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev \
 libfltk1.3-compat-headers libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
-libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid laditools libffi-dev \
+libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid libffi-dev \
 fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
 libglibmm-2.4-dev libeigen3-dev libsndfile-dev libsamplerate-dev libarmadillo-dev libreadline-dev \
 lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev \
@@ -158,14 +158,12 @@ libxkbcommon-x11-dev libssl-dev
 #libgd2-xpm-dev
 
 # Python
-apt-get -y install python python-dev cython python-dbus python-setuptools
-apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools python3-pyqt4 python3-numpy-dev python3-evdev 2to3
+#apt-get -y install python python-dev cython python-dbus python-setuptools
+apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy-dev python3-evdev 2to3
 
 if [ "$ZYNTHIAN_INCLUDE_PIP" == "yes" ]; then
-    apt-get -y install python-pip python3-pip
+    apt-get -y install python3-pip
 fi
-
-apt-get -y install patchage
 
 pip3 install tornado==4.1 tornadostreamform websocket-client
 pip3 install jsonpickle oyaml psutil pexpect requests

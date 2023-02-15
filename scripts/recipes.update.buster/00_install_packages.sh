@@ -124,12 +124,6 @@ if [ "$res" != "Status: install ok installed" ]; then
 	aptpkgs="$aptpkgs xfce4-panel xfwm4-themes xdotool"
 fi
 
-# 2021-03-25: Install patchage
-res=`dpkg -s patchage 2>&1 | grep "Status:"`
-if [ "$res" != "Status: install ok installed" ]; then
-	aptpkgs="$aptpkgs patchage"
-fi
-
 # 2021-03-25: Install MOD's cabsim-IR-loader
 if [ ! -d "$ZYNTHIAN_PLUGINS_SRC_DIR/mod-cabsim-IR-loader" ]; then
 	$ZYNTHIAN_RECIPE_DIR/install_mod-cabsim-IR-loader.sh
