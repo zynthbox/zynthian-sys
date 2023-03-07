@@ -150,7 +150,10 @@ fi
 pip3 install tornado==4.1 tornadostreamform websocket-client
 pip3 install jsonpickle oyaml psutil pexpect requests
 pip3 install mido python-rtmidi
-#mutagen
+
+# MOD UI pip dependencies
+pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11
+pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
 
 # Install ZynthboxQML and its dependencies
 apt-get -y install zynthbox-meta
@@ -301,83 +304,28 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 # Install some extra packages:
 apt-get -y install jack-midi-clock midisport-firmware
 
-# Install Jack2
-$ZYNTHIAN_RECIPE_DIR/install_jack2.sh
-
-# Install alsaseq Python Library
-#$ZYNTHIAN_RECIPE_DIR/install_alsaseq.sh
-
-# Install NTK library
-$ZYNTHIAN_RECIPE_DIR/install_ntk.sh
-
-# Install pyliblo library (liblo OSC library for Python)
-$ZYNTHIAN_RECIPE_DIR/install_pyliblo.sh
-
-# Install mod-ttymidi (MOD's ttymidi version with jackd MIDI support)
-$ZYNTHIAN_RECIPE_DIR/install_mod-ttymidi.sh
-
-# Install LV2 lilv library
-$ZYNTHIAN_RECIPE_DIR/install_lv2_lilv.sh
-
-# Install the LV2 C++ Tool Kit
-$ZYNTHIAN_RECIPE_DIR/install_lvtk.sh
-
-# Install LV2 Jalv Plugin Host
-$ZYNTHIAN_RECIPE_DIR/install_lv2_jalv.sh
-
-# Install Aubio Library & Tools
-$ZYNTHIAN_RECIPE_DIR/install_aubio.sh
+# Install zynthbox dependencies:
+apt-get -yy install \
+	-o DPkg::Options::="--force-confdef" \
+	-o DPkg::Options::="--force-confold" \
+	-o DPkg::Options::="--force-overwrite" \
+	zynthbox-dependency-jack2 zynthbox-dependency-ntk \
+	zynthbox-dependency-pyliblo zynthbox-dependency-mod-ttymidi zynthbox-dependency-lilv zynthbox-dependency-lvtk-v1 \
+	zynthbox-dependency-lvtk-v2 zynthbox-dependency-jalv zynthbox-dependency-aubio zynthbox-dependency-jack_capture \
+	zynthbox-dependency-jack-smf-utils zynthbox-dependency-touchosc2midi zynthbox-dependency-jackclient-python \
+	zynthbox-dependency-qmidinet zynthbox-dependency-jackrtpmidid zynthbox-dependency-dxsyx zynthbox-dependency-preset2lv2 \
+	zynthbox-dependency-qjackctl zynthbox-dependency-njconnect zynthbox-dependency-mutagen zynthbox-dependency-terminado \
+	zynthbox-dependency-VL53L0X zynthbox-dependency-MCP4728 zynthbox-dependency-setbfree zynthbox-dependency-squishbox-sf2 \
+	zynthbox-dependency-sfizz
 
 # Install jpmidi (MID player for jack with transport sync)
-$ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
-
-# Install jack_capture (jackd audio recorder)
-$ZYNTHIAN_RECIPE_DIR/install_jack_capture.sh
-
-# Install jack_smf utils (jackd MID-file player/recorder)
-$ZYNTHIAN_RECIPE_DIR/install_jack-smf-utils.sh
-
-# Install touchosc2midi (TouchOSC Bridge)
-$ZYNTHIAN_RECIPE_DIR/install_touchosc2midi.sh
-
-# Install jackclient (jack-client python library)
-$ZYNTHIAN_RECIPE_DIR/install_jackclient-python.sh
-
-# Install QMidiNet (MIDI over IP Multicast)
-$ZYNTHIAN_RECIPE_DIR/install_qmidinet.sh
-
-# Install jackrtpmidid (jack RTP-MIDI daemon)
-$ZYNTHIAN_RECIPE_DIR/install_jackrtpmidid.sh
-
-# Install the DX7 SysEx parser
-$ZYNTHIAN_RECIPE_DIR/install_dxsyx.sh
-
-# Install preset2lv2 (Convert native presets to LV2)
-$ZYNTHIAN_RECIPE_DIR/install_preset2lv2.sh
-
-# Install QJackCtl
-$ZYNTHIAN_RECIPE_DIR/install_qjackctl.sh
-
-# Install the njconnect Jack Graph Manager
-$ZYNTHIAN_RECIPE_DIR/install_njconnect.sh
-
-# Install Mutagen (when available, use pip3 install)
-$ZYNTHIAN_RECIPE_DIR/install_mutagen.sh
-
-# Install Terminado (Web Terminal)
-$ZYNTHIAN_RECIPE_DIR/install_terminado.sh
-
-# Install VL53L0X library (Distance Sensor)
-$ZYNTHIAN_RECIPE_DIR/install_VL53L0X.sh
-
-# Install MCP4748 library (Analog Output / CV-OUT)
-$ZYNTHIAN_RECIPE_DIR/install_MCP4728.sh
+# $ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
 
 # Install noVNC web viewer
 $ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
 
 # Install DT overlays for waveshare displays and others
-$ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
+# $ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 
 #************************************************
 #------------------------------------------------
@@ -396,25 +344,16 @@ apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfo
 # Create SF2 soft links
 ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
-# Install Squishbox SF2 soundfonts
-$ZYNTHIAN_RECIPE_DIR/install_squishbox_sf2.sh
-
 # Install Polyphone (SF2 editor)
 #$ZYNTHIAN_RECIPE_DIR/install_polyphone.sh
-
-# Install Sfizz (SFZ player)
-#$ZYNTHIAN_RECIPE_DIR/install_sfizz.sh
-apt-get -y install sfizz
 
 # Install Linuxsampler
 #$ZYNTHIAN_RECIPE_DIR/install_linuxsampler_stable.sh
 apt-get -y install linuxsampler gigtools
 
 # Install Fantasia (linuxsampler Java GUI)
-$ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
+# $ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
 
-# Install setBfree (Hammond B3 Emulator)
-$ZYNTHIAN_RECIPE_DIR/install_setbfree.sh
 # Setup user config directories
 cd $ZYNTHIAN_CONFIG_DIR
 mkdir setbfree
@@ -426,7 +365,7 @@ $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 
 # Install Aeolus (Pipe Organ Emulator)
 #apt-get -y install aeolus
-$ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
+# $ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
 
 # Install Mididings (MIDI route & filter)
 apt-get -y install mididings
@@ -446,14 +385,7 @@ mkdir /root/Pd/externals
 # Install MOD stuff
 #------------------------------------------------
 
-#Install MOD-HOST
-$ZYNTHIAN_RECIPE_DIR/install_mod-host.sh
-
-# Install browsepy
-$ZYNTHIAN_RECIPE_DIR/install_mod-browsepy.sh
-
-#Install MOD-UI
-$ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
+apt-get -y install zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy zynthbox-dependency-mod-ui
 
 #Install MOD-SDK
 #$ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
@@ -462,7 +394,7 @@ $ZYNTHIAN_RECIPE_DIR/install_mod-ui.sh
 # Install Plugins
 #------------------------------------------------
 cd $ZYNTHIAN_SYS_DIR/scripts
-./setup_plugins_rbpi.sh
+./setup_plugins_rbpi_bullseye.sh
 
 #------------------------------------------------
 # Install Ableton Link Support
