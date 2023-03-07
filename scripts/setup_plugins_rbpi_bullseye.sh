@@ -76,7 +76,7 @@ apt-get -yy install \
 # zynthbox-plugin-surge-prebuilt.sh
 
 # Fixup amsynth bank/presets
-$ZYNTHIAN_RECIPE_DIR/fixup_amsynth.sh
+# $ZYNTHIAN_RECIPE_DIR/fixup_amsynth.sh
 
 # Install MOD-UI skins
 #$ZYNTHIAN_RECIPE_DIR/postinstall_mod-lv2-data.sh
