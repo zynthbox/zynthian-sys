@@ -112,24 +112,11 @@ apt-get -y install xfwm4 xfwm4-themes xfce4-panel xdotool
 
 apt-get -y install wpasupplicant wireless-tools iw hostapd dnsmasq
 apt-get -y install firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree
-#firmware-ralink
-
-# Alternate XServer with some 2D acceleration
-#apt-get -y install xserver-xorg-video-fbturbo
-#ln -s /usr/lib/arm-linux-gnueabihf/xorg/modules/drivers/fbturbo_drv.so /usr/lib/xorg/modules/drivers
 
 # CLI Tools
 apt-get -y install raspi-config psmisc tree joe nano vim p7zip-full i2c-tools
 apt-get -y install fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi
 apt-get -y install evtest libts-bin # touchscreen tools
-#apt-get install python-smbus (i2c with python)
-
-
-# Lguyome45: remove for Raspberry pi 4, with this firmware, wifi does not work
-# Non-free WIFI firmware for RBPi3
-#wget https://archive.raspberrypi.org/debian/pool/main/f/firmware-nonfree/firmware-brcm80211_20161130-3+rpt3_all.deb
-#dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
-#rm -f firmware-brcm80211_20161130-3+rpt3_all.deb
 
 #------------------------------------------------
 # Development Environment
@@ -153,12 +140,7 @@ libfreetype6-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk
 libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
 libxkbcommon-x11-dev libssl-dev
 
-#libjack-dev-session
-#non-ntk-dev
-#libgd2-xpm-dev
-
 # Python
-#apt-get -y install python python-dev cython python-dbus python-setuptools
 apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy-dev python3-evdev 2to3 python-is-python2
 
 if [ "$ZYNTHIAN_INCLUDE_PIP" == "yes" ]; then
@@ -192,6 +174,7 @@ cd $ZYNTHIAN_DIR
 git clone -b "${ZYNTHIAN_SYS_BRANCH}" "${ZYNTHIAN_SYS_REPO}"
 
 # Install WiringPi
+# TODO : Package deb
 $ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
 
 # Zyncoder library
@@ -201,14 +184,6 @@ git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
 
 # Zynthian UI
 cd $ZYNTHIAN_DIR
-
-# if [ "$ZYNTHIANOS_IMG_TYPE" == "dev" ]; then
-# 	# Clone from git repository if build type is dev
-# 	git clone -b "${ZYNTHIAN_UI_BRANCH}" "${ZYNTHIAN_UI_REPO}" "zynthian-ui"
-# else
-# 	# Install package if build type is not dev
-# 	apt-get -y install zynthbox-qml
-# fi
 
 cd $ZYNTHIAN_UI_DIR
 if [ -d "zynlibs" ]; then
@@ -225,14 +200,6 @@ fi
 # Zynthian Data
 cd $ZYNTHIAN_DIR
 git clone -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
-
-# Zynthian Webconf Tool
-### Webconf will be installed from zynthbox-repo
-# cd $ZYNTHIAN_DIR
-# git clone -b "${ZYNTHIAN_WEBCONF_BRANCH}" "${ZYNTHIAN_WEBCONF_REPO}"
-# cd $ZYNTHIAN_DIR/zynthian-webconf/metaheader
-# npm install
-# npm install -g pm2
 
 # Create needed directories
 #mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
@@ -303,10 +270,6 @@ systemctl disable unattended-upgrades
 systemctl disable apt-daily.timer
 systemctl disable getty@tty1.service
 systemctl disable splash-screen
-#systemctl mask packagekit
-#systemctl mask polkit
-#systemctl disable serial-getty@ttyAMA0.service
-#systemctl disable sys-devices-platform-soc-3f201000.uart-tty-ttyAMA0.device
 systemctl enable backlight
 systemctl enable cpu-performance
 systemctl enable check-ttymidi-usage.service
