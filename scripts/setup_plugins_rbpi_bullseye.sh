@@ -43,16 +43,17 @@ apt-get -yy install \
     bchoppr beatslash-lv2 blop-lv2 bsequencer bshapr bslizr \
     calf-plugins caps-lv2 cv-lfo-blender-lv2 \
     drumkv1-lv2 samplv1-lv2 synthv1-lv2 padthv1-lv2 \
-    distrho-plugin-ports-lv2 dpf-plugins dragonfly-reverb drmr drowaudio-plugins-lv2 drumgizmo \
+    distrho-plugin-ports-lv2 drmr drowaudio-plugins-lv2 drumgizmo \
     easyssp-lv2 eq10q fabla g2reverb geonkick gxplugins gxvoxtonebender \
     helm hybridreverb2 infamous-plugins invada-studio-plugins-lv2 juced-plugins-lv2 juce-opl-lv2 \
-    klangfalter-lv2 lsp-plugins lufsmeter-lv2 luftikus-lv2 lv2vocoder \
+    klangfalter-lv2 lufsmeter-lv2 luftikus-lv2 lv2vocoder \
     mod-cv-plugins mod-distortion mod-pitchshifter mod-utilities moony.lv2 \
     noise-repellent obxd-lv2 oxefmsynth pitcheddelay-lv2 pizmidi-plugins \
     regrader rubberband-lv2 safe-plugins shiro-plugins sorcer \
     temper-lv2 tal-plugins-lv2 tap-lv2 teragonaudio-plugins-lv2 vitalium-lv2 \
     wolf-shaper wolf-spectrum wolpertinger-lv2 \
-    x42-plugins zam-plugins zlfo \
+    x42-plugins zam-plugins zlfo
+    # dpf-plugins dragonfly-reverb lsp-plugins
     
 
 #----------------------------------------------------
@@ -60,7 +61,7 @@ apt-get -yy install \
 #----------------------------------------------------
 
 apt-get -yy install \
-    zynthbox-plugin-fluidsynth zynthbox-plugin-fluidplug zynthbox-plugin-sooperlooper-lv2-plugin \
+    zynthbox-plugin-sooperlooper-lv2-plugin \
     zynthbox-plugin-sosynth zynthbox-plugin-guitarix zynthbox-plugin-gxswitchlesswah \
     zynthbox-plugin-gxdenoiser2 zynthbox-plugin-gxdistortionplus zynthbox-plugin-foo-yc20 \
     zynthbox-plugin-raffo zynthbox-plugin-triceratops zynthbox-plugin-swh zynthbox-plugin-mod-tap \
@@ -70,6 +71,7 @@ apt-get -yy install \
     zynthbox-plugin-mod-arpeggiator zynthbox-plugin-stereo-mixer zynthbox-plugin-alo \
     zynthbox-plugin-vl1 zynthbox-plugin-qmidiarp zynthbox-plugin-mod-cabsim-ir-loader \
     zynthbox-plugin-bolliedelay zynthbox-plugin-mclk zynthbox-plugin-lv2-plugins-prebuilt
+# zynthbox-plugin-fluidsynth zynthbox-plugin-fluidplug 
 # zynthbox-plugin-setbfree.sh
 # zynthbox-plugin-surge-prebuilt.sh
 
