@@ -57,7 +57,7 @@ apt-get -y update --allow-releaseinfo-change
 apt-get -y dist-upgrade
 
 # Install required dependencies if needed
-apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common parted dirmngr rpi-eeprom gpgv
+apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common parted dirmngr rpi-eeprom gpgv ca-certificates
 #htpdate
 
 # Adjust System Date/Time
@@ -106,30 +106,33 @@ apt-get -y autoremove
 
 # System
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
-apt-get -y install systemd avahi-daemon dhcpcd-dbus usbutils usbmount exfat-utils
-apt-get -y install xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri vnc4server 
-apt-get -y install xfwm4 xfwm4-themes xfce4-panel xdotool
-
-apt-get -y install wpasupplicant wireless-tools iw hostapd dnsmasq
-apt-get -y install firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree
+SYSTEM_PACKAGES="systemd avahi-daemon dhcpcd-dbus usbutils usbmount exfat-utils \
+	xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri vnc4server \
+	xfwm4 xfwm4-themes xfce4-panel xdotool \
+	wpasupplicant wireless-tools iw hostapd dnsmasq \
+	firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree"
 
 # CLI Tools
-apt-get -y install raspi-config psmisc tree joe nano vim p7zip-full i2c-tools
-apt-get -y install fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi
-apt-get -y install evtest libts-bin # touchscreen tools
+CLI_TOOLS_PACKAGES="raspi-config psmisc tree joe nano vim p7zip-full i2c-tools \
+	fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi evtest libts-bin"
+
+PYTHON_PACKAGES="python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pip \
+	python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy-dev python3-evdev 2to3 python-is-python2 "
+
+apt-get -y install $SYSTEM_PACKAGES $CLI_TOOLS_PACKAGES $PYTHON_PACKAGES
 
 #------------------------------------------------
 # Development Environment
 #------------------------------------------------
 
 #Tools
-apt-get -y --no-install-recommends install build-essential git swig subversion pkg-config autoconf automake premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep qt5-qmake gobjc++ ruby rake xsltproc vorbis-tools zenity
-
+BUILD_TOOLS_PACKAGES="build-essential git swig subversion pkg-config autoconf automake \
+	premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep \
+	qt5-qmake gobjc++ ruby rake xsltproc vorbis-tools zenity"
 # AV Libraries => WARNING It should be changed on every new debian version!!
-apt-get -y --no-install-recommends install libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev libavcodec-dev
-
+AV_LIBS_PACKAGES="libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev libavcodec-dev"
 # Libraries
-apt-get -y --no-install-recommends install libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev \
+LIBS_PACKAGES="libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev \
 libfltk1.3-compat-headers libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
 libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid libffi-dev \
 fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
@@ -138,27 +141,20 @@ lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-syst
 libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
 libfreetype6-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module \
 libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
-libxkbcommon-x11-dev libssl-dev
+libxkbcommon-x11-dev libssl-dev"
+EXTRA_PACKAGES="jack-midi-clock midisport-firmware"
+WM_PACKAGES="kwin-x11"
 
-# Python
-apt-get -y install python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy-dev python3-evdev 2to3 python-is-python2
+apt-get -y --no-install-recommends install $BUILD_TOOLS_PACKAGES $AV_LIBS_PACKAGES $LIBS_PACKAGES $EXTRA_PACKAGES $WM_PACKAGES
 
-if [ "$ZYNTHIAN_INCLUDE_PIP" == "yes" ]; then
-    apt-get -y install python3-pip
-fi
+PIP3_PACKAGES="tornado==4.1 tornadostreamform websocket-client jsonpickle oyaml psutil pexpect requests mido python-rtmidi"
+ZYNTHBOX_PIP3_PACKAGES="soundfile pytaglib pynput rpi_ws281x"
+MOD_UI_PIP3_PACKAGES="pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 git+git://github.com/dlitz/pycrypto@master#egg=pycrypto"
 
-pip3 install tornado==4.1 tornadostreamform websocket-client
-pip3 install jsonpickle oyaml psutil pexpect requests
-pip3 install mido python-rtmidi
-
-# MOD UI pip dependencies
-pip3 install pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11
-pip3 install git+git://github.com/dlitz/pycrypto@master#egg=pycrypto
+pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
 # Install ZynthboxQML and its dependencies
 apt-get -y install zynthbox-meta
-apt-get -y install --no-install-suggests --no-install-recommends kwin-x11
-pip3 install soundfile pytaglib pynput rpi_ws281x
 
 #************************************************
 #------------------------------------------------
@@ -179,26 +175,6 @@ git clone -b "${ZYNTHIAN_SYS_BRANCH}" "${ZYNTHIAN_SYS_REPO}"
 # Install WiringPi
 # TODO : Package deb
 $ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
-
-# Zyncoder library
-cd $ZYNTHIAN_DIR
-git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
-./zyncoder/build.sh
-
-# Zynthian UI
-cd $ZYNTHIAN_DIR
-
-cd $ZYNTHIAN_UI_DIR
-if [ -d "zynlibs" ]; then
-	find ./zynlibs -type f -name build.sh -exec {} \;
-else
-	if [ -d "jackpeak" ]; then
-		./jackpeak/build.sh
-	fi
-	if [ -d "zynseq" ]; then
-		./zynseq/build.sh
-	fi
-fi
 
 # Zynthian Data
 cd $ZYNTHIAN_DIR
@@ -301,9 +277,6 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 #------------------------------------------------
 #************************************************
 
-# Install some extra packages:
-apt-get -y install jack-midi-clock midisport-firmware
-
 # Install zynthbox dependencies:
 apt-get -yy install \
 	-o DPkg::Options::="--force-confdef" \
@@ -311,11 +284,11 @@ apt-get -yy install \
 	-o DPkg::Options::="--force-overwrite" \
 	zynthbox-dependency-jack2 zynthbox-dependency-ntk \
 	zynthbox-dependency-pyliblo zynthbox-dependency-mod-ttymidi zynthbox-dependency-lilv zynthbox-dependency-lvtk-v1 \
-	zynthbox-dependency-lvtk-v2 zynthbox-dependency-jalv zynthbox-dependency-aubio zynthbox-dependency-jack_capture \
+	zynthbox-dependency-lvtk-v2 zynthbox-dependency-jalv zynthbox-dependency-aubio zynthbox-dependency-jack-capture \
 	zynthbox-dependency-jack-smf-utils zynthbox-dependency-touchosc2midi zynthbox-dependency-jackclient-python \
 	zynthbox-dependency-qmidinet zynthbox-dependency-jackrtpmidid zynthbox-dependency-dxsyx zynthbox-dependency-preset2lv2 \
 	zynthbox-dependency-qjackctl zynthbox-dependency-njconnect zynthbox-dependency-mutagen zynthbox-dependency-terminado \
-	zynthbox-dependency-VL53L0X zynthbox-dependency-MCP4728 zynthbox-dependency-setbfree zynthbox-dependency-squishbox-sf2 \
+	zynthbox-dependency-vl53l0x zynthbox-dependency-mcp4728 zynthbox-dependency-setbfree zynthbox-dependency-squishbox-sf2 \
 	zynthbox-dependency-sfizz
 
 # Install jpmidi (MID player for jack with transport sync)
