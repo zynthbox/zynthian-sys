@@ -149,7 +149,7 @@ apt-get -y --no-install-recommends install $BUILD_TOOLS_PACKAGES $AV_LIBS_PACKAG
 
 PIP3_PACKAGES="tornado==4.1 tornadostreamform websocket-client jsonpickle oyaml psutil pexpect requests mido python-rtmidi"
 ZYNTHBOX_PIP3_PACKAGES="soundfile pytaglib pynput rpi_ws281x"
-MOD_UI_PIP3_PACKAGES="pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 git+git://github.com/dlitz/pycrypto@master#egg=pycrypto"
+MOD_UI_PIP3_PACKAGES="pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 pycrypto"
 
 pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
