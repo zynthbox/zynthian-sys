@@ -153,8 +153,17 @@ MOD_UI_PIP3_PACKAGES="pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 pycrypto"
 
 pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
+ZYNTHBOX_OTHER_DEPENDENCIES="zynaddsubfx fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont \
+linuxsampler gigtools mididings puredata puredata-core puredata-utils python3-yaml pd-lua pd-moonlib \
+pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-import pd-bassemu pd-readanysf pd-pddp \
+pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd \
+pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-aubio pd-earplug pd-wiimote pd-pmpd pd-motex \
+pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
+pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib \
+zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy zynthbox-dependency-mod-ui sfizz"
+
 # Install ZynthboxQML and its dependencies
-apt-get -y install zynthbox-meta
+apt-get -y install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
 
 #************************************************
 #------------------------------------------------
@@ -171,10 +180,6 @@ mkdir "$ZYNTHIAN_SW_DIR"
 # Zynthian System Scripts and Config files
 cd $ZYNTHIAN_DIR
 git clone -b "${ZYNTHIAN_SYS_BRANCH}" "${ZYNTHIAN_SYS_REPO}"
-
-# Install WiringPi
-# TODO : Package deb
-$ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
 
 # Zynthian Data
 cd $ZYNTHIAN_DIR
@@ -288,8 +293,8 @@ apt-get -yy install \
 	zynthbox-dependency-jack-smf-utils zynthbox-dependency-touchosc2midi zynthbox-dependency-jackclient-python \
 	zynthbox-dependency-qmidinet zynthbox-dependency-jackrtpmidid zynthbox-dependency-dxsyx zynthbox-dependency-preset2lv2 \
 	zynthbox-dependency-qjackctl zynthbox-dependency-njconnect zynthbox-dependency-mutagen zynthbox-dependency-terminado \
-	zynthbox-dependency-vl53l0x zynthbox-dependency-mcp4728 zynthbox-dependency-setbfree zynthbox-dependency-squishbox-sf2 \
-	zynthbox-dependency-sfizz
+	zynthbox-dependency-vl53l0x zynthbox-dependency-mcp4728 zynthbox-dependency-setbfree zynthbox-dependency-squishbox-sf2
+	# zynthbox-dependency-sfizz
 
 # Install jpmidi (MID player for jack with transport sync)
 # $ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
@@ -308,12 +313,10 @@ $ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
 
 # Install ZynAddSubFX
 #$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
-apt-get -y install zynaddsubfx
 #Fix soft link to zynbanks, for working as included on zynthian-data repository
 ln -s /usr/share/zynaddsubfx /usr/local/share
 
 # Install Fluidsynth & SF2 SondFonts
-apt-get -y install fluidsynth libfluidsynth-dev fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont
 # Create SF2 soft links
 ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
@@ -322,7 +325,6 @@ ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
 # Install Linuxsampler
 #$ZYNTHIAN_RECIPE_DIR/install_linuxsampler_stable.sh
-apt-get -y install linuxsampler gigtools
 
 # Install Fantasia (linuxsampler Java GUI)
 # $ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
@@ -340,25 +342,12 @@ $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 #apt-get -y install aeolus
 # $ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
 
-# Install Mididings (MIDI route & filter)
-apt-get -y install mididings
-
-# Install Pure Data stuff
-apt-get -y install puredata puredata-core puredata-utils python3-yaml \
-pd-lua pd-moonlib pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-import pd-bassemu pd-readanysf pd-pddp \
-pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd \
-pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-aubio pd-earplug pd-wiimote pd-pmpd pd-motex \
-pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
-pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
-
 mkdir /root/Pd
 mkdir /root/Pd/externals
 
 #------------------------------------------------
 # Install MOD stuff
 #------------------------------------------------
-
-apt-get -y install zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy zynthbox-dependency-mod-ui
 
 #Install MOD-SDK
 #$ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
