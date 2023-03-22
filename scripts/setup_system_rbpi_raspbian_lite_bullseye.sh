@@ -154,13 +154,14 @@ MOD_UI_PIP3_PACKAGES="pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 pycrypto"
 pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
 ZYNTHBOX_OTHER_DEPENDENCIES="zynaddsubfx fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont \
-linuxsampler gigtools mididings puredata puredata-core puredata-utils python3-yaml pd-lua pd-moonlib \
+linuxsampler gigtools  puredata puredata-core puredata-utils python3-yaml pd-lua pd-moonlib \
 pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-import pd-bassemu pd-readanysf pd-pddp \
 pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd \
-pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-aubio pd-earplug pd-wiimote pd-pmpd pd-motex \
+pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-earplug pd-wiimote pd-pmpd pd-motex \
 pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
 pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib \
 zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy zynthbox-dependency-mod-ui sfizz"
+# mididings pd-aubio
 
 # Install ZynthboxQML and its dependencies
 apt-get -y install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
