@@ -70,8 +70,8 @@ apt-get -yy install \
     zynthbox-plugin-miniopl3 zynthbox-plugin-ykchorus zynthbox-plugin-gula \
     zynthbox-plugin-mod-arpeggiator zynthbox-plugin-stereo-mixer zynthbox-plugin-alo \
     zynthbox-plugin-vl1 zynthbox-plugin-qmidiarp zynthbox-plugin-mod-cabsim-ir-loader \
-    zynthbox-plugin-bolliedelay zynthbox-plugin-mclk zynthbox-plugin-lv2-plugins-prebuilt
-# zynthbox-plugin-fluidsynth zynthbox-plugin-fluidplug 
+    zynthbox-plugin-bolliedelay zynthbox-plugin-mclk zynthbox-plugin-lv2-plugins-prebuilt \
+    zynthbox-plugin-fluidsynth zynthbox-plugin-fluidplug
 # zynthbox-plugin-setbfree.sh
 # zynthbox-plugin-surge-prebuilt.sh
 
