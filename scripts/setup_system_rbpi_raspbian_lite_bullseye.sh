@@ -182,6 +182,10 @@ mkdir "$ZYNTHIAN_SW_DIR"
 cd $ZYNTHIAN_DIR
 git clone -b "${ZYNTHIAN_SYS_BRANCH}" "${ZYNTHIAN_SYS_REPO}"
 
+# Install WiringPi
+# TODO : Package deb
+$ZYNTHIAN_RECIPE_DIR/install_wiringpi.sh
+
 # Zynthian Data
 cd $ZYNTHIAN_DIR
 git clone -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
