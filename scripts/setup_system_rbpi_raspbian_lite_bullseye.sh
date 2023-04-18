@@ -261,8 +261,8 @@ systemctl disable getty@tty1.service
 systemctl disable splash-screen
 systemctl enable backlight
 systemctl enable cpu-performance
-systemctl enable check-ttymidi-usage.service
-systemctl enable check-ttymidi-usage.timer
+# systemctl enable check-ttymidi-usage.service
+# systemctl enable check-ttymidi-usage.timer
 systemctl enable wifi-setup
 systemctl enable jack2
 systemctl enable mod-ttymidi
