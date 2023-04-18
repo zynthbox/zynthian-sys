@@ -292,9 +292,9 @@ apt-get -yy install \
 	-o DPkg::Options::="--force-confdef" \
 	-o DPkg::Options::="--force-confold" \
 	-o DPkg::Options::="--force-overwrite" \
-	zynthbox-dependency-jack2 zynthbox-dependency-ntk \
+	zynthbox-dependency-ntk \
 	zynthbox-dependency-pyliblo zynthbox-dependency-mod-ttymidi zynthbox-dependency-lilv zynthbox-dependency-lvtk-v1 \
-	zynthbox-dependency-lvtk-v2 zynthbox-dependency-jalv zynthbox-dependency-aubio zynthbox-dependency-jack-capture \
+	zynthbox-dependency-lvtk-v2 zynthbox-dependency-jalv zynthbox-dependency-aubio \
 	zynthbox-dependency-jack-smf-utils zynthbox-dependency-touchosc2midi zynthbox-dependency-jackclient-python \
 	zynthbox-dependency-qmidinet zynthbox-dependency-jackrtpmidid zynthbox-dependency-dxsyx zynthbox-dependency-preset2lv2 \
 	zynthbox-dependency-qjackctl zynthbox-dependency-njconnect zynthbox-dependency-mutagen zynthbox-dependency-terminado \
@@ -396,6 +396,7 @@ touch /etc/apt/trusted.gpg.d/microsoft.gpg
 # Clean
 
 rm -rf /root/.gitconfig # Remove github personal access token
+rm -f "$ZYNTHIAN_PLUGINS_DIR/lv2" # Remove lv2 symbolic link
 
 apt-get -y autoremove # Remove unneeded packages
 if [[ "$ZYNTHIAN_SETUP_APT_CLEAN" == "yes" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)

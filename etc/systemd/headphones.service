@@ -6,8 +6,8 @@ Requires=jack2.service
 [Service]
 Environment=HOME=/root
 WorkingDirectory=/root
-ExecStart=#JACKD_BIN_PATH#/alsa_out -q 0 -j Headphones -d hw:#RBPI_AUDIO_DEVICE#
-ExecStartPre=#JACKD_BIN_PATH#/jack_wait -w
+ExecStart=alsa_out -q 0 -j Headphones -d hw:#RBPI_AUDIO_DEVICE#
+ExecStartPre=jack_wait -w
 Restart=always
 RestartSec=1
 
