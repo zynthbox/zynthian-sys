@@ -39,7 +39,7 @@ export DEBIAN_FRONTEND=noninteractive
 [ -n "$ZYNTHIAN_ZYNCODER_REPO" ] || ZYNTHIAN_ZYNCODER_REPO="https://github.com/zynthbox/zyncoder.git"
 [ -n "$ZYNTHIAN_WEBCONF_REPO" ] || ZYNTHIAN_WEBCONF_REPO="https://github.com/zynthbox/zynthian-webconf.git"
 [ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthian/zynthian-data.git"
-[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="stable"
+[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="main"
 [ -n "$ZYNTHIAN_UI_BRANCH" ] || ZYNTHIAN_UI_BRANCH="main"
 [ -n "$ZYNTHIAN_ZYNCODER_BRANCH" ] || ZYNTHIAN_ZYNCODER_BRANCH="stable"
 [ -n "$ZYNTHIAN_WEBCONF_BRANCH" ] || ZYNTHIAN_WEBCONF_BRANCH="main"
@@ -216,7 +216,7 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
 mkdir "$ZYNTHIAN_PLUGINS_DIR"
-mkdir "$ZYNTHIAN_PLUGINS_DIR/lv2"
+ln -s /usr/lib/lv2 "$ZYNTHIAN_PLUGINS_DIR/lv2"
 
 # Copy default snapshots
 cp -a $ZYNTHIAN_SYS_DIR/snapshots/default.zss $ZYNTHIAN_MY_DATA_DIR/snapshots/

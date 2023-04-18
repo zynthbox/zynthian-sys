@@ -60,18 +60,21 @@ apt-get -yy install \
 # Install LV2 Plugins packages built from source code
 #----------------------------------------------------
 
+apt-get remove -yy fluidsynth libfluidsynth-dev libfluidsynth2
+
 apt-get -yy install \
     zynthbox-plugin-sooperlooper-lv2-plugin \
     zynthbox-plugin-sosynth zynthbox-plugin-guitarix zynthbox-plugin-gxswitchlesswah \
     zynthbox-plugin-gxdenoiser2 zynthbox-plugin-gxdistortionplus zynthbox-plugin-foo-yc20 \
     zynthbox-plugin-raffo zynthbox-plugin-triceratops zynthbox-plugin-swh zynthbox-plugin-mod-tap \
-    zynthbox-plugin-mod-mda zynthbox-plugin-dexed-lv2 zynthbox-plugin-string-machine \
+    zynthbox-plugin-mod-mda zynthbox-plugin-string-machine \
     zynthbox-plugin-midi-display zynthbox-plugin-punk-console zynthbox-plugin-remid \
     zynthbox-plugin-miniopl3 zynthbox-plugin-ykchorus zynthbox-plugin-gula \
     zynthbox-plugin-mod-arpeggiator zynthbox-plugin-stereo-mixer zynthbox-plugin-alo \
     zynthbox-plugin-vl1 zynthbox-plugin-qmidiarp zynthbox-plugin-mod-cabsim-ir-loader \
     zynthbox-plugin-bolliedelay zynthbox-plugin-mclk zynthbox-plugin-lv2-plugins-prebuilt \
     zynthbox-plugin-fluidsynth zynthbox-plugin-fluidplug
+# zynthbox-plugin-dexed-lv2
 # zynthbox-plugin-setbfree.sh
 # zynthbox-plugin-surge-prebuilt.sh
 
