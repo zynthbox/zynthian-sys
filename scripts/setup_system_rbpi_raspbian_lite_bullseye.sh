@@ -216,7 +216,8 @@ mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
 mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
 mkdir "$ZYNTHIAN_PLUGINS_DIR"
-ln -s /usr/lib/lv2 "$ZYNTHIAN_PLUGINS_DIR/lv2"
+mkdir -p "$ZYNTHIAN_PLUGINS_DIR/lv2"
+# ln -s /usr/lib/lv2 "$ZYNTHIAN_PLUGINS_DIR/lv2"
 
 # Copy default snapshots
 cp -a $ZYNTHIAN_SYS_DIR/snapshots/default.zss $ZYNTHIAN_MY_DATA_DIR/snapshots/
@@ -396,7 +397,7 @@ touch /etc/apt/trusted.gpg.d/microsoft.gpg
 # Clean
 
 rm -rf /root/.gitconfig # Remove github personal access token
-rm -f "$ZYNTHIAN_PLUGINS_DIR/lv2" # Remove lv2 symbolic link
+# rm -f "$ZYNTHIAN_PLUGINS_DIR/lv2" # Remove lv2 symbolic link
 
 apt-get -y autoremove # Remove unneeded packages
 if [[ "$ZYNTHIAN_SETUP_APT_CLEAN" == "yes" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
