@@ -1,5 +1,5 @@
 [Unit]
-Description=Zynthian User Interface
+Description=Zynthbox QML UI
 After=jack2.service splash-screen.service
 Requires=jack2.service
 
@@ -16,7 +16,7 @@ Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
 # Environment=ZYNTHBOX_DEBUG=block
 # Environment=ZYNTHBOX_DEBUG=gdbserver
 WorkingDirectory=#ZYNTHIAN_UI_DIR#
-ExecStart=/usr/bin/startx ./zynthian.sh
+ExecStart=/usr/bin/startx ./start.sh
 TimeoutStopSec=20
 #ExecStop=/usr/bin/killall -SIGTERM zynthian_gui.py
 ExecStop=/usr/local/bin/send_osc 1370 /CUIA/EXIT_UI

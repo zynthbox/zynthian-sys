@@ -268,7 +268,7 @@ systemctl enable wifi-setup
 systemctl enable jack2
 systemctl enable mod-ttymidi
 systemctl enable a2jmidid
-systemctl enable zynthian
+systemctl enable zynthbox-qml
 systemctl enable zynthian-webconf
 systemctl enable zynthian-webconf-fmserver
 systemctl enable zynthian-config-on-boot
