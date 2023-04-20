@@ -201,28 +201,6 @@ cd $ZYNTHIAN_DIR
 git clone -b "${ZYNTHIAN_ZYNCODER_BRANCH}" "${ZYNTHIAN_ZYNCODER_REPO}"
 ./zyncoder/build.sh
 
-# Zynthian UI
-cd $ZYNTHIAN_DIR
-
-# if [ "$ZYNTHIANOS_IMG_TYPE" == "dev" ]; then
-# 	# Clone from git repository if build type is dev
-# 	git clone -b "${ZYNTHIAN_UI_BRANCH}" "${ZYNTHIAN_UI_REPO}" "zynthian-ui"
-# else
-# 	# Install package if build type is not dev
-# 	apt-get -y install zynthbox-qml
-# fi
-
-cd $ZYNTHIAN_UI_DIR
-if [ -d "zynlibs" ]; then
-	find ./zynlibs -type f -name build.sh -exec {} \;
-else
-	if [ -d "jackpeak" ]; then
-		./jackpeak/build.sh
-	fi
-	if [ -d "zynseq" ]; then
-		./zynseq/build.sh
-	fi
-fi
 
 # Zynthian Data
 cd $ZYNTHIAN_DIR

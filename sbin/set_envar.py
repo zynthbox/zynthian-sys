@@ -27,7 +27,7 @@
 import os
 import sys
 
-sys.path.append(os.environ.get('ZYNTHIAN_UI_DIR',"/zynthian/zynthian-ui"))
+sys.path.append(os.environ.get('ZYNTHIAN_UI_DIR',"/zynthian/zynthbox-qml"))
 import zynconf
 
 #--------------------------------------------------------------------

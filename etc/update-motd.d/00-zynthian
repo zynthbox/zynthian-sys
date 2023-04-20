@@ -21,12 +21,12 @@ ${RED}#         ##    ##         #${NC}      Wiring Layout: ${GREEN}$ZYNTHIAN_WI
 ${RED}#                          #${NC}      ----------------------------------------
 ${RED} ##########################${NC}\n"
 
-for repo in zynthian-ui zynthian-webconf zyncoder zynthian-sys zynthian-data
-do
-  branch="$(git -C $ZYNTHIAN_DIR/$repo branch |grep ^* |awk '{print $2}')"
-  id="$(git -C $ZYNTHIAN_DIR/$repo rev-parse HEAD | sed 's/\(.\{6\}\).*/\1/')"
-  printf "                                  $repo: $branch ($id)\n"
-done
-echo "                                  ---------------------------------------"
+# for repo in zynthbox-qml zynthian-webconf zyncoder zynthian-sys zynthian-data
+# do
+#   branch="$(git -C $ZYNTHIAN_DIR/$repo branch |grep ^* |awk '{print $2}')"
+#   id="$(git -C $ZYNTHIAN_DIR/$repo rev-parse HEAD | sed 's/\(.\{6\}\).*/\1/')"
+#   printf "                                  $repo: $branch ($id)\n"
+# done
+# echo "                                  ---------------------------------------"
 echo
 
