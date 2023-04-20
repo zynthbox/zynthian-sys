@@ -66,7 +66,7 @@ apt-get -yy install \
     zynthbox-plugin-sooperlooper-lv2-plugin \
     zynthbox-plugin-sosynth zynthbox-plugin-guitarix zynthbox-plugin-gxswitchlesswah \
     zynthbox-plugin-gxdenoiser2 zynthbox-plugin-gxdistortionplus zynthbox-plugin-foo-yc20 \
-    zynthbox-plugin-raffo zynthbox-plugin-triceratops zynthbox-plugin-swh zynthbox-plugin-mod-tap \
+    zynthbox-plugin-raffo zynthbox-plugin-triceratops zynthbox-plugin-swh \
     zynthbox-plugin-mod-mda zynthbox-plugin-string-machine \
     zynthbox-plugin-midi-display zynthbox-plugin-punk-console zynthbox-plugin-remid \
     zynthbox-plugin-miniopl3 zynthbox-plugin-ykchorus zynthbox-plugin-gula \
@@ -77,6 +77,7 @@ apt-get -yy install \
 # zynthbox-plugin-dexed-lv2
 # zynthbox-plugin-setbfree.sh
 # zynthbox-plugin-surge-prebuilt.sh
+# zynthbox-plugin-mod-tap : tap-lv2 is being installed from repo
 
 # Fixup amsynth bank/presets
 # $ZYNTHIAN_RECIPE_DIR/fixup_amsynth.sh
