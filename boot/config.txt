@@ -1,6 +1,6 @@
 [all]
-kernel=vmlinuz-5.15.65-llat-v7l+
-os_prefix=5.15.65-llat-v7l+/
+kernel=vmlinuz-5.15.65-rt49-v7l+
+os_prefix=5.15.65-rt49-v7l+/
 overlay_prefix=overlays/
 
 # For more options and information see
