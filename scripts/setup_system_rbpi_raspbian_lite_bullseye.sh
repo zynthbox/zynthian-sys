@@ -84,11 +84,11 @@ dpkg -i kxstudio-repos_10.0.3_all.deb
 rm -f kxstudio-repos_10.0.3_all.deb
 
 # Zynthian
-wget -O - https://deb.zynthian.org/zynthian-deb.pub | apt-key add -
-echo "deb https://deb.zynthian.org/zynthian-stable buster main" > /etc/apt/sources.list.d/zynthian.list
+# wget -O - https://deb.zynthian.org/zynthian-deb.pub | apt-key add -
+# echo "deb https://deb.zynthian.org/zynthian-stable buster main" > /etc/apt/sources.list.d/zynthian.list
 
 # Zynthbox
-if [ -z $ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL -o -z $ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE ]; then
+if [ -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -o -z "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
 	wget -qO - "http://deb.netrunner.com/zynthbox/zynthbox_pub.gpg" | apt-key add -
 	echo "deb http://deb.netrunner.com/zynthbox buster main" > /etc/apt/sources.list.d/zynthbox.list
 else
