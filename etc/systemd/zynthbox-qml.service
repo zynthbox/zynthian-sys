@@ -24,7 +24,7 @@ ExecStop=/usr/local/bin/send_osc 1370 /CUIA/EXIT_UI
 Restart=always
 RestartSec=5
 TimeoutSec=5
-CPUAffinity=3
+#CPUAffinity=3
 
 [Install]
 WantedBy=multi-user.target

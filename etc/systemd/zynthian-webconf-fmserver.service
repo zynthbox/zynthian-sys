@@ -12,7 +12,7 @@ WorkingDirectory=/zynthian/zynthian-webconf/metaheader
 ExecStart=node /zynthian/zynthian-webconf/metaheader/server.js
 Restart=always
 RestartSec=5
-CPUAffinity=3
+#CPUAffinity=3
 
 [Install]
 WantedBy=multi-user.target
