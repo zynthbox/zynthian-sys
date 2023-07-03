@@ -127,7 +127,7 @@ BUILD_TOOLS_PACKAGES="build-essential git swig subversion pkg-config autoconf au
 	premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep \
 	qt5-qmake gobjc++ ruby rake xsltproc vorbis-tools zenity"
 # AV Libraries => WARNING It should be changed on every new debian version!!
-AV_LIBS_PACKAGES="libavcodec58 libavformat58 libavutil56 libavresample4 libavformat-dev libavcodec-dev"
+AV_LIBS_PACKAGES="libavformat-dev libavcodec-dev ffmpeg"
 # Libraries
 LIBS_PACKAGES="libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev \
 libfltk1.3-compat-headers libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
