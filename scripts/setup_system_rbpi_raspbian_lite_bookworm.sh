@@ -260,6 +260,7 @@ systemctl disable unattended-upgrades
 systemctl disable apt-daily.timer
 systemctl disable getty@tty1.service
 systemctl disable splash-screen
+systemctl disable userconfig.service
 systemctl enable backlight
 systemctl enable cpu-performance
 # systemctl enable check-ttymidi-usage.service
