@@ -148,6 +148,9 @@ PIP3_PACKAGES="tornado==4.1 tornadostreamform websocket-client jsonpickle oyaml 
 ZYNTHBOX_PIP3_PACKAGES="soundfile pytaglib pynput rpi_ws281x"
 MOD_UI_PIP3_PACKAGES="pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 pycrypto"
 
+# Allow installing python modules to system repo
+rm /usr/lib/python3*/EXTERNALLY-MANAGED
+
 pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
 ZYNTHBOX_OTHER_DEPENDENCIES="zynaddsubfx fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont \
@@ -290,14 +293,15 @@ apt-get -yy install \
 	-o DPkg::Options::="--force-confdef" \
 	-o DPkg::Options::="--force-confold" \
 	-o DPkg::Options::="--force-overwrite" \
-	zynthbox-dependency-ntk \
-	zynthbox-dependency-pyliblo zynthbox-dependency-mod-ttymidi zynthbox-dependency-lilv zynthbox-dependency-lvtk-v1 \
-	zynthbox-dependency-lvtk-v2 zynthbox-dependency-jalv zynthbox-dependency-aubio \
-	zynthbox-dependency-jack-smf-utils zynthbox-dependency-touchosc2midi zynthbox-dependency-jackclient-python \
-	zynthbox-dependency-qmidinet zynthbox-dependency-jackrtpmidid zynthbox-dependency-dxsyx zynthbox-dependency-preset2lv2 \
-	zynthbox-dependency-qjackctl zynthbox-dependency-njconnect zynthbox-dependency-mutagen zynthbox-dependency-terminado \
-	zynthbox-dependency-vl53l0x zynthbox-dependency-mcp4728 zynthbox-dependency-setbfree zynthbox-dependency-squishbox-sf2
-	# zynthbox-dependency-sfizz
+	zynthbox-dependency-ntk zynthbox-dependency-pyliblo zynthbox-dependency-mod-ttymidi \
+	zynthbox-dependency-lilv zynthbox-dependency-lvtk-v1 zynthbox-dependency-lvtk-v2 \
+	zynthbox-dependency-jalv zynthbox-dependency-aubio zynthbox-dependency-jack-smf-utils \
+	zynthbox-dependency-touchosc2midi zynthbox-dependency-jackclient-python zynthbox-dependency-qmidinet \
+	zynthbox-dependency-jackrtpmidid zynthbox-dependency-dxsyx zynthbox-dependency-preset2lv2 \
+	zynthbox-dependency-qjackctl zynthbox-dependency-njconnect zynthbox-dependency-mutagen \
+	zynthbox-dependency-terminado zynthbox-dependency-vl53l0x zynthbox-dependency-mcp4728 \
+	zynthbox-dependency-squishbox-sf2
+	# zynthbox-dependency-sfizz zynthbox-dependency-setbfree 
 
 # Install jpmidi (MID player for jack with transport sync)
 # $ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
