@@ -144,7 +144,7 @@ WM_PACKAGES="kwin-x11"
 
 apt-get -y --no-install-recommends install $BUILD_TOOLS_PACKAGES $AV_LIBS_PACKAGES $LIBS_PACKAGES $EXTRA_PACKAGES $WM_PACKAGES
 
-PIP3_PACKAGES="tornado==4.1 tornadostreamform websocket-client jsonpickle oyaml psutil pexpect requests mido python-rtmidi"
+PIP3_PACKAGES="tornado==4.1 tornadostreamform websocket-client jsonpickle oyaml psutil pexpect requests mido python-rtmidi psutil"
 ZYNTHBOX_PIP3_PACKAGES="soundfile pytaglib pynput rpi_ws281x"
 MOD_UI_PIP3_PACKAGES="pyserial==3.0 pystache==0.5.4 aggdraw==1.3.11 pycrypto"
 
