@@ -119,21 +119,21 @@ else
 	fi
 fi
 
-if [ "$hw_architecture" = "armv7l" ]; then
-	# default is: RPi3
-	CPU="-mcpu=cortex-a53 -mtune=cortex-a53"
-	FPU="-mfpu=neon-fp-armv8 -mneon-for-64bits"
-	if [[ "$rbpi_version" =~ [2] ]]; then
-		CPU="-mcpu=cortex-a7 -mtune=cortex-a7"
-		FPU="-mfpu=neon-vfpv4"
-	fi
-	#CPU="${CPU} -Ofast" #Breaks mod-ttymidi build
-	FPU="${FPU} -mfloat-abi=hard -mlittle-endian -munaligned-access -mvectorize-with-neon-quad -ftree-vectorize"
-	CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations -ffast-math"
-fi
+# if [ "$hw_architecture" = "armv7l" ]; then
+# 	# default is: RPi3
+# 	CPU="-mcpu=cortex-a53 -mtune=cortex-a53"
+# 	FPU="-mfpu=neon-fp-armv8 -mneon-for-64bits"
+# 	if [[ "$rbpi_version" =~ [2] ]]; then
+# 		CPU="-mcpu=cortex-a7 -mtune=cortex-a7"
+# 		FPU="-mfpu=neon-vfpv4"
+# 	fi
+# 	#CPU="${CPU} -Ofast" #Breaks mod-ttymidi build
+# 	FPU="${FPU} -mfloat-abi=hard -mlittle-endian -munaligned-access -mvectorize-with-neon-quad -ftree-vectorize"
+# 	CFLAGS_UNSAFE="-funsafe-loop-optimizations -funsafe-math-optimizations -ffast-math"
+# fi
 export MACHINE_HW_NAME=$hw_architecture
 export RBPI_VERSION=$rbpi_version
-export CFLAGS="${CPU} ${FPU}"
+export CFLAGS="-mcpu=cortex-a72 -mtune=cortex-a72 -mfloat-abi=hard -mfpu=neon-fp-armv8 -mlittle-endian -munaligned-access -mvectorize-with-neon-quad -ftree-vectorize"
 export CXXFLAGS=${CFLAGS}
 export CFLAGS_UNSAFE=""
 export RASPI=true
