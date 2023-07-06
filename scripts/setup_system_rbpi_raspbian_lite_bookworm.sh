@@ -140,9 +140,8 @@ libfreetype6-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk
 libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
 libxkbcommon-x11-dev libssl-dev libtag1-dev"
 EXTRA_PACKAGES="jack-midi-clock midisport-firmware"
-WM_PACKAGES="kwin-x11"
 
-apt-get -y --no-install-recommends install $BUILD_TOOLS_PACKAGES $AV_LIBS_PACKAGES $LIBS_PACKAGES $EXTRA_PACKAGES $WM_PACKAGES
+apt-get -y --no-install-recommends install $BUILD_TOOLS_PACKAGES $AV_LIBS_PACKAGES $LIBS_PACKAGES $EXTRA_PACKAGES
 
 PIP3_PACKAGES="tornado tornadostreamform websocket-client jsonpickle oyaml psutil pexpect requests mido python-rtmidi"
 ZYNTHBOX_PIP3_PACKAGES="soundfile pytaglib pynput rpi_ws281x"
