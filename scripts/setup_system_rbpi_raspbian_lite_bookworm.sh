@@ -104,7 +104,7 @@ CLI_TOOLS_PACKAGES="raspi-config psmisc tree joe nano vim p7zip-full i2c-tools \
 	fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi evtest libts-bin"
 
 PYTHON_PACKAGES="python3 python3-dev cython3 python3-cffi python3-dbus python3-mpmath python3-pil python3-pip \
-	python3-setuptools python3-numpy-dev python3-evdev 2to3 python-is-python3"
+	python3-setuptools python3-numpy-dev python3-evdev 2to3 python-is-python3 python3-tk python3-pil.imagetk"
 
 apt-get -y --no-install-recommends install $SYSTEM_PACKAGES $CLI_TOOLS_PACKAGES $PYTHON_PACKAGES
 
