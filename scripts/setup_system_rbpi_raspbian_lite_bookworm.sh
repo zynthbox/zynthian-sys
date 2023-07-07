@@ -35,14 +35,8 @@ export DEBIAN_FRONTEND=noninteractive
 [ -n "$ZYNTHIAN_CHANGE_HOSTNAME" ] || ZYNTHIAN_CHANGE_HOSTNAME=yes
 
 [ -n "$ZYNTHIAN_SYS_REPO" ] || ZYNTHIAN_SYS_REPO="https://github.com/zynthbox/zynthian-sys.git"
-[ -n "$ZYNTHIAN_UI_REPO" ] || ZYNTHIAN_UI_REPO="https://github.com/zynthbox/zynthian-qml.git"
-[ -n "$ZYNTHIAN_ZYNCODER_REPO" ] || ZYNTHIAN_ZYNCODER_REPO="https://github.com/zynthbox/zyncoder.git"
-[ -n "$ZYNTHIAN_WEBCONF_REPO" ] || ZYNTHIAN_WEBCONF_REPO="https://github.com/zynthbox/zynthian-webconf.git"
-[ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthian/zynthian-data.git"
+[ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthbox/zynthian-data.git"
 [ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="main"
-[ -n "$ZYNTHIAN_UI_BRANCH" ] || ZYNTHIAN_UI_BRANCH="main"
-[ -n "$ZYNTHIAN_ZYNCODER_BRANCH" ] || ZYNTHIAN_ZYNCODER_BRANCH="stable"
-[ -n "$ZYNTHIAN_WEBCONF_BRANCH" ] || ZYNTHIAN_WEBCONF_BRANCH="main"
 [ -n "$ZYNTHIAN_DATA_BRANCH" ] || ZYNTHIAN_DATA_BRANCH="stable"
 
 #------------------------------------------------
@@ -83,10 +77,6 @@ wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-re
 dpkg -i kxstudio-repos_10.0.3_all.deb
 rm -f kxstudio-repos_10.0.3_all.deb
 
-# Zynthian
-# wget -O - https://deb.zynthian.org/zynthian-deb.pub | apt-key add -
-# echo "deb https://deb.zynthian.org/zynthian-stable buster main" > /etc/apt/sources.list.d/zynthian.list
-
 # Zynthbox
 if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
 	wget -qO - "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" | apt-key add -
@@ -113,10 +103,10 @@ SYSTEM_PACKAGES="systemd avahi-daemon dhcpcd-dbus usbutils usbmount exfat-utils 
 CLI_TOOLS_PACKAGES="raspi-config psmisc tree joe nano vim p7zip-full i2c-tools \
 	fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi evtest libts-bin"
 
-PYTHON_PACKAGES="python3 python3-dev cython3 python3-cffi python3-tk python3-dbus python3-mpmath python3-pil python3-pip \
-	python3-pil.imagetk python3-setuptools python3-pyqt5 python3-numpy-dev python3-evdev 2to3 python-is-python3"
+PYTHON_PACKAGES="python3 python3-dev cython3 python3-cffi python3-dbus python3-mpmath python3-pil python3-pip \
+	python3-setuptools python3-numpy-dev python3-evdev 2to3 python-is-python3"
 
-apt-get -y install $SYSTEM_PACKAGES $CLI_TOOLS_PACKAGES $PYTHON_PACKAGES
+apt-get -y --no-install-recommends install $SYSTEM_PACKAGES $CLI_TOOLS_PACKAGES $PYTHON_PACKAGES
 
 #------------------------------------------------
 # Development Environment
@@ -163,7 +153,7 @@ zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy zynthbox-dependenc
 # mididings pd-aubio
 
 # Install ZynthboxQML and its dependencies
-apt-get -y install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
+apt-get -y --no-install-recommends install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
 
 #************************************************
 #------------------------------------------------
@@ -190,33 +180,20 @@ cd $ZYNTHIAN_DIR
 git clone -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
 
 # Create needed directories
-#mkdir "$ZYNTHIAN_DATA_DIR/soundfonts"
-#mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sf2"
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
-mkdir "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
-mkdir "$ZYNTHIAN_MY_DATA_DIR"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
-#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XSZ"
-#mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XLZ"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/generative"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/capture"
-mkdir "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
-mkdir "$ZYNTHIAN_PLUGINS_DIR"
+mkdir -p "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
+mkdir -p "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
+mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
+mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
+mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/generative"
+mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
+mkdir -p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
+mkdir -p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
+mkdir -p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
+mkdir -p "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
+mkdir -p "$ZYNTHIAN_MY_DATA_DIR/capture"
+mkdir -p "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
 mkdir -p "$ZYNTHIAN_PLUGINS_DIR/lv2"
-# ln -s /usr/lib/lv2 "$ZYNTHIAN_PLUGINS_DIR/lv2"
 
 # Copy default snapshots
 cp -a $ZYNTHIAN_SYS_DIR/snapshots/default.zss $ZYNTHIAN_MY_DATA_DIR/snapshots/
@@ -262,8 +239,6 @@ systemctl disable splash-screen
 systemctl disable userconfig.service
 systemctl enable backlight
 systemctl enable cpu-performance
-# systemctl enable check-ttymidi-usage.service
-# systemctl enable check-ttymidi-usage.timer
 systemctl enable wifi-setup
 systemctl enable jack2
 systemctl enable mod-ttymidi
@@ -289,7 +264,7 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 #************************************************
 
 # Install zynthbox dependencies:
-apt-get -yy install \
+apt-get -yy --no-install-recommends install \
 	-o DPkg::Options::="--force-confdef" \
 	-o DPkg::Options::="--force-confold" \
 	-o DPkg::Options::="--force-overwrite" \
@@ -303,14 +278,8 @@ apt-get -yy install \
 	zynthbox-dependency-squishbox-sf2
 	# zynthbox-dependency-sfizz zynthbox-dependency-setbfree 
 
-# Install jpmidi (MID player for jack with transport sync)
-# $ZYNTHIAN_RECIPE_DIR/install_jpmidi.sh
-
 # Install noVNC web viewer
 $ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
-
-# Install DT overlays for waveshare displays and others
-# $ZYNTHIAN_RECIPE_DIR/install_waveshare-dtoverlays.sh
 
 #************************************************
 #------------------------------------------------
@@ -318,23 +287,12 @@ $ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
 #------------------------------------------------
 #************************************************
 
-# Install ZynAddSubFX
-#$ZYNTHIAN_RECIPE_DIR/install_zynaddsubfx.sh
 #Fix soft link to zynbanks, for working as included on zynthian-data repository
 ln -s /usr/share/zynaddsubfx /usr/local/share
 
 # Install Fluidsynth & SF2 SondFonts
 # Create SF2 soft links
 ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
-
-# Install Polyphone (SF2 editor)
-#$ZYNTHIAN_RECIPE_DIR/install_polyphone.sh
-
-# Install Linuxsampler
-#$ZYNTHIAN_RECIPE_DIR/install_linuxsampler_stable.sh
-
-# Install Fantasia (linuxsampler Java GUI)
-# $ZYNTHIAN_RECIPE_DIR/install_fantasia.sh
 
 # Setup user config directories
 cd $ZYNTHIAN_CONFIG_DIR
@@ -345,31 +303,14 @@ cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/zynthian.cfg
 # Install Pianoteq Demo (Piano Physical Emulation)
 $ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
 
-# Install Aeolus (Pipe Organ Emulator)
-#apt-get -y install aeolus
-# $ZYNTHIAN_RECIPE_DIR/install_aeolus.sh
-
 mkdir /root/Pd
 mkdir /root/Pd/externals
-
-#------------------------------------------------
-# Install MOD stuff
-#------------------------------------------------
-
-#Install MOD-SDK
-#$ZYNTHIAN_RECIPE_DIR/install_mod-sdk.sh
 
 #------------------------------------------------
 # Install Plugins
 #------------------------------------------------
 cd $ZYNTHIAN_SYS_DIR/scripts
 ./setup_plugins_rbpi_bookworm.sh
-
-#------------------------------------------------
-# Install Ableton Link Support
-#------------------------------------------------
-$ZYNTHIAN_RECIPE_DIR/install_hylia.sh
-$ZYNTHIAN_RECIPE_DIR/install_pd_extra_abl_link.sh
 
 #************************************************
 #------------------------------------------------
@@ -396,10 +337,6 @@ apt-mark hold raspberrypi-sys-mods
 touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # Clean
-
-rm -rf /root/.gitconfig # Remove github personal access token
-# rm -f "$ZYNTHIAN_PLUGINS_DIR/lv2" # Remove lv2 symbolic link
-
 apt-get -y autoremove # Remove unneeded packages
 if [[ "$ZYNTHIAN_SETUP_APT_CLEAN" == "yes" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
     apt-get clean
