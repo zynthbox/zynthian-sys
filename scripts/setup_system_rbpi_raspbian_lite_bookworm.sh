@@ -332,6 +332,9 @@ $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 #------------------------------------------------
 #************************************************
 
+# Disable the "ssh may not work" banner
+rm -f /etc/ssh/sshd_config.d/rename_user.conf
+
 #Block MS repo from being installed
 apt-mark hold raspberrypi-sys-mods
 touch /etc/apt/trusted.gpg.d/microsoft.gpg
