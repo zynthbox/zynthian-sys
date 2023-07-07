@@ -106,7 +106,7 @@ CLI_TOOLS_PACKAGES="raspi-config psmisc tree joe nano vim p7zip-full i2c-tools \
 PYTHON_PACKAGES="python3 python3-dev cython3 python3-cffi python3-dbus python3-mpmath python3-pil python3-pip \
 	python3-setuptools python3-numpy-dev python3-evdev 2to3 python-is-python3 python3-tk python3-pil.imagetk"
 
-apt-get -y --no-install-recommends install $SYSTEM_PACKAGES $CLI_TOOLS_PACKAGES $PYTHON_PACKAGES
+apt-get -y install $SYSTEM_PACKAGES $CLI_TOOLS_PACKAGES $PYTHON_PACKAGES
 
 #------------------------------------------------
 # Development Environment
@@ -148,12 +148,14 @@ pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-import pd-bassemu pd-reada
 pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd \
 pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-earplug pd-wiimote pd-pmpd pd-motex \
 pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
-pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib \
-zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy zynthbox-dependency-mod-ui sfizz"
+pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib zynthbox-dependency-mod-host \
+zynthbox-dependency-mod-browsepy zynthbox-dependency-mod-ui sfizz"
 # mididings pd-aubio
 
 # Install ZynthboxQML and its dependencies
-apt-get -y --no-install-recommends install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
+apt-get -y install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
+# Install plasma-framework-zynthbox with --no-install-recommends otherwise it pulls in a huge load of dependencies
+apt-get -y --no-install-recommends install plasma-framework-zynthbox
 
 #************************************************
 #------------------------------------------------
@@ -264,7 +266,7 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 #************************************************
 
 # Install zynthbox dependencies:
-apt-get -yy --no-install-recommends install \
+apt-get -yy install \
 	-o DPkg::Options::="--force-confdef" \
 	-o DPkg::Options::="--force-confold" \
 	-o DPkg::Options::="--force-overwrite" \
