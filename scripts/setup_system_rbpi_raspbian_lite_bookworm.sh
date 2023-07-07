@@ -149,13 +149,11 @@ pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpac
 pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-earplug pd-wiimote pd-pmpd pd-motex \
 pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
 pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib zynthbox-dependency-mod-host \
-zynthbox-dependency-mod-browsepy zynthbox-dependency-mod-ui sfizz"
+zynthbox-dependency-mod-browsepy zynthbox-dependency-mod-ui plasma-framework-zynthbox sfizz"
 # mididings pd-aubio
 
 # Install ZynthboxQML and its dependencies
 apt-get -y install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
-# Install plasma-framework-zynthbox with --no-install-recommends otherwise it pulls in a huge load of dependencies
-apt-get -y --no-install-recommends install plasma-framework-zynthbox
 
 #************************************************
 #------------------------------------------------
