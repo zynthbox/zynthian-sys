@@ -237,6 +237,7 @@ systemctl disable apt-daily.timer
 systemctl disable getty@tty1.service
 systemctl disable splash-screen
 systemctl disable userconfig.service
+systemctl disable apt-daily-upgrade.timer
 systemctl enable backlight
 systemctl enable cpu-performance
 systemctl enable wifi-setup
