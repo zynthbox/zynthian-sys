@@ -153,7 +153,7 @@ zynthbox-dependency-mod-browsepy zynthbox-dependency-mod-ui plasma-framework-zyn
 # mididings pd-aubio
 
 # Install ZynthboxQML and its dependencies
-apt-get -y --no-install-recommends install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
+apt-get -y install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
 
 #************************************************
 #------------------------------------------------
