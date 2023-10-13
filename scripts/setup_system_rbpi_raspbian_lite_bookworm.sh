@@ -149,7 +149,8 @@ pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpac
 pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-earplug pd-wiimote pd-pmpd pd-motex \
 pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
 pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib zynthbox-dependency-mod-host \
-zynthbox-dependency-mod-browsepy zynthbox-dependency-mod-ui plasma-framework-zynthbox sfizz"
+zynthbox-dependency-mod-browsepy zynthbox-dependency-mod-ui sfizz"
+# plasma-framework-zynthbox 
 # mididings pd-aubio
 
 # Install ZynthboxQML and its dependencies
