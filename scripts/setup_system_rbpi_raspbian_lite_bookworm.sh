@@ -341,6 +341,9 @@ rm -f /etc/ssh/sshd_config.d/rename_user.conf
 apt-mark hold raspberrypi-sys-mods
 touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
+# Create build_info.txt
+echo "Timestamp: $(date +'%d-%b-%Y')" > /zynthian/build_info.txt
+
 # Clean
 apt-get -y autoremove # Remove unneeded packages
 if [[ "$ZYNTHIAN_SETUP_APT_CLEAN" == "yes" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
