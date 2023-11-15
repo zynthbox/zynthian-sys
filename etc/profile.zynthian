@@ -10,3 +10,4 @@ if [[ -n $DISPLAY ]]; then
 fi
 
 export PATH=$PATH:/$ZYNTHIAN_SYS_DIR/scripts:/$ZYNTHIAN_SYS_DIR/sbin
+export DEBUGINFOD_URLS="https://debuginfod.debian.net"
