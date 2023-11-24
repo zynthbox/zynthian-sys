@@ -191,7 +191,7 @@ mkdir -p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
-mkdir -p "$ZYNTHIAN_MY_DATA_DIR/capture"
+#mkdir -p "$ZYNTHIAN_MY_DATA_DIR/capture"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
 mkdir -p "$ZYNTHIAN_PLUGINS_DIR/lv2"
 
