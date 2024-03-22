@@ -83,10 +83,6 @@ if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO
 	echo "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox.list
 fi
 
-# SFZ Tools
-echo 'deb http://download.opensuse.org/repositories/home:/sfztools:/sfizz/Debian_12/ /' | sudo tee /etc/apt/sources.list.d/home:sfztools:sfizz.list
-curl -fsSL https://download.opensuse.org/repositories/home:sfztools:sfizz/Debian_12/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_sfztools_sfizz.gpg > /dev/null
-
 apt-get -y update
 apt-get -y dist-upgrade
 apt-get -y autoremove
