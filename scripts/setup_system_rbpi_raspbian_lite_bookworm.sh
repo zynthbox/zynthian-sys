@@ -143,15 +143,15 @@ rm /usr/lib/python3*/EXTERNALLY-MANAGED
 pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
 ZYNTHBOX_OTHER_DEPENDENCIES="fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont \
-linuxsampler gigtools  puredata puredata-core puredata-utils python3-yaml pd-lua pd-moonlib \
-pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-import pd-bassemu pd-readanysf pd-pddp \
-pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd \
-pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-earplug pd-wiimote pd-pmpd pd-motex \
-pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
-pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib zynthbox-dependency-mod-host \
-zynthbox-dependency-mod-browsepy zynthbox-dependency-mod-ui plasma-framework-zynthbox \
-aeolus setbfree sfizz zynaddsubfx"
+linuxsampler gigtools zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy \
+zynthbox-dependency-mod-ui plasma-framework-zynthbox aeolus setbfree sfizz zynaddsubfx jalv"
 # mididings pd-aubio
+# puredata puredata-core puredata-utils python3-yaml pd-lua pd-moonlib \
+# pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-import pd-bassemu pd-readanysf pd-pddp \
+# pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd \
+# pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-earplug pd-wiimote pd-pmpd pd-motex \
+# pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
+# pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
 
 # Install ZynthboxQML and its dependencies
 apt-get -y install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
@@ -273,13 +273,13 @@ apt-get -yy install \
 	-o DPkg::Options::="--force-overwrite" \
 	zynthbox-dependency-ntk zynthbox-dependency-pyliblo zynthbox-dependency-mod-ttymidi \
 	zynthbox-dependency-lilv zynthbox-dependency-lvtk-v1 zynthbox-dependency-lvtk-v2 \
-	zynthbox-dependency-jalv zynthbox-dependency-aubio zynthbox-dependency-jack-smf-utils \
+	zynthbox-dependency-aubio zynthbox-dependency-jack-smf-utils \
 	zynthbox-dependency-touchosc2midi zynthbox-dependency-jackclient-python zynthbox-dependency-qmidinet \
 	zynthbox-dependency-jackrtpmidid zynthbox-dependency-dxsyx zynthbox-dependency-preset2lv2 \
 	zynthbox-dependency-qjackctl zynthbox-dependency-njconnect zynthbox-dependency-mutagen \
 	zynthbox-dependency-terminado zynthbox-dependency-vl53l0x zynthbox-dependency-mcp4728 \
 	zynthbox-dependency-squishbox-sf2
-	# zynthbox-dependency-sfizz zynthbox-dependency-setbfree 
+	# zynthbox-dependency-sfizz zynthbox-dependency-setbfree zynthbox-dependency-jalv
 
 # Install noVNC web viewer
 $ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
