@@ -53,7 +53,7 @@ apt-get -yy install \
     temper-lv2 tal-plugins-lv2 tap-lv2 teragonaudio-plugins-lv2 vitalium-lv2 \
     wolf-shaper wolf-spectrum wolpertinger-lv2 \
     x42-plugins zam-plugins zlfo
-    # dpf-plugins dragonfly-reverb lsp-plugins
+    # dpf-plugins lsp-plugins
     
 
 #----------------------------------------------------
@@ -73,7 +73,7 @@ apt-get -yy install \
     zynthbox-plugin-mod-arpeggiator zynthbox-plugin-stereo-mixer zynthbox-plugin-alo \
     zynthbox-plugin-vl1 zynthbox-plugin-qmidiarp zynthbox-plugin-mod-cabsim-ir-loader \
     zynthbox-plugin-bolliedelay zynthbox-plugin-mclk zynthbox-plugin-lv2-plugins-prebuilt \
-    zynthbox-plugin-fluidsynth zynthbox-plugin-fluidplug
+    zynthbox-plugin-fluidsynth zynthbox-plugin-fluidplug zynthbox-plugin-dragonfly-reverb
 # zynthbox-plugin-mod-mda
 # zynthbox-plugin-dexed-lv2
 # zynthbox-plugin-setbfree.sh
