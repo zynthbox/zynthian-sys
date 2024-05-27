@@ -1,131 +1,30 @@
 [all]
-kernel=vmlinuz-5.15.65-llat-v7l+
-os_prefix=5.15.65-llat-v7l+/
+kernel=vmlinuz-6.1.54-llat-v7l+
+os_prefix=6.1.54-llat-v7l+/
 overlay_prefix=overlays/
-
-# For more options and information see
-# http://www.raspberrypi.org/documentation/configuration/config-txt.md
-# Some settings may impact device functionality. See link above for details
-
-# Tell bootloader to use initram image
-#initramfs initrd.img-4.1.13-v7+
-
-# Load RT Kernel for RBPI2
-#kernel=kernel7-rt.img
-
-# uncomment if you get no picture on HDMI for a default "safe" mode
-#hdmi_safe=1
-
-# uncomment this if your display has a black border of unused pixels visible
-# and your display can output without overscan
-#disable_overscan=1
-
-# uncomment the following to adjust overscan. Use positive numbers if console
-# goes off screen, and negative if there is too much border
-#overscan_left=16
-#overscan_right=16
-#overscan_top=16
-#overscan_bottom=16
-
-# uncomment to force a console size. By default it will be display's size minus
-# overscan.
-#framebuffer_width=1280
-#framebuffer_height=720
-
-# uncomment if hdmi display is not detected and composite is being output
-[pi4]
-hdmi_force_hotplug=1
-[all]
-
-# uncomment to force a specific HDMI mode (this will force VGA)
-#hdmi_group=1
-#hdmi_mode=1
-
-# uncomment to force a HDMI mode rather than DVI. This can make audio work in
-# DMT (computer monitor) modes
-#hdmi_drive=2
-
-# uncomment to increase signal to HDMI, if you have interference, blanking, or
-# no display
-#config_hdmi_boost=4
-
-# uncomment for composite PAL
-#sdtv_mode=2
-
 # Disable Splash Screen
 disable_splash=1
-
-# Disables dynamic frequency clocking
-force_turbo=1
-
-# Uncomment to overclock the arm. 700 MHz is the default.
-[pi2]
-arm_freq=900
-core_freq=250
-sdram_freq=450
-over_voltage=2
-[all]
-
 # Uncomment some or all of these to enable the optional hardware interfaces
 dtparam=i2c_arm=on
 dtparam=i2s=on
 dtparam=spi=on
-
-# Uncomment this to enable the lirc-rpi module
-#dtoverlay=lirc-rpi
-
-
-# Additional overlays and parameters are documented /boot/overlays/README
-
 # Enable MMAP support (Jackd, etc.)
 dtoverlay=i2s-mmap
-
 # Enable UART for MIDI
 enable_uart=1
-
-[pi3]
-# Swap back the ttyAMA0 to GPIO
-dtoverlay=miniuart-bt
-[all]
+dtoverlay=midi-uart0
+initramfs initramfs.img
 
 [pi4]
+# Disables dynamic frequency clocking
+force_turbo=1
+# uncomment if hdmi display is not detected and composite is being output
+hdmi_force_hotplug=1
 # Enable OTG
 #OTG_CONFIG#
 # Swap back the ttyAMA0 to GPIO
 dtoverlay=miniuart-bt
-[all]
-
-# Enable RBPi Onboard Audio (Headphones)
-#RBPI_AUDIO_CONFIG#
-
-# Soundcard Config
-#SOUNDCARD_CONFIG#
-
-# Display Config
-#DISPLAY_CONFIG#
-
-# Activity LED Config
-#ACT_LED_CONFIG#
-
-# Adjust UART clock for MIDI Baudrate (31250)
-
-#New kernels
-dtoverlay=midi-uart0
-
-# Old kernels
-#[pi3]
-#init_uart_clock=39062500
-#init_uart_baud=38400
-#dtparam=uart0_clkrate=48000000
-#[pi2]
-#init_uart_clock=2441000
-#init_uart_baud=38400
-#dtparam=uart0_clkrate=3000000
-#[all]
-
 # Overclocking settings
 arm_freq=1750
 gpu_freq=750
 over_voltage=6
-
-initramfs initramfs.img
