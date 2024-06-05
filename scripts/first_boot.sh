@@ -49,6 +49,7 @@ systemctl enable splash-screen
 if cat /proc/device-tree/model | grep -q 'Raspberry Pi 5'; then
 	# TODO : Check why ttymidi is not working on Pi5
 	systemctl disable --now mod-ttymidi
+	rpi-eeprom-update -a
 fi
 
 # Resize partition
