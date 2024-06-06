@@ -46,11 +46,5 @@ systemctl disable first_boot
 # Enable splash-screen
 systemctl enable splash-screen
 
-if cat /proc/device-tree/model | grep -q 'Raspberry Pi 5'; then
-	# TODO : Check why ttymidi is not working on Pi5
-	systemctl disable --now mod-ttymidi
-	SKIP_WARNING=1 SKIP_BACKUP=1 rpi-update
-fi
-
 # Resize partition
 $ZYNTHIAN_SYS_DIR/scripts/rpi-wiggle.sh
