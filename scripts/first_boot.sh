@@ -46,5 +46,9 @@ systemctl disable first_boot
 # Enable splash-screen
 systemctl enable splash-screen
 
+if cat /proc/device-tree/model | grep -q 'Raspberry Pi 5'; then
+	rpi-eeprom-update -a
+fi
+
 # Resize partition
 $ZYNTHIAN_SYS_DIR/scripts/rpi-wiggle.sh
