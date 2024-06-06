@@ -97,7 +97,7 @@ SYSTEM_PACKAGES="systemd avahi-daemon dhcpcd-dbus usbutils usbmount exfat-utils 
 	xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri vnc4server \
 	xfwm4 xfwm4-themes xfce4-panel xdotool \
 	wpasupplicant wireless-tools iw hostapd dnsmasq \
-	firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree"
+	firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree rpi-eeprom"
 
 # CLI Tools
 CLI_TOOLS_PACKAGES="raspi-config psmisc tree joe nano vim p7zip-full i2c-tools \
