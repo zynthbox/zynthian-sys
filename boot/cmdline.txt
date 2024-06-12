@@ -1,1 +1,0 @@
-dwc_otg.lpm_enable=0 console=serial2 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait consoleblank=0 loglevel=2 quiet logo.nologo vt.global_cursor_default=0

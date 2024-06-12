@@ -1,36 +1,67 @@
-[pi4]
-# Disables dynamic frequency clocking
-force_turbo=1
-# uncomment if hdmi display is not detected and composite is being output
-hdmi_force_hotplug=1
-# Enable OTG
-#OTG_CONFIG#
-# Swap back the ttyAMA0 to GPIO
-dtoverlay=miniuart-bt
-# Overclocking settings
-arm_freq=1750
-gpu_freq=750
-over_voltage=6
+# Automatically load overlays for detected DSI displays
+display_auto_detect=1
 
-[all]
-#NO_ZYNTHIAN_UPDATE
-kernel=vmlinuz-6.1.54-llat-v7l+
-os_prefix=6.1.54-llat-v7l+/
-overlay_prefix=overlays/
+# Automatically load initramfs files, if found
+auto_initramfs=1
+
+# Don't have the firmware create an initial video= setting in cmdline.txt.
+# Use the kernel's default instead.
+disable_fw_kms_setup=1
+
+# Run in 64-bit mode
+# arm_64bit=1
+
+# Run as fast as firmware / board allows
+arm_boost=1
+
+# Run on turbo mode for 60secs when starting up
+initial_turbo=60
+
+# Enable UART for MIDI
+enable_uart=1
+
 # Disable Splash Screen
 disable_splash=1
+
 # Uncomment some or all of these to enable the optional hardware interfaces
 dtparam=i2c_arm=on
 dtparam=i2s=on
 dtparam=spi=on
+
 # Enable MMAP support (Jackd, etc.)
 dtoverlay=i2s-mmap
-# Enable UART for MIDI
-enable_uart=1
+
+# OTG Config
+#OTG_CONFIG#
+
+# Adjust UART clock for MIDI Baudrate (31250)
 dtoverlay=midi-uart0
 
-# Enable RBPi Onboard Audio (Headphones)
-dtparam=audio=on
-audio_pwm_mode=2
+# Enable RBPi Onboard Audio (Headphones) => loads snd_bcm2835
+#RBPI_AUDIO_CONFIG#
 
-initramfs initramfs.img
+# Soundcard Config
+#SOUNDCARD_CONFIG#
+
+# Display Config
+#DISPLAY_CONFIG#
+
+#CUSTOM_CONFIG#
+
+[pi4]
+hdmi_force_hotplug=1
+
+# Swap back the ttyAMA0 to GPIO
+dtoverlay=miniuart-bt
+
+# Overclocking settings
+#OVERCLOCKING_RBPI4#
+# Fix core freq for avoiding fluctuation on SPI freq (RGB LEDs)
+core_freq=500
+core_freq_min=500
+[all]
+
+[pi5]
+# Enable tty0 on RPi5
+dtoverlay=uart0-pi5
+[all]

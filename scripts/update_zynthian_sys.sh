@@ -63,13 +63,23 @@ function custom_config {
 		done
 	fi
 	if [ -d "boot" ]; then
-		for file in boot/* ; do
-			cp -a "$file" /boot
+		for file in boot/overlays/*.dtbo ; do
+			cp -a "$file" /boot/firmware/overlays
+		done
+		for file in boot/overlays/*.dts ; do
+			filebase=${file##*/}
+			filebase=${filebase%.*}
+			dtc -I dts -O dtb -o "/boot/firmware/overlays/$filebase.dtbo" "$file"
 		done
 	fi
 	if [ -d "config" ]; then
 		for file in config/* ; do
 			cp -a "$file" $ZYNTHIAN_CONFIG_DIR
+		done
+	fi
+	if [ -d "firmware" ]; then
+		for file in firmware/* ; do
+			cp -a "$file" /lib/firmware
 		done
 	fi
 }
@@ -159,6 +169,7 @@ BROWSEPY_ROOT_ESC=${BROWSEPY_ROOT//\//\\\/}
 JACKD_BIN_PATH_ESC=${JACKD_BIN_PATH//\//\\\/}
 JACKD_OPTIONS_ESC=${JACKD_OPTIONS//\//\\\/}
 ZYNTHIAN_AUBIONOTES_OPTIONS_ESC=${ZYNTHIAN_AUBIONOTES_OPTIONS//\//\\\/}
+ZYNTHIAN_CUSTOM_BOOT_CMDLINE=${ZYNTHIAN_CUSTOM_BOOT_CMDLINE//\n//}
 
 if [ -f "/proc/stat" ]; then
 	RBPI_AUDIO_DEVICE=`$ZYNTHIAN_SYS_DIR/sbin/get_rbpi_audio_device.sh`
@@ -169,46 +180,71 @@ fi
 #------------------------------------------------------------------------------
 # Boot Config 
 #------------------------------------------------------------------------------
+BOOT_CONFIG_FPATH="/boot/firmware/config.txt"
+CMDLINE_CONFIG_FPATH="/boot/firmware/cmdline.txt"
 
 # Detect NO_ZYNTHIAN_UPDATE flag in the config.txt
-if [ -f "/boot/config.txt" ] && [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
-	NO_ZYNTHIAN_UPDATE=`grep -e ^#NO_ZYNTHIAN_UPDATE /boot/config.txt`
+if [ -f "$BOOT_CONFIG_FPATH" ] && [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
+	NO_ZYNTHIAN_UPDATE=`grep -e ^#NO_ZYNTHIAN_UPDATE $BOOT_CONFIG_FPATH`
 fi
 
 if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/boot/cmdline.txt /boot
-	cp -a $ZYNTHIAN_SYS_DIR/boot/config.txt /boot
+	# Generate cmdline.txt
+	cmdline="rootfstype=ext4 fsck.repair=yes rootwait"
 
 	if [ "$ZYNTHIAN_LIMIT_USB_SPEED" == "1" ]; then
 		echo "USB SPEED LIMIT ENABLED"
-		sed -i '1s/^/dwc_otg.speed=1 /' /boot/cmdline.txt
+		cmdline="$cmdline dwc_otg.speed=1"
+	fi
+
+	if [[ "$DISPLAY_KERNEL_OPTIONS" != "" ]]; then
+		cmdline="$cmdline $DISPLAY_KERNEL_OPTIONS"
+	fi
+
+	if [[ "$ZYNTHIAN_CUSTOM_BOOT_CMDLINE" != "" ]]; then
+		echo "CUSTOM BOOT CMDLINE => $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
+		cmdline="$cmdline $ZYNTHIAN_CUSTOM_BOOT_CMDLINE"
 	fi
 
 	if [[ "$FRAMEBUFFER" == "/dev/fb0" ]]; then
 		echo "BOOT LOG DISABLED"
-		sed -i '1s/tty1/tty3/' /boot/cmdline.txt
-		sed -i '1s/rootwait/rootwait logo.nologo quiet splash/' /boot/cmdline.txt
+		cmdline="$cmdline console=tty3 consoleblank=0 loglevel=2 logo.nologo quiet splash vt.global_cursor_default=0"
+	else
+		cmdline="$cmdline console=tty1 logo.nologo"
 	fi
-	
+
 	# Find rootfs by PARTUUID instead of block device
-	# This will allow booting zynthian from USB	
-		#Find partition id of rootfs ending with -02
-		PARTID=$(cat /etc/fstab | grep -Eo "PARTUUID=\S*-02")
-		# Replace existing `root=` parameter with PARTUUID
-		sed -i "s/root=\S*/root=$PARTID/" /boot/cmdline.txt
+	# This will allow booting zynthian from USB
+	#Find partition id of rootfs ending with -02
+	PARTID=$(cat /etc/fstab | grep -Eo "PARTUUID=\S*-02")
+	# Replace existing `root=` parameter with PARTUUID
+	cmdline="root=$PARTID $cmdline"
+
+	# Customize config.txt
+	cp -a $ZYNTHIAN_SYS_DIR/boot/config.txt "$BOOT_CONFIG_FPATH"
+
+	echo "OVERCLOCKING => $ZYNTHIAN_OVERCLOCKING"
+	if [[ "$ZYNTHIAN_OVERCLOCKING" == "Maximum" ]]; then
+		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage=6\narm_freq=2000/g" "$BOOT_CONFIG_FPATH"
+	elif [[ "$ZYNTHIAN_OVERCLOCKING" == "Medium" ]]; then
+		sed -i -e "s/#OVERCLOCKING_RBPI4#/over_voltage=2\narm_freq=1750/g" "$BOOT_CONFIG_FPATH"
+	else
+		sed -i -e "s/#OVERCLOCKING_RBPI4#//g" "$BOOT_CONFIG_FPATH"
+	fi
 
 	if [[ "$ZYNTHIAN_DISABLE_RBPI_AUDIO" != "1" ]]; then
 		echo "RBPI AUDIO ENABLED"
-		sed -i -e "s/#RBPI_AUDIO_CONFIG#/dtparam=audio=on\naudio_pwm_mode=2/g" /boot/config.txt
+		sed -i -e "s/#RBPI_AUDIO_CONFIG#/dtparam=audio=on\naudio_pwm_mode=2/g" "$BOOT_CONFIG_FPATH"
 	fi
 
 	if [[ "$ZYNTHIAN_DISABLE_OTG" != "1" ]]; then
 		echo "OTG ENABLED"
-		sed -i -e "s/#OTG_CONFIG#/dtoverlay=dwc2/g" /boot/config.txt
+		cmdline="$cmdline modules-load=dwc2,libcomposite"
+		sed -i -e "s/#OTG_CONFIG#/dtoverlay=dwc2/g" "$BOOT_CONFIG_FPATH"
 	fi
 
 	echo "SOUNDCARD CONFIG => $SOUNDCARD_CONFIG"
-	sed -i -e "s/#SOUNDCARD_CONFIG#/$SOUNDCARD_CONFIG/g" /boot/config.txt
+	sed -i -e "s/#SOUNDCARD_CONFIG#/$SOUNDCARD_CONFIG/g" "$BOOT_CONFIG_FPATH"
 
 	# Patch piscreen config
 	if [[ ( $DISPLAY_CONFIG == *"piscreen2r-notouch"* ) && ( $DISPLAY_CONFIG != *"piscreen2r-backlight"* ) ]]; then
@@ -216,15 +252,24 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	fi
 
 	echo "DISPLAY CONFIG => $DISPLAY_CONFIG"
-	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" /boot/config.txt
-	
-	echo "ACT LED CONFIG => $ACT_LED_CONFIG"
-	sed -i -e "s/#ACT_LED_CONFIG#/$ACT_LED_CONFIG/g" /boot/config.txt
+	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" "$BOOT_CONFIG_FPATH"
+
+	# Configure RTC for V5 & Z2 main boards
+	# TODO => see /zynthian-sys/sbin/configure_rtc.sh!!!
+	if [[ ( $ZYNTHIAN_KIT_VERSION == "V5"* ) || ( $ZYNTHIAN_KIT_VERSION == "Z2"* ) ]]; then
+		export ZYNTHIAN_CUSTOM_CONFIG="dtoverlay=i2c-rtc,rv3028\n"$ZYNTHIAN_CUSTOM_CONFIG
+	fi
+
+	echo "CUSTOM CONFIG => $ZYNTHIAN_CUSTOM_CONFIG"
+	sed -i -e "s/#CUSTOM_CONFIG#/$ZYNTHIAN_CUSTOM_CONFIG/g" "$BOOT_CONFIG_FPATH"
+
+	# Generate cmdline.txt
+	echo "$cmdline" > "$CMDLINE_CONFIG_FPATH"
 fi
 
 # Copy extra overlays
 if [ -d "$ZYNTHIAN_SYS_DIR/boot/overlays" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/boot/overlays/* /boot/overlays
+	cp -a $ZYNTHIAN_SYS_DIR/boot/overlays/* /boot/firmware/overlays
 fi
 
 #------------------------------------------------------------------------------
@@ -337,6 +382,14 @@ if [ -d "/usr/share/aeolus" ]; then
 		cd /usr/share/aeolus/stops
 		tar xfz $ZYNTHIAN_DATA_DIR/aeolus/waves.tgz
 	fi
+fi
+
+#--------------------------------------
+# Bootsplash Config
+#--------------------------------------
+if [[ $ZYNTHIAN_KIT_VERSION == "Z2"* ]]; then
+	# If device is Z2, change extro video to miko one
+	sed -i "s/extroVideo=.*/extroVideo=\/usr\/share\/zynthbox-bootsplash\/miko-extro.mp4/" /root/.config/zynthbox/zynthbox-qml.conf
 fi
 
 #--------------------------------------
