@@ -1,0 +1,1 @@
+../config/zynthian_envars_Z2.sh
