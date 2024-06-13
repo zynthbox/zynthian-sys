@@ -48,7 +48,6 @@ export DEBIAN_FRONTEND=noninteractive
 
 # Update System
 apt-get -y update --allow-releaseinfo-change
-apt-get -y dist-upgrade
 
 # Install required dependencies if needed
 apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common parted dirmngr rpi-eeprom gpgv ca-certificates
@@ -73,9 +72,9 @@ dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
 rm -f deb-multimedia-keyring_2016.8.1_all.deb
 
 # KXStudio
-wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_10.0.3_all.deb
-dpkg -i kxstudio-repos_10.0.3_all.deb
-rm -f kxstudio-repos_10.0.3_all.deb
+wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.1.0_all.deb
+dpkg -i kxstudio-repos_11.1.0_all.deb
+rm -f kxstudio-repos_11.1.0_all.deb
 
 # Zynthbox
 if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
@@ -83,7 +82,7 @@ if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO
 	echo "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox.list
 fi
 
-apt-get -y update
+apt-get -y update -oAcquire::AllowInsecureRepositories=true
 apt-get -y dist-upgrade
 apt-get -y autoremove
 
