@@ -29,6 +29,10 @@ import sys
 import logging
 from subprocess import check_output
 
+
+logging.basicConfig(format='%(levelname)s:%(module)s.%(funcName)s: %(message)s', stream=sys.stdout, level=logging.DEBUG)
+
+
 # --------------------------------------------------------------------
 # Hardware's config for several boards:
 # --------------------------------------------------------------------
@@ -53,7 +57,7 @@ def get_i2c_chips():
             for j in range(0, 16):
                 try:
                     adr = i * 16 + j
-                    #print("Detecting at {:02X} => {}".format(adr, parts[j]))
+                    #logging.info("Detecting at {:02X} => {}".format(adr, parts[j]))
                     if parts[j] != "--":
                         if 0x20 <= adr <= 0x27:
                             res.append("MCP23017@0x{:02X}".format(adr))
@@ -76,17 +80,17 @@ def get_i2c_chips():
 
 
 def check_boards(board_names):
-    print("Checking Boards: {}".format(board_names))
+    logging.info("Checking Boards: {}".format(board_names))
     faults = []
     for bname in board_names:
         for chip in hardware_config[bname]:
             if chip not in i2c_chips:
                 faults.append(chip)
     if len(faults) > 0:
-        print("ERROR: Undetected Hardware {}".format(faults))
+        logging.info("ERROR: Undetected Hardware {}".format(faults))
         return False
     else:
-        print("OK: All hardware has been detected!")
+        logging.info("OK: All hardware has been detected!")
         return True
 
 
@@ -101,16 +105,16 @@ def autodetect_config():
 
 # Get list of i2c chips
 i2c_chips = get_i2c_chips()
-print("Detected I2C Chips: {}".format(i2c_chips))
+logging.info("Detected I2C Chips: {}".format(i2c_chips))
 
 # Detect kit version
 config_name = autodetect_config()
-print("Detected {} kit!".format(config_name))
+logging.info("Detected {} kit!".format(config_name))
 
 # Configure Zynthian
 if config_name:
     if config_name != os.environ.get('ZYNTHIAN_KIT_VERSION'):
-        print("Configuring Zynthian for {} ...".format(config_name))
+        logging.info("Configuring Zynthian for {} ...".format(config_name))
 
         zyn_dir = os.environ.get('ZYNTHIAN_DIR', "/zynthian")
         zsys_dir = os.environ.get('ZYNTHIAN_SYS_DIR', "/zynthian/zynthian-sys")
@@ -118,8 +122,8 @@ if config_name:
 
         check_output("cp -a '{}/config/zynthian_envars_{}.sh' '{}/zynthian_envars.sh'".format(zsys_dir, config_name, zconfig_dir), shell=True)
     else:
-        print("Zynthian already configured for {}.".format(config_name))
+        logging.info("Zynthian already configured for {}.".format(config_name))
 else:
-    print("Autoconfig for this HW footprint is not available.")
+    logging.info("Autoconfig for this HW footlogging.info is not available.")
 
 # --------------------------------------------------------------------

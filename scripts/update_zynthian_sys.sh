@@ -643,6 +643,9 @@ if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ]; then
 	sed -i -e "s/zynthian-stable/zynthian-testing/g" /etc/apt/sources.list.d/zynthian.list
 fi
 
+# Create /boot/firmware/ssh file to enable ssh service on boot
+touch /boot/firmware/ssh
+
 # Reload Systemd scripts
 systemctl daemon-reload
 

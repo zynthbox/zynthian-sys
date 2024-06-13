@@ -10,7 +10,7 @@ echo -e "\nLoading config envars" >> /root/first_boot.log
 source "/zynthian/config/zynthian_envars.sh"
 
 rotation=$(echo $DISPLAY_KERNEL_OPTIONS | grep -oP "(?<=rotate=)(\d*)")
-if [ rotation == 180 ]; then
+if [ $rotation -eq "180" ]; then
     echo -e "\nConfiguration says display is inverted. Since new cmdline is not yet in effect during firstboot, rotate with xrandr" >> /root/first_boot.log
     xrandr -o inverted
 fi
