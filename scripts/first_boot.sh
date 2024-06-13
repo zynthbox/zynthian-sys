@@ -3,7 +3,7 @@
 # Hardware Autoconfig
 echo -e "### FIRST BOOT SETUP : $(date)\n" >> /root/first_boot.log
 echo -e "\nRunning autoconfig..." >> /root/first_boot.log
-$ZYNTHIAN_SYS_DIR/sbin/zynthian_autoconfig.py 2>&1 >> /root/first_boot.log
+python3 /zynthian/zynthian-sys/sbin/zynthian_autoconfig.py 2>&1 >> /root/first_boot.log
 
 # Load Config Envars
 echo -e "\nLoading config envars" >> /root/first_boot.log
