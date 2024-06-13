@@ -36,13 +36,16 @@ ZYNTHIAN_OS_CODEBASE=`lsb_release -cs`
 # Load Environment Variables
 #------------------------------------------------------------------------------
 
+if [ -z "$ZYNTHIAN_CONFIG_DIR" -o -z "$ZYNTHIAN_SYS_DIR" ]; then
+	export ZYNTHIAN_CONFIG_DIR="/zynthian/config"
+	export ZYNTHIAN_SYS_DIR="/zynthian/zynthian-sys"
+fi
+
 if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
 	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
 else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
-
-source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
 
 #------------------------------------------------------------------------------
 
@@ -210,7 +213,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 
 	if [[ "$FRAMEBUFFER" == "/dev/fb0" ]]; then
 		echo "BOOT LOG DISABLED"
-		cmdline="$cmdline console=tty3 consoleblank=0 loglevel=2 logo.nologo quiet splash vt.global_cursor_default=0"
+		cmdline="$cmdline console=serial1 consoleblank=0 loglevel=2 logo.nologo quiet splash vt.global_cursor_default=0"
 	else
 		cmdline="$cmdline console=tty1 logo.nologo"
 	fi
@@ -559,8 +562,6 @@ sed -i -e "s/#ZYNTHIAN_HOTSPOT_CHANNEL#/$ZYNTHIAN_HOSTSPOT_CHANNEL/g" /etc/hosta
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/first_boot.service
 # Cpu-performance service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/cpu-performance.service
-# check-ttymidi-usage service
-sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/check-ttymidi-usage.service
 # Wifi-Setup service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/wifi-setup.service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/wifi-setup.service
@@ -655,7 +656,5 @@ fi
 if [ -f "$ZYNTHIAN_MY_DATA_DIR/scripts/update_zynthian_sys.sh" ]; then
 	bash "$ZYNTHIAN_MY_DATA_DIR/scripts/update_zynthian_sys.sh"
 fi
-
-run_flag_actions
 
 #------------------------------------------------------------------------------

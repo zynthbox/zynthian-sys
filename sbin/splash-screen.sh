@@ -7,15 +7,7 @@ else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
-# Rotate display if required
-if [ -z ${XRANDR_ROTATE} ]; then
-	# Display Zynthian Boot Splash Screen
-	if [ -c $FRAMEBUFFER ]; then
-		cat /usr/share/zynthbox-bootsplash/boot-splash.raw > $FRAMEBUFFER
-	fi  
-else
-	# Display Zynthian Boot Splash Screen - Inverted
-	if [ -c $FRAMEBUFFER ]; then
-		cat /usr/share/zynthbox-bootsplash/boot-splash-inverted.raw > $FRAMEBUFFER
-	fi  
+# Display Zynthbox Boot Splash Screen
+if [ -c $FRAMEBUFFER ]; then
+	cat /usr/share/zynthbox-bootsplash/boot-splash.raw > $FRAMEBUFFER
 fi

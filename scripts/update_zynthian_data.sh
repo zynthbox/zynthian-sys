@@ -28,8 +28,6 @@ else
 	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
 fi
 
-source "$ZYNTHIAN_SYS_DIR/scripts/delayed_action_flags.sh"
-
 #------------------------------------------------------------------------------
 # Pull from repositories ...
 #------------------------------------------------------------------------------
@@ -129,7 +127,5 @@ for d in */; do
 		cp -a $d $ZYNTHIAN_PLUGINS_DIR/lv2
 	fi
 done
-
-run_flag_actions
 
 #------------------------------------------------------------------------------

@@ -1,1 +1,1 @@
-../config/zynthian_envars_Z2.sh
+../config/zynthian_envars_Custom.sh
