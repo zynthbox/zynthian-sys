@@ -35,7 +35,7 @@ export ZYNTHIAN_WIFI_MODE="off"
 #Audio Config
 export SOUNDCARD_NAME="RBPi Headphones"
 export SOUNDCARD_CONFIG="dtparam=audio=on\naudio_pwm_mode=2"
-export SOUNDCARD_MIXER="Headphone"
+export SOUNDCARD_MIXER="Headphone Left,Headphone Right"
 export JACKD_OPTIONS="-P 70 -s -d alsa -C plughw:Dummy -P plughw:Headphones -r 44100 -p 1024 -n 3 -X raw"
 export ZYNTHIAN_DISABLE_RBPI_AUDIO="0"
 export ZYNTHIAN_RBPI_HEADPHONES="1"
@@ -97,3 +97,22 @@ export ZYNTHIAN_RECIPE_DIR="$ZYNTHIAN_SYS_DIR/scripts/recipes"
 export ZYNTHIAN_PLUGINS_DIR="$ZYNTHIAN_DIR/zynthian-plugins"
 export ZYNTHIAN_PLUGINS_SRC_DIR="$ZYNTHIAN_SW_DIR/plugins"
 export LV2_PATH="/usr/lib/lv2:/usr/lib/arm-linux-gnueabihf/lv2:/usr/local/lib/lv2:$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_DATA_DIR/presets/lv2:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
+
+# Hardware Architecture & Optimization Options
+hw_architecture=`uname -m 2>/dev/null`
+if [ -e "/sys/firmware/devicetree/base/model" ]; then
+	rbpi_version=`tr -d '\0' < /sys/firmware/devicetree/base/model`
+else
+	rbpi_version=""
+fi
+export MACHINE_HW_NAME=$hw_architecture
+export RBPI_VERSION=$rbpi_version
+export CFLAGS="-mcpu=cortex-a72 -mtune=cortex-a72 -mfloat-abi=hard -mfpu=neon-fp-armv8 -mlittle-endian -munaligned-access -mvectorize-with-neon-quad -ftree-vectorize"
+export CXXFLAGS=${CFLAGS}
+export CFLAGS_UNSAFE=""
+export RASPI=true
+#echo "Hardware Architecture: ${hw_architecture}"
+#echo "Hardware Model: ${rbpi_version}"
+
+# Setup / Build Options
+export ZYNTHIAN_SETUP_APT_CLEAN="TRUE" # Set TRUE to clean /var/cache/apt during build, FALSE to leave alone
