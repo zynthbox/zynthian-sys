@@ -114,5 +114,11 @@ export RASPI=true
 #echo "Hardware Architecture: ${hw_architecture}"
 #echo "Hardware Model: ${rbpi_version}"
 
+if echo $RBPI_VERSION | grep -q "Raspberry Pi 5"; then
+	export GPIO_CHIP_DEVICE="/dev/gpiochip4"
+elif echo $RBPI_VERSION | grep -q "Raspberry Pi 4"; then
+	export GPIO_CHIP_DEVICE="/dev/gpiochip0"
+fi
+
 # Setup / Build Options
 export ZYNTHIAN_SETUP_APT_CLEAN="TRUE" # Set TRUE to clean /var/cache/apt during build, FALSE to leave alone
