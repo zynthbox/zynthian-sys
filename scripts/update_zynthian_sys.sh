@@ -213,7 +213,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 
 	if [[ "$FRAMEBUFFER" == "/dev/fb0" ]]; then
 		echo "BOOT LOG DISABLED"
-		cmdline="$cmdline console=serial1 consoleblank=0 loglevel=2 logo.nologo quiet splash vt.global_cursor_default=0"
+		cmdline="$cmdline console=serial0 consoleblank=0 loglevel=2 logo.nologo quiet splash vt.global_cursor_default=0"
 	else
 		cmdline="$cmdline console=tty1 logo.nologo"
 	fi
