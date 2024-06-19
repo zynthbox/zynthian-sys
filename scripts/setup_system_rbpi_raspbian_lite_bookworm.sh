@@ -98,17 +98,19 @@ apt-get -y autoremove
 
 # System
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
-SYSTEM_PACKAGES="systemd avahi-daemon dhcpcd-dbus usbutils usbmount exfat-utils \
-	xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri vnc4server \
-	xdotool wpasupplicant wireless-tools iw hostapd dnsmasq \
-	firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree rpi-eeprom"
+SYSTEM_PACKAGES="systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs \
+xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
+xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
+firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
+shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev"
 
 # CLI Tools
 CLI_TOOLS_PACKAGES="raspi-config psmisc tree joe nano vim p7zip-full i2c-tools \
-	fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi evtest libts-bin"
+fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi evtest libts-bin \
+gpiod libgpiod-dev"
 
 PYTHON_PACKAGES="python3 python3-dev cython3 python3-cffi python3-dbus python3-mpmath python3-pil python3-pip \
-	python3-setuptools python3-numpy-dev python3-evdev 2to3 python-is-python3 python3-tk python3-pil.imagetk"
+python3-setuptools python3-numpy-dev python3-evdev 2to3 python-is-python3 python3-tk python3-pil.imagetk"
 
 apt-get -y install $SYSTEM_PACKAGES $CLI_TOOLS_PACKAGES $PYTHON_PACKAGES
 
@@ -118,15 +120,15 @@ apt-get -y install $SYSTEM_PACKAGES $CLI_TOOLS_PACKAGES $PYTHON_PACKAGES
 
 #Tools
 BUILD_TOOLS_PACKAGES="build-essential git swig subversion pkg-config autoconf automake \
-	premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep \
-	qt5-qmake gobjc++ ruby rake xsltproc vorbis-tools zenity"
+premake gettext intltool libtool libtool-bin cmake cmake-curses-gui flex bison ngrep \
+qt5-qmake gobjc++ ruby rake xsltproc vorbis-tools zenity"
 # AV Libraries => WARNING It should be changed on every new debian version!!
 AV_LIBS_PACKAGES="libavformat-dev libavcodec-dev ffmpeg"
 # Libraries
-LIBS_PACKAGES="libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev \
-libfltk1.3-compat-headers libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
-libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid libffi-dev \
-fontconfig-config libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
+LIBS_PACKAGES="libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-headers \
+libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
+libasound2-dev dbus-x11 jackd2 libjack-jackd2-dev a2jmidid libffi-dev fontconfig-config \
+libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
 libglibmm-2.4-dev libeigen3-dev libsndfile-dev libsamplerate-dev libarmadillo-dev libreadline-dev \
 lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev \
 libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
