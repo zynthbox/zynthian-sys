@@ -76,6 +76,12 @@ wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-re
 dpkg -i kxstudio-repos_11.1.0_all.deb
 rm -f kxstudio-repos_11.1.0_all.deb
 
+# Sfizz
+# https://software.opensuse.org/download.html?project=home%3Asfztools%3Asfizz&package=sfizz
+# Sfizz is available officially from the above link. Find the distro that has arm64 debs available from the distro list and add here
+echo 'deb http://download.opensuse.org/repositories/home:/sfztools:/sfizz/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/home:sfztools:sfizz.list
+curl -fsSL https://download.opensuse.org/repositories/home:sfztools:sfizz/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_sfztools_sfizz.gpg > /dev/null
+
 # Zynthbox
 if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
 	wget -qO - "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" | apt-key add -
@@ -94,8 +100,7 @@ apt-get -y autoremove
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
 SYSTEM_PACKAGES="systemd avahi-daemon dhcpcd-dbus usbutils usbmount exfat-utils \
 	xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri vnc4server \
-	xfwm4 xfwm4-themes xfce4-panel xdotool \
-	wpasupplicant wireless-tools iw hostapd dnsmasq \
+	xdotool wpasupplicant wireless-tools iw hostapd dnsmasq \
 	firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree rpi-eeprom"
 
 # CLI Tools
@@ -144,13 +149,6 @@ pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 ZYNTHBOX_OTHER_DEPENDENCIES="fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont \
 linuxsampler gigtools zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy \
 zynthbox-dependency-mod-ui plasma-framework-zynthbox aeolus setbfree sfizz zynaddsubfx jalv"
-# mididings pd-aubio
-# puredata puredata-core puredata-utils python3-yaml pd-lua pd-moonlib \
-# pd-pdstring pd-markex pd-iemnet pd-plugin pd-ekext pd-import pd-bassemu pd-readanysf pd-pddp \
-# pd-zexy pd-list-abs pd-flite pd-windowing pd-fftease pd-bsaylor pd-osc pd-sigpack pd-hcs pd-pdogg pd-purepd \
-# pd-beatpipe pd-freeverb pd-iemlib pd-smlib pd-hid pd-csound pd-earplug pd-wiimote pd-pmpd pd-motex \
-# pd-arraysize pd-ggee pd-chaos pd-iemmatrix pd-comport pd-libdir pd-vbap pd-cxc pd-lyonpotpourri pd-iemambi \
-# pd-pdp pd-mjlib pd-cyclone pd-jmmmp pd-3dp pd-boids pd-mapping pd-maxlib
 
 # Install ZynthboxQML and its dependencies
 apt-get -y install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
@@ -263,21 +261,12 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 
 # Install zynthbox dependencies:
 apt-get -yy install \
-	-o DPkg::Options::="--force-confdef" \
-	-o DPkg::Options::="--force-confold" \
-	-o DPkg::Options::="--force-overwrite" \
-	zynthbox-dependency-ntk zynthbox-dependency-pyliblo zynthbox-dependency-mod-ttymidi \
-	zynthbox-dependency-lilv zynthbox-dependency-lvtk-v1 zynthbox-dependency-lvtk-v2 \
-	zynthbox-dependency-aubio zynthbox-dependency-jack-smf-utils \
-	zynthbox-dependency-touchosc2midi zynthbox-dependency-jackclient-python zynthbox-dependency-qmidinet \
-	zynthbox-dependency-jackrtpmidid zynthbox-dependency-dxsyx zynthbox-dependency-preset2lv2 \
-	zynthbox-dependency-qjackctl zynthbox-dependency-njconnect zynthbox-dependency-mutagen \
-	zynthbox-dependency-terminado zynthbox-dependency-vl53l0x zynthbox-dependency-mcp4728 \
-	zynthbox-dependency-squishbox-sf2
-	# zynthbox-dependency-sfizz zynthbox-dependency-setbfree zynthbox-dependency-jalv
-
-# Install noVNC web viewer
-$ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
+	aubio-tools libaubio-dev lilv-utils liblilv-dev  python3-jack-client python3-liblo pyliblo-utils \
+	python3-mutagen python3-terminado qjackctl novnc zynthbox-dependency-dxsyx zynthbox-dependency-faust \
+	zynthbox-dependency-lvtk-v1 zynthbox-dependency-lvtk-v2 zynthbox-dependency-mod-browsepy \
+	zynthbox-dependency-mod-host zynthbox-dependency-mod-ttymidi zynthbox-dependency-mod-ui \
+	zynthbox-dependency-njconnect zynthbox-dependency-ntk zynthbox-dependency-preset2lv2 \
+	zynthbox-dependency-squishbox-sf2 zynthbox-dependency-touchosc2midi
 
 #************************************************
 #------------------------------------------------
@@ -287,6 +276,10 @@ $ZYNTHIAN_RECIPE_DIR/install_noVNC.sh
 
 #Fix soft link to zynbanks, for working as included on zynthian-data repository
 ln -s /usr/share/zynaddsubfx /usr/local/share
+
+# Stop & disable systemd fluidsynth service
+systemctl stop --user fluidsynth.service
+systemctl mask --user fluidsynth.service
 
 # Install Fluidsynth & SF2 SondFonts
 # Create SF2 soft links
@@ -308,7 +301,26 @@ mkdir /root/Pd/externals
 # Install Plugins
 #------------------------------------------------
 cd $ZYNTHIAN_SYS_DIR/scripts
-./setup_plugins_rbpi_bookworm.sh
+
+apt-get -yy install \
+    abgate adlplug ams-lv2 amsynth arctican-plugins-lv2 artyfx bchoppr beatslash-lv2 blop-lv2 \
+	bsequencer bshapr bslizr calf-plugins caps-lv2 cv-lfo-blender-lv2 distrho-plugin-ports-lv2 \
+	dpf-plugins dragonfly-reverb drmr drowaudio-plugins-lv2 drumgizmo drumkv1-lv2 easyssp-lv2 \
+	eq10q fabla g2reverb geonkick gxplugins gxvoxtonebender helm hybridreverb2 infamous-plugins \
+	invada-studio-plugins-lv2 juce-opl-lv2 juced-plugins-lv2 klangfalter-lv2 lsp-plugins \
+	lufsmeter-lv2 luftikus-lv2 lv2vocoder mod-cv-plugins mod-distortion mod-pitchshifter \
+	mod-utilities moony.lv2 noise-repellent obxd-lv2 oxefmsynth padthv1-lv2 pitcheddelay-lv2 \
+	pizmidi-plugins regrader rubberband-lv2 safe-plugins samplv1-lv2 shiro-plugins sorcer surge \
+	synthv1-lv2 tal-plugins-lv2 tap-lv2 temper-lv2 teragonaudio-plugins-lv2 vitalium-lv2 \
+	wolf-shaper wolf-spectrum wolpertinger-lv2 zam-plugins zlfo \
+    zynthbox-plugin-aether-reverb zynthbox-plugin-alo zynthbox-plugin-bolliedelay zynthbox-plugin-fluidplug \
+	zynthbox-plugin-foo-yc20 zynthbox-plugin-guitarix zynthbox-plugin-gula zynthbox-plugin-gxdenoiser2 \
+	zynthbox-plugin-gxdistortionplus zynthbox-plugin-gxswitchlesswah zynthbox-plugin-mclk \
+	zynthbox-plugin-midi-display zynthbox-plugin-miniopl3 zynthbox-plugin-mod-arpeggiator \
+	zynthbox-plugin-mod-cabsim-ir-loader zynthbox-plugin-punk-console zynthbox-plugin-qmidiarp \
+	zynthbox-plugin-raffo zynthbox-plugin-remid zynthbox-plugin-sooperlooper-lv2-plugin zynthbox-plugin-sosynth \
+	zynthbox-plugin-stereo-mixer zynthbox-plugin-string-machine zynthbox-plugin-swh zynthbox-plugin-triceratops \
+	zynthbox-plugin-vl1 zynthbox-plugin-ykchorus
 
 #************************************************
 #------------------------------------------------
