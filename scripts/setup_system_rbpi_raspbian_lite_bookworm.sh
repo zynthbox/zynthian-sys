@@ -233,6 +233,8 @@ systemctl disable splash-screen
 systemctl disable userconfig.service
 systemctl disable apt-daily-upgrade.timer
 systemctl disable fwupd-refresh.timer
+systemctl --user disable pulseaudio.service
+systemctl --user disable pulseaudio-x11.service
 systemctl enable backlight
 systemctl enable cpu-performance
 systemctl enable wifi-setup
@@ -292,7 +294,14 @@ ln -s /usr/local/share/setBfree/cfg/default.cfg ./setbfree
 cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/zynthian.cfg
 
 # Install Pianoteq Demo (Piano Physical Emulation)
-$ZYNTHIAN_RECIPE_DIR/install_pianoteq_demo.sh
+export PIANOTEQ_INSTALL_FILENAME="pianoteq_stage_linux_trial_v673.7z"
+cd $ZYNTHIAN_SW_DIR
+wget http://download.zynthian.org/$PIANOTEQ_INSTALL_FILENAME
+$ZYNTHIAN_SYS_DIR/scripts/install_pianoteq_binary.sh "$ZYNTHIAN_SW_DIR/$PIANOTEQ_INSTALL_FILENAME"
+rm -f "$ZYNTHIAN_SW_DIR/$PIANOTEQ_INSTALL_FILENAME"
+
+$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
+
 
 mkdir /root/Pd
 mkdir /root/Pd/externals
