@@ -313,7 +313,7 @@ apt-get -yy install \
 	pizmidi-plugins regrader rubberband-lv2 safe-plugins samplv1-lv2 shiro-plugins sorcer surge \
 	synthv1-lv2 tal-plugins-lv2 tap-lv2 temper-lv2 teragonaudio-plugins-lv2 vitalium-lv2 \
 	wolf-shaper wolf-spectrum wolpertinger-lv2 zam-plugins zlfo \
-    zynthbox-plugin-aether-reverb zynthbox-plugin-alo zynthbox-plugin-bolliedelay zynthbox-plugin-fluidplug \
+	zynthbox-plugin-aether-reverb zynthbox-plugin-alo zynthbox-plugin-bolliedelay zynthbox-plugin-fluidplug \
 	zynthbox-plugin-foo-yc20 zynthbox-plugin-guitarix zynthbox-plugin-gula zynthbox-plugin-gxdenoiser2 \
 	zynthbox-plugin-gxdistortionplus zynthbox-plugin-gxswitchlesswah zynthbox-plugin-mclk \
 	zynthbox-plugin-midi-display zynthbox-plugin-miniopl3 zynthbox-plugin-mod-arpeggiator \
