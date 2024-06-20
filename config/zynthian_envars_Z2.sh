@@ -320,12 +320,18 @@ else
 fi
 export MACHINE_HW_NAME=$hw_architecture
 export RBPI_VERSION=$rbpi_version
-export CFLAGS="-mcpu=cortex-a72 -mtune=cortex-a72 -mfloat-abi=hard -mfpu=neon-fp-armv8 -mlittle-endian -munaligned-access -mvectorize-with-neon-quad -ftree-vectorize"
-export CXXFLAGS=${CFLAGS}
 export CFLAGS_UNSAFE=""
 export RASPI=true
 #echo "Hardware Architecture: ${hw_architecture}"
 #echo "Hardware Model: ${rbpi_version}"
+
+if echo $RBPI_VERSION | grep -q "Raspberry Pi 5" || [ $MACHINE_HW_NAME = "aarch64" ]; then
+	export CFLAGS="-march=armv8.2-a+crc+crypto -mtune=cortex-a76 -ftree-vectorize -O2 -pipe -fomit-frame-pointer"
+elif echo $RBPI_VERSION | grep -q "Raspberry Pi 4" || [ $MACHINE_HW_NAME = "armhf" ]; then
+	export CFLAGS="-mcpu=cortex-a72 -mtune=cortex-a72 -mfloat-abi=hard -mfpu=neon-fp-armv8 -mlittle-endian -munaligned-access -mvectorize-with-neon-quad -ftree-vectorize"
+fi
+
+export CXXFLAGS=${CFLAGS}
 
 if echo $RBPI_VERSION | grep -q "Raspberry Pi 5"; then
 	export GPIO_CHIP_DEVICE="/dev/gpiochip4"
