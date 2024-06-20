@@ -270,7 +270,7 @@ apt-get -yy install \
 	zynthbox-dependency-lvtk-v1 zynthbox-dependency-lvtk-v2 zynthbox-dependency-mod-browsepy \
 	zynthbox-dependency-mod-host zynthbox-dependency-mod-ttymidi zynthbox-dependency-mod-ui \
 	zynthbox-dependency-njconnect zynthbox-dependency-ntk zynthbox-dependency-preset2lv2 \
-	zynthbox-dependency-squishbox-sf2 zynthbox-dependency-touchosc2midi
+	zynthbox-dependency-python3-lilv zynthbox-dependency-squishbox-sf2 zynthbox-dependency-touchosc2midi
 
 #************************************************
 #------------------------------------------------
@@ -296,7 +296,7 @@ ln -s /usr/local/share/setBfree/cfg/default.cfg ./setbfree
 cp -a $ZYNTHIAN_DATA_DIR/setbfree/cfg/zynthian_my.cfg ./setbfree/zynthian.cfg
 
 # Install Pianoteq Demo (Piano Physical Emulation)
-export PIANOTEQ_INSTALL_FILENAME="pianoteq_stage_linux_trial_v673.7z"
+export PIANOTEQ_INSTALL_FILENAME="pianoteq_stage_linux_trial_v754.7z"
 cd $ZYNTHIAN_SW_DIR
 wget http://download.zynthian.org/$PIANOTEQ_INSTALL_FILENAME
 $ZYNTHIAN_SYS_DIR/scripts/install_pianoteq_binary.sh "$ZYNTHIAN_SW_DIR/$PIANOTEQ_INSTALL_FILENAME"
