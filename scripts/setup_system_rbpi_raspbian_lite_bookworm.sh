@@ -139,7 +139,7 @@ EXTRA_PACKAGES="jack-midi-clock midisport-firmware"
 
 apt-get -y --no-install-recommends install $BUILD_TOOLS_PACKAGES $AV_LIBS_PACKAGES $LIBS_PACKAGES $EXTRA_PACKAGES
 
-PIP3_PACKAGES="tornado tornadostreamform websocket-client jsonpickle oyaml psutil pexpect requests mido python-rtmidi"
+PIP3_PACKAGES="tornado tornado_xstatic tornadostreamform websocket-client jsonpickle oyaml psutil pexpect requests mido python-rtmidi"
 ZYNTHBOX_PIP3_PACKAGES="soundfile pytaglib==2.1.0 pynput rpi_ws281x adafruit-circuitpython-neopixel-spi"
 MOD_UI_PIP3_PACKAGES="pyserial pystache aggdraw pycrypto"
 
