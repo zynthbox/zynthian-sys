@@ -100,9 +100,9 @@ apt-get -y autoremove
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
 SYSTEM_PACKAGES="systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs \
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
-xfwm4 xfce4-panel xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq \
-firmware-brcm80211 firmware-atheros firmware-realtek atmel-firmware firmware-misc-nonfree \
-shiki-colors-xfwm-theme fonts-freefont-ttf x11vnc xserver-xorg-input-evdev"
+xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq firmware-brcm80211 firmware-atheros \
+firmware-realtek atmel-firmware firmware-misc-nonfree shiki-colors-xfwm-theme fonts-freefont-ttf \
+x11vnc xserver-xorg-input-evdev"
 
 # CLI Tools
 CLI_TOOLS_PACKAGES="raspi-config psmisc tree joe nano vim p7zip-full i2c-tools \
@@ -140,7 +140,7 @@ EXTRA_PACKAGES="jack-midi-clock midisport-firmware"
 apt-get -y --no-install-recommends install $BUILD_TOOLS_PACKAGES $AV_LIBS_PACKAGES $LIBS_PACKAGES $EXTRA_PACKAGES
 
 PIP3_PACKAGES="tornado tornado_xstatic tornadostreamform websocket-client jsonpickle oyaml psutil pexpect requests mido python-rtmidi"
-ZYNTHBOX_PIP3_PACKAGES="soundfile pytaglib==2.1.0 pynput rpi_ws281x adafruit-circuitpython-neopixel-spi"
+ZYNTHBOX_PIP3_PACKAGES="soundfile pytaglib==2.1.0 pynput adafruit-circuitpython-neopixel-spi"
 MOD_UI_PIP3_PACKAGES="pyserial pystache aggdraw pycrypto"
 
 # Allow installing python modules to system repo
@@ -246,7 +246,6 @@ systemctl enable a2jmidid
 systemctl enable zynthbox-qml
 systemctl enable zynthian-webconf
 systemctl enable zynthian-webconf-fmserver
-systemctl enable zynthian-config-on-boot
 
 # Setup loading of Zynthian Environment variables ...
 echo "source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" >> /root/.bashrc
@@ -281,10 +280,6 @@ apt-get -yy install \
 #Fix soft link to zynbanks, for working as included on zynthian-data repository
 ln -s /usr/share/zynaddsubfx /usr/local/share
 
-# Stop & disable systemd fluidsynth service
-systemctl stop --user fluidsynth.service
-systemctl mask --user fluidsynth.service
-
 # Install Fluidsynth & SF2 SondFonts
 # Create SF2 soft links
 ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
@@ -304,7 +299,6 @@ rm -f "$ZYNTHIAN_SW_DIR/$PIANOTEQ_INSTALL_FILENAME"
 
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
-
 mkdir /root/Pd
 mkdir /root/Pd/externals
 
@@ -317,9 +311,9 @@ apt-get -yy install \
     abgate adlplug ams-lv2 amsynth arctican-plugins-lv2 artyfx bchoppr beatslash-lv2 blop-lv2 \
 	bsequencer bshapr bslizr calf-plugins caps-lv2 cv-lfo-blender-lv2 distrho-plugin-ports-lv2 \
 	dpf-plugins dragonfly-reverb drmr drowaudio-plugins-lv2 drumgizmo drumkv1-lv2 easyssp-lv2 \
-	eq10q fabla g2reverb geonkick gxplugins gxvoxtonebender helm hybridreverb2 infamous-plugins \
-	invada-studio-plugins-lv2 juce-opl-lv2 juced-plugins-lv2 klangfalter-lv2 lsp-plugins \
-	lufsmeter-lv2 luftikus-lv2 lv2vocoder mod-cv-plugins mod-distortion mod-pitchshifter \
+	eq10q fabla fluidsynth g2reverb geonkick gxplugins gxvoxtonebender helm hybridreverb2 \
+	infamous-plugins invada-studio-plugins-lv2 juce-opl-lv2 juced-plugins-lv2 klangfalter-lv2 \
+	lsp-plugins lufsmeter-lv2 luftikus-lv2 lv2vocoder mod-cv-plugins mod-distortion mod-pitchshifter \
 	mod-utilities moony.lv2 noise-repellent obxd-lv2 oxefmsynth padthv1-lv2 pitcheddelay-lv2 \
 	pizmidi-plugins regrader rubberband-lv2 safe-plugins samplv1-lv2 shiro-plugins sorcer surge \
 	synthv1-lv2 tal-plugins-lv2 tap-lv2 temper-lv2 teragonaudio-plugins-lv2 vitalium-lv2 \
@@ -332,6 +326,10 @@ apt-get -yy install \
 	zynthbox-plugin-raffo zynthbox-plugin-remid zynthbox-plugin-sooperlooper-lv2-plugin zynthbox-plugin-sosynth \
 	zynthbox-plugin-stereo-mixer zynthbox-plugin-string-machine zynthbox-plugin-swh zynthbox-plugin-triceratops \
 	zynthbox-plugin-vl1 zynthbox-plugin-ykchorus
+
+# Stop & disable systemd fluidsynth service
+systemctl stop --user fluidsynth.service
+systemctl mask --user fluidsynth.service
 
 #************************************************
 #------------------------------------------------

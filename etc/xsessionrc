@@ -1,4 +1,0 @@
-
-xsetroot -solid grey
-#xterm &
-test x"/usr/bin/xfce4-panel" && /usr/bin/xfce4-panel &
