@@ -34,9 +34,7 @@ export DEBIAN_FRONTEND=noninteractive
 [ -n "$ZYNTHIAN_INCLUDE_PIP" ] || ZYNTHIAN_INCLUDE_PIP=yes
 [ -n "$ZYNTHIAN_CHANGE_HOSTNAME" ] || ZYNTHIAN_CHANGE_HOSTNAME=yes
 
-[ -n "$ZYNTHIAN_SYS_REPO" ] || ZYNTHIAN_SYS_REPO="https://github.com/zynthbox/zynthian-sys.git"
 [ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthbox/zynthian-data.git"
-[ -n "$ZYNTHIAN_SYS_BRANCH" ] || ZYNTHIAN_SYS_BRANCH="main"
 [ -n "$ZYNTHIAN_DATA_BRANCH" ] || ZYNTHIAN_DATA_BRANCH="stable"
 
 #------------------------------------------------
@@ -166,10 +164,6 @@ apt-get -y install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
 mkdir "$ZYNTHIAN_DIR"
 mkdir "$ZYNTHIAN_CONFIG_DIR"
 mkdir "$ZYNTHIAN_SW_DIR"
-
-# Zynthian System Scripts and Config files
-cd $ZYNTHIAN_DIR
-git clone -b "${ZYNTHIAN_SYS_BRANCH}" "${ZYNTHIAN_SYS_REPO}"
 
 # Zynthian Data
 cd $ZYNTHIAN_DIR
