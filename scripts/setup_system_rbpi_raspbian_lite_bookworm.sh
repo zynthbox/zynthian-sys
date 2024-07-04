@@ -162,6 +162,16 @@ apt-get -y install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
 
 # Create needed directories
 mkdir "$ZYNTHIAN_DIR"
+### BEGIN DEBUG
+if [ -f $ZYNTHIAN_CONFIG_DIR ]; then
+	cat $ZYNTHIAN_CONFIG_DIR
+fi
+### END DEBUG
+if [ ! -d $ZYNTHIAN_CONFIG_DIR ]; then
+    # $ZYNTHIAN_CONFIG_DIR either exists and is not a directory or does not exists. Try to remove first before creating dir
+    rm -rf $ZYNTHIAN_CONFIG_DIR
+    mkdir -p $ZYNTHIAN_CONFIG_DIR
+fi
 mkdir "$ZYNTHIAN_CONFIG_DIR"
 mkdir "$ZYNTHIAN_SW_DIR"
 
