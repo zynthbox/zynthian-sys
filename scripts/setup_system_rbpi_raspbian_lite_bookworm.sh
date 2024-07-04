@@ -151,7 +151,7 @@ linuxsampler gigtools zynthbox-dependency-mod-host zynthbox-dependency-mod-brows
 zynthbox-dependency-mod-ui plasma-framework-zynthbox aeolus setbfree sfizz zynaddsubfx jalv"
 
 # Install ZynthboxQML and its dependencies
-apt-get -y install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
+apt-get -y --allow-unauthenticated install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
 
 #************************************************
 #------------------------------------------------
@@ -162,17 +162,11 @@ apt-get -y install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
 
 # Create needed directories
 mkdir "$ZYNTHIAN_DIR"
-### BEGIN DEBUG
-if [ -f $ZYNTHIAN_CONFIG_DIR ]; then
-	cat $ZYNTHIAN_CONFIG_DIR
-fi
-### END DEBUG
 if [ ! -d $ZYNTHIAN_CONFIG_DIR ]; then
     # $ZYNTHIAN_CONFIG_DIR either exists and is not a directory or does not exists. Try to remove first before creating dir
     rm -rf $ZYNTHIAN_CONFIG_DIR
     mkdir -p $ZYNTHIAN_CONFIG_DIR
 fi
-mkdir "$ZYNTHIAN_CONFIG_DIR"
 mkdir "$ZYNTHIAN_SW_DIR"
 
 # Zynthian Data
