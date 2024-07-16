@@ -77,8 +77,7 @@ rm -f kxstudio-repos_11.1.0_all.deb
 # Sfizz
 # https://software.opensuse.org/download.html?project=home%3Asfztools%3Asfizz&package=sfizz
 # Sfizz is available officially from the above link. Find the distro that has arm64 debs available from the distro list and add here
-echo 'deb http://download.opensuse.org/repositories/home:/sfztools:/sfizz/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/home:sfztools:sfizz.list
-curl -fsSL https://download.opensuse.org/repositories/home:sfztools:sfizz/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_sfztools_sfizz.gpg > /dev/null
+echo 'deb [trusted=yes] http://download.opensuse.org/repositories/home:/sfztools:/sfizz/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/home:sfztools:sfizz.list
 
 # Zynthbox
 if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
@@ -233,6 +232,7 @@ systemctl disable splash-screen
 systemctl disable userconfig.service
 systemctl disable apt-daily-upgrade.timer
 systemctl disable fwupd-refresh.timer
+systemctl disable NetworkManager.service
 systemctl --user disable pulseaudio.service
 systemctl --user disable pulseaudio-x11.service
 systemctl enable backlight
