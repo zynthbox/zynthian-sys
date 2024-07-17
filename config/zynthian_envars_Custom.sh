@@ -128,3 +128,8 @@ fi
 
 # Setup / Build Options
 export ZYNTHIAN_SETUP_APT_CLEAN="TRUE" # Set TRUE to clean /var/cache/apt during build, FALSE to leave alone
+
+# Activate Python virtual environment
+if [ -f "$ZYNTHIAN_DIR/venv/bin/activate" ]; then
+	source "$ZYNTHIAN_DIR/venv/bin/activate"
+fi

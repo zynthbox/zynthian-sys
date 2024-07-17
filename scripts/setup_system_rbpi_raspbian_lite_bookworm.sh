@@ -136,13 +136,15 @@ EXTRA_PACKAGES="jack-midi-clock midisport-firmware"
 
 apt-get -y --no-install-recommends install $BUILD_TOOLS_PACKAGES $AV_LIBS_PACKAGES $LIBS_PACKAGES $EXTRA_PACKAGES
 
+# Setup Python venv
+cd "$ZYNTHIAN_DIR"
+python3 -m venv venv --system-site-packages
+source "$ZYNTHIAN_DIR/venv/bin/activate"
+
 PIP3_PACKAGES="tornado tornado_xstatic tornadostreamform websocket-client jsonpickle oyaml psutil pexpect requests mido python-rtmidi"
 ZYNTHBOX_PIP3_PACKAGES="soundfile pytaglib==2.1.0 pynput adafruit-circuitpython-neopixel-spi"
 MOD_UI_PIP3_PACKAGES="pyserial pystache aggdraw pycrypto"
-
-# Allow installing python modules to system repo
-rm /usr/lib/python3*/EXTERNALLY-MANAGED
-
+pip3 install --upgrade pip
 pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
 ZYNTHBOX_OTHER_DEPENDENCIES="fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont \
