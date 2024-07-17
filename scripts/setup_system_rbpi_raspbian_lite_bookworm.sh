@@ -34,9 +34,6 @@ export DEBIAN_FRONTEND=noninteractive
 [ -n "$ZYNTHIAN_INCLUDE_PIP" ] || ZYNTHIAN_INCLUDE_PIP=yes
 [ -n "$ZYNTHIAN_CHANGE_HOSTNAME" ] || ZYNTHIAN_CHANGE_HOSTNAME=yes
 
-[ -n "$ZYNTHIAN_DATA_REPO" ] || ZYNTHIAN_DATA_REPO="https://github.com/zynthbox/zynthian-data.git"
-[ -n "$ZYNTHIAN_DATA_BRANCH" ] || ZYNTHIAN_DATA_BRANCH="stable"
-
 #------------------------------------------------
 # Update System & Firmware
 #------------------------------------------------
@@ -149,7 +146,8 @@ pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
 ZYNTHBOX_OTHER_DEPENDENCIES="fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont \
 linuxsampler gigtools zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy \
-zynthbox-dependency-mod-ui plasma-framework-zynthbox aeolus setbfree sfizz zynaddsubfx jalv"
+zynthian-data zynthbox-dependency-mod-ui plasma-framework-zynthbox aeolus setbfree \
+sfizz zynaddsubfx jalv"
 
 # Install ZynthboxQML and its dependencies
 apt-get -y --allow-unauthenticated install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
@@ -169,10 +167,6 @@ if [ ! -d $ZYNTHIAN_CONFIG_DIR ]; then
     mkdir -p $ZYNTHIAN_CONFIG_DIR
 fi
 mkdir "$ZYNTHIAN_SW_DIR"
-
-# Zynthian Data
-cd $ZYNTHIAN_DIR
-git clone -b "${ZYNTHIAN_DATA_BRANCH}" "${ZYNTHIAN_DATA_REPO}"
 
 # Create needed directories
 mkdir -p "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
