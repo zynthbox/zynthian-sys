@@ -124,6 +124,6 @@ if config_name:
     else:
         logging.info("Zynthian already configured for {}.".format(config_name))
 else:
-    logging.info("Autoconfig for this HW footlogging.info is not available.")
+    logging.info("Autoconfig for this HW is not available.")
 
 # --------------------------------------------------------------------

@@ -33,12 +33,20 @@ $ZYNTHIAN_SYS_DIR/sbin/regenerate_keys.sh 2>&1 >> /root/first_boot.log
 echo -e "\nUnmasking WIFI access point service..." >> /root/first_boot.log
 systemctl unmask hostapd
 
-#Regenerate cache LV2
+# Generate LV2 Plugins Cache
 cd $ZYNTHIAN_CONFIG_DIR/jalv
 if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
-    echo "Regenerating cache LV2 ..." >> /root/first_boot.log
+    echo -e "\nGenerating LV2 Plugins Cache" >> /root/first_boot.log
     cd $ZYNTHIAN_UI_DIR/zyngine
     python3 ./zynthian_lv2.py
+fi
+
+# Generate VST3 Plugins Cache
+cd $ZYNTHIAN_CONFIG_DIR/jalv
+if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
+    echo -e "\nGenerating VST3 Plugins Cache" >> /root/first_boot.log
+    cd $ZYNTHIAN_UI_DIR/zyngine
+    python3 ./zynthian_vst3.py
 fi
 
 # Disable first_boot service

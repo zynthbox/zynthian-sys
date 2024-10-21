@@ -304,12 +304,18 @@ cd $ZYNTHIAN_CONFIG_DIR
 if [ ! -d "jalv" ]; then
 	mkdir "jalv"
 fi
+if [ ! -d "jucy" ]; then
+	mkdir "jucy"
+fi
 if [ -f "jalv_plugins.json" ]; then
 	mv "jalv_plugins.json" "jalv/plugins.json"
 	mv "all_jalv_plugins.json" "jalv/all_plugins.json"
 fi
 if [ ! -f "jalv/plugins.json" ]; then
 	cp "$ZYNTHIAN_SYS_DIR/config/default_jalv_plugins.json" "jalv/plugins.json"
+fi
+if [ ! -f "jucy/plugins.json" ]; then
+	cp "$ZYNTHIAN_SYS_DIR/config/default_jucy_plugins.json" "jucy/plugins.json"
 fi
 
 export ZYNTHIAN_PIANOTEQ_DIR="$ZYNTHIAN_SW_DIR/pianoteq6"
