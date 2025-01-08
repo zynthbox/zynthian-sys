@@ -18,7 +18,7 @@ else
 fi
 
 # Alsa Mixer Settings
-if [ "$SOUNDCARD_NAME" == "Z2 V5" ] || [ "$SOUNDCARD_NAME" == "Z2 ADAC" ] || [ "$SOUNDCARD_NAME" == "ZynADAC" ] || [ "$SOUNDCARD_NAME" == "HifiBerry DAC+ ADC PRO" ]; then
+if [ "$SOUNDCARD_NAME" == "Z1 ADAC" ] || [ "$SOUNDCARD_NAME" == "HifiBerry DAC+ ADC PRO" ]; then
 	if [ ! -f "/etc/asound.sndrpihifiberry.state" ]; then
 		echo "Configuring Alsa Mixer for $SOUNDCARD_NAME..."
 		amixer -c sndrpihifiberry sset 'Auto Mute' mute
