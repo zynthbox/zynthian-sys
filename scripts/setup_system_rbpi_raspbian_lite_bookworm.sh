@@ -354,6 +354,7 @@ touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # Create build_info.txt
 echo "Timestamp: $(date +'%d-%b-%Y')" > /zynthian/build_info.txt
+echo "Build Version: $(cat $ZYNTHIAN_SYS_DIR/Z1_VERSION.txt)" >> /zynthian/build_info.txt
 
 # Clean
 apt-get -y autoremove # Remove unneeded packages
