@@ -240,6 +240,7 @@ systemctl enable a2jmidid
 systemctl enable zynthbox-qml
 systemctl enable zynthian-webconf
 systemctl enable zynthian-webconf-fmserver
+systemctl enable rfkill-unblock-all
 
 # Setup loading of Zynthian Environment variables ...
 echo "source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" >> /root/.bashrc
@@ -353,8 +354,8 @@ apt-mark hold raspberrypi-sys-mods
 touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # Create build_info.txt
-echo "Timestamp: $(date +'%d-%b-%Y')" > /zynthian/build_info.txt
 echo "Build Version: $(cat $ZYNTHIAN_SYS_DIR/Z1_VERSION.txt)" >> /zynthian/build_info.txt
+echo "Build Date: $(date +'%d-%b-%Y')" >> /zynthian/build_info.txt
 
 # Clean
 apt-get -y autoremove # Remove unneeded packages

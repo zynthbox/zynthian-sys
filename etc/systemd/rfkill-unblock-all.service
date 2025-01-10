@@ -1,0 +1,9 @@
+[Unit]
+Description=Unblock all wireless devices
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/rfkill unblock all
+
+[Install]
+WantedBy=multi-user.target

@@ -55,9 +55,6 @@ systemctl disable first_boot
 # Enable splash-screen
 systemctl enable splash-screen
 
-# Enable all wireless devices
-rfkill unblock all
-
 # Resize partition & reboot
 echo -e "Resizing partition..." >> /root/first_boot.log
 raspi-config --expand-rootfs
