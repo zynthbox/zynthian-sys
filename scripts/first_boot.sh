@@ -9,10 +9,9 @@ python3 /zynthian/zynthian-sys/sbin/zynthian_autoconfig.py 2>&1 >> /root/first_b
 echo -e "\nLoading config envars" >> /root/first_boot.log
 source "/zynthian/config/zynthian_envars.sh"
 
-rotation=$(echo $DISPLAY_KERNEL_OPTIONS | grep -oP "(?<=rotate=)(\d*)")
-if [ $rotation -eq "180" ]; then
-    echo -e "\nConfiguration says display is inverted. Since new cmdline is not yet in effect during firstboot, rotate with xrandr" >> /root/first_boot.log
-    xrandr -o inverted
+if [ -n "$XRANDR_ROTATE" ]; then
+    echo -e "\nDisplay rotation set to $XRANDR_ROTATE" >> /root/first_boot.log
+    xrandr -o $XRANDR_ROTATE
 fi
 
 mplayer -slave -noborder -ontop "mf:///usr/share/zynthbox-bootsplash/zynthbox-firstboot.jpg" -loop 0 &> /dev/null &

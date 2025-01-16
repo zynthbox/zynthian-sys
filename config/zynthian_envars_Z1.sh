@@ -26,6 +26,7 @@ export ZYNTHIAN_KIT_VERSION="Z1_V1"
 export GPIO_CHIP_DEVICE="/dev/gpiochip4"
 
 # System Config
+export XRANDR_ROTATE="inverted"
 export ZYNTHIAN_CUSTOM_BOOT_CMDLINE=""
 export ZYNTHIAN_CUSTOM_CONFIG=""
 export ZYNTHIAN_OVERCLOCKING="Maximum"
@@ -47,7 +48,8 @@ export DISPLAY_CONFIG="hdmi_force_hotplug:0=0\nhdmi_force_hotplug:1=1\nhdmi_driv
 export DISPLAY_WIDTH="1024"
 export DISPLAY_HEIGHT="600"
 export FRAMEBUFFER="/dev/fb0"
-export DISPLAY_KERNEL_OPTIONS="video=HDMI-A-2:1024x600M@60,rotate=180"
+# Rotate only framebuffer by 180deg. Display/touch rotation needs to be done with xrandr for pointer to also be rotated along with display and touch
+export DISPLAY_KERNEL_OPTIONS="video=HDMI-A-2:1024x600M@60,rotate=0 fbcon=rotate:2"
 
 # Zynthian Wiring Config
 export ZYNTHIAN_WIRING_LAYOUT="Z1_V1"
