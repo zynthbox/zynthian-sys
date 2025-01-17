@@ -260,7 +260,7 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 # Install zynthbox dependencies:
 apt-get -yy install \
 	aubio-tools libaubio-dev lilv-utils liblilv-dev  python3-jack-client python3-liblo pyliblo-utils \
-	python3-mutagen python3-terminado qjackctl novnc zynthbox-dependency-dxsyx zynthbox-dependency-faust \
+	python3-mutagen python3-terminado python3-ujson qjackctl novnc zynthbox-dependency-dxsyx zynthbox-dependency-faust \
 	zynthbox-dependency-lvtk-v1 zynthbox-dependency-lvtk-v2 zynthbox-dependency-mod-browsepy \
 	zynthbox-dependency-mod-host zynthbox-dependency-mod-ttymidi zynthbox-dependency-mod-ui \
 	zynthbox-dependency-njconnect zynthbox-dependency-ntk zynthbox-dependency-preset2lv2 \
