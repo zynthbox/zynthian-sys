@@ -195,8 +195,8 @@ cp -a $ZYNTHIAN_SYS_DIR/snapshots/default.zss $ZYNTHIAN_MY_DATA_DIR/snapshots/
 
 #Change Hostname
 if [ "$ZYNTHIAN_CHANGE_HOSTNAME" == "yes" ]; then
-    echo "zynthian" > /etc/hostname
-    sed -i -e "s/127\.0\.1\.1.*$/127.0.1.1\tzynthian/" /etc/hosts
+    echo "zynthbox" > /etc/hostname
+    sed -i -e "s/127\.0\.1\.1.*$/127.0.1.1\tzynthbox/" /etc/hosts
 fi
 
 # Copy default envars
