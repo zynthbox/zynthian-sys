@@ -61,10 +61,9 @@ fi
 #------------------------------------------------
 
 # deb-multimedia repo
-echo "deb http://www.deb-multimedia.org bookworm main non-free" >> /etc/apt/sources.list
-wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
-dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
-rm -f deb-multimedia-keyring_2016.8.1_all.deb
+wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2024.9.1_all.deb
+sudo dpkg -i deb-multimedia-keyring_2024.9.1_all.deb
+rm -f deb-multimedia-keyring_2024.9.1_all.deb
 
 # KXStudio
 wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.1.0_all.deb
@@ -74,11 +73,12 @@ rm -f kxstudio-repos_11.1.0_all.deb
 # Sfizz
 # https://software.opensuse.org/download.html?project=home%3Asfztools%3Asfizz&package=sfizz
 # Sfizz is available officially from the above link. Find the distro that has arm64 debs available from the distro list and add here
-echo 'deb [trusted=yes] http://download.opensuse.org/repositories/home:/sfztools:/sfizz/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/home:sfztools:sfizz.list
+echo 'deb http://download.opensuse.org/repositories/home:/sfztools:/sfizz/xUbuntu_22.04/ /' | tee /etc/apt/sources.list.d/home:sfztools:sfizz.list
+curl -fsSL https://download.opensuse.org/repositories/home:sfztools:sfizz/xUbuntu_22.04/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_sfztools_sfizz.gpg > /dev/null
 
 # Zynthbox
 if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
-	wget -qO - "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" | apt-key add -
+	curl -fsSL https://repo.zynthbox.io/repo_key.pub | gpg --dearmor | tee /etc/apt/trusted.gpg.d/zynthbox.gpg
 	echo "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox.list
 fi
 
