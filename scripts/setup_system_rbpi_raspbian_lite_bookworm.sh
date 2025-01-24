@@ -147,7 +147,7 @@ pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 ZYNTHBOX_OTHER_DEPENDENCIES="fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont \
 linuxsampler gigtools zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy \
 zynthian-data zynthbox-dependency-mod-ui plasma-framework-zynthbox aeolus setbfree \
-sfizz zynaddsubfx jalv"
+sfizz zynaddsubfx jalv openmpt123"
 
 # Install ZynthboxQML and its dependencies
 apt-get -y --allow-unauthenticated install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
@@ -264,7 +264,8 @@ apt-get -yy install \
 	zynthbox-dependency-lvtk-v1 zynthbox-dependency-lvtk-v2 zynthbox-dependency-mod-browsepy \
 	zynthbox-dependency-mod-host zynthbox-dependency-mod-ttymidi zynthbox-dependency-mod-ui \
 	zynthbox-dependency-njconnect zynthbox-dependency-ntk zynthbox-dependency-preset2lv2 \
-	zynthbox-dependency-python3-lilv zynthbox-dependency-squishbox-sf2 zynthbox-dependency-touchosc2midi
+	zynthbox-dependency-python3-lilv zynthbox-dependency-squishbox-sf2 zynthbox-dependency-touchosc2midi \
+	zynthbox-dependency-xmodits
 
 #************************************************
 #------------------------------------------------
