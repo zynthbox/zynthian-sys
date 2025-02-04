@@ -138,7 +138,7 @@ cd "$ZYNTHIAN_DIR"
 python3 -m venv venv --system-site-packages
 source "$ZYNTHIAN_DIR/venv/bin/activate"
 
-PIP3_PACKAGES="tornado tornado_xstatic tornadostreamform websocket-client jsonpickle oyaml psutil pexpect requests mido python-rtmidi"
+PIP3_PACKAGES="tornado tornado_xstatic tornadostreamform websocket-client jsonpickle oyaml psutil pexpect requests mido python-rtmidi python-magic"
 ZYNTHBOX_PIP3_PACKAGES="soundfile pytaglib==2.1.0 pynput adafruit-circuitpython-neopixel-spi"
 MOD_UI_PIP3_PACKAGES="pyserial pystache aggdraw pycrypto"
 pip3 install --upgrade pip
