@@ -70,12 +70,6 @@ wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-re
 dpkg -i kxstudio-repos_11.1.0_all.deb
 rm -f kxstudio-repos_11.1.0_all.deb
 
-# Sfizz
-# https://software.opensuse.org/download.html?project=home%3Asfztools%3Asfizz&package=sfizz
-# Sfizz is available officially from the above link. Find the distro that has arm64 debs available from the distro list and add here
-echo 'deb http://download.opensuse.org/repositories/home:/sfztools:/sfizz/xUbuntu_22.04/ /' | tee /etc/apt/sources.list.d/home:sfztools:sfizz.list
-curl -fsSL https://download.opensuse.org/repositories/home:sfztools:sfizz/xUbuntu_22.04/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_sfztools_sfizz.gpg > /dev/null
-
 # Zynthbox
 if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
 	curl -fsSL https://repo.zynthbox.io/repo_key.pub | gpg --dearmor | tee /etc/apt/trusted.gpg.d/zynthbox.gpg
@@ -147,7 +141,7 @@ pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 ZYNTHBOX_OTHER_DEPENDENCIES="fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont \
 linuxsampler gigtools zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy \
 zynthian-data zynthbox-dependency-mod-ui plasma-framework-zynthbox aeolus setbfree \
-sfizz zynaddsubfx jalv openmpt123"
+zynaddsubfx jalv openmpt123"
 
 # Install ZynthboxQML and its dependencies
 apt-get -y --allow-unauthenticated install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
@@ -319,9 +313,9 @@ apt-get -yy install \
 	zynthbox-plugin-gxdistortionplus zynthbox-plugin-gxswitchlesswah zynthbox-plugin-mclk \
 	zynthbox-plugin-midi-display zynthbox-plugin-miniopl3 zynthbox-plugin-mod-arpeggiator \
 	zynthbox-plugin-mod-cabsim-ir-loader zynthbox-plugin-punk-console zynthbox-plugin-qmidiarp \
-	zynthbox-plugin-raffo zynthbox-plugin-remid zynthbox-plugin-sooperlooper-lv2-plugin zynthbox-plugin-sosynth \
-	zynthbox-plugin-stereo-mixer zynthbox-plugin-string-machine zynthbox-plugin-swh zynthbox-plugin-triceratops \
-	zynthbox-plugin-vl1 zynthbox-plugin-ykchorus
+	zynthbox-plugin-raffo zynthbox-plugin-remid zynthbox-plugin-sfizz zynthbox-plugin-sooperlooper-lv2-plugin \
+	zynthbox-plugin-sosynth zynthbox-plugin-stereo-mixer zynthbox-plugin-string-machine zynthbox-plugin-swh \
+	zynthbox-plugin-triceratops zynthbox-plugin-vl1 zynthbox-plugin-ykchorus
 
 # Stop & disable systemd fluidsynth service
 systemctl stop --user fluidsynth.service
