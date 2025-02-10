@@ -258,7 +258,7 @@ apt-get -yy install \
 	zynthbox-dependency-lvtk-v1 zynthbox-dependency-lvtk-v2 zynthbox-dependency-mod-browsepy \
 	zynthbox-dependency-mod-host zynthbox-dependency-mod-ttymidi zynthbox-dependency-mod-ui \
 	zynthbox-dependency-njconnect zynthbox-dependency-ntk zynthbox-dependency-preset2lv2 \
-	zynthbox-dependency-python3-lilv zynthbox-dependency-squishbox-sf2 zynthbox-dependency-touchosc2midi \
+	zynthbox-dependency-python3-lilv zynthbox-dependency-sfizz zynthbox-dependency-squishbox-sf2 zynthbox-dependency-touchosc2midi \
 	zynthbox-dependency-xmodits
 
 #************************************************
@@ -313,7 +313,7 @@ apt-get -yy install \
 	zynthbox-plugin-gxdistortionplus zynthbox-plugin-gxswitchlesswah zynthbox-plugin-mclk \
 	zynthbox-plugin-midi-display zynthbox-plugin-miniopl3 zynthbox-plugin-mod-arpeggiator \
 	zynthbox-plugin-mod-cabsim-ir-loader zynthbox-plugin-punk-console zynthbox-plugin-qmidiarp \
-	zynthbox-plugin-raffo zynthbox-plugin-remid zynthbox-plugin-sfizz zynthbox-plugin-sooperlooper-lv2-plugin \
+	zynthbox-plugin-raffo zynthbox-plugin-remid zynthbox-plugin-sooperlooper-lv2-plugin \
 	zynthbox-plugin-sosynth zynthbox-plugin-stereo-mixer zynthbox-plugin-string-machine zynthbox-plugin-swh \
 	zynthbox-plugin-triceratops zynthbox-plugin-vl1 zynthbox-plugin-ykchorus
 
