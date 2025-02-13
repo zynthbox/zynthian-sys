@@ -255,11 +255,13 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 apt-get -yy install \
 	aubio-tools libaubio-dev lilv-utils liblilv-dev  python3-jack-client python3-liblo pyliblo-utils \
 	python3-mutagen python3-terminado python3-ujson qjackctl novnc zynthbox-dependency-dxsyx zynthbox-dependency-faust \
-	zynthbox-dependency-lvtk-v1 zynthbox-dependency-lvtk-v2 zynthbox-dependency-mod-browsepy \
+	zynthbox-dependency-lvtk-v1 zynthbox-dependency-mod-browsepy \
 	zynthbox-dependency-mod-host zynthbox-dependency-mod-ttymidi zynthbox-dependency-mod-ui \
 	zynthbox-dependency-njconnect zynthbox-dependency-ntk zynthbox-dependency-preset2lv2 \
 	zynthbox-dependency-python3-lilv zynthbox-dependency-sfizz zynthbox-dependency-squishbox-sf2 zynthbox-dependency-touchosc2midi \
 	zynthbox-dependency-xmodits
+
+# zynthbox-dependency-lvtk-v2 : v2 fails to install as it tries to overwrite files with the same name as v1
 
 #************************************************
 #------------------------------------------------
