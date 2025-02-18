@@ -61,9 +61,9 @@ fi
 #------------------------------------------------
 
 # deb-multimedia repo
-wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2024.9.1_all.deb
-sudo dpkg -i deb-multimedia-keyring_2024.9.1_all.deb
-rm -f deb-multimedia-keyring_2024.9.1_all.deb
+# wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2024.9.1_all.deb
+# sudo dpkg -i deb-multimedia-keyring_2024.9.1_all.deb
+# rm -f deb-multimedia-keyring_2024.9.1_all.deb
 
 # KXStudio
 # wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.1.0_all.deb
@@ -74,7 +74,8 @@ rm -f deb-multimedia-keyring_2024.9.1_all.deb
 if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
 	curl -fsSL https://repo.zynthbox.io/repo_key.pub | gpg --dearmor | tee /etc/apt/trusted.gpg.d/zynthbox.gpg
 	echo "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox.list
-	echo "deb http://repo.zynthbox.io/prebuilt-debs bookworm main" > /etc/apt/sources.list.d/zynthbox-prebuilt-debs.list
+	echo "deb http://repo.zynthbox.io/kxstudio bookworm main" > /etc/apt/sources.list.d/zynthbox-kxstudio.list
+	echo "deb http://repo.zynthbox.io/deb-multimedia bookworm main" > /etc/apt/sources.list.d/zynthbox-deb-multimedia.list
 fi
 
 apt-get -y update -oAcquire::AllowInsecureRepositories=true
