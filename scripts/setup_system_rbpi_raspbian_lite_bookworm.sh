@@ -66,14 +66,15 @@ sudo dpkg -i deb-multimedia-keyring_2024.9.1_all.deb
 rm -f deb-multimedia-keyring_2024.9.1_all.deb
 
 # KXStudio
-wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.1.0_all.deb
-dpkg -i kxstudio-repos_11.1.0_all.deb
-rm -f kxstudio-repos_11.1.0_all.deb
+# wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.1.0_all.deb
+# dpkg -i kxstudio-repos_11.1.0_all.deb
+# rm -f kxstudio-repos_11.1.0_all.deb
 
 # Zynthbox
 if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
 	curl -fsSL https://repo.zynthbox.io/repo_key.pub | gpg --dearmor | tee /etc/apt/trusted.gpg.d/zynthbox.gpg
 	echo "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox.list
+	echo "deb http://repo.zynthbox.io/prebuilt-debs bookworm main" > /etc/apt/sources.list.d/zynthbox-prebuilt-debs.list
 fi
 
 apt-get -y update -oAcquire::AllowInsecureRepositories=true
@@ -138,10 +139,7 @@ MOD_UI_PIP3_PACKAGES="pyserial pystache aggdraw pycrypto"
 pip3 install --upgrade pip
 pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
-ZYNTHBOX_OTHER_DEPENDENCIES="fluid-soundfont-gm fluid-soundfont-gs timgm6mb-soundfont \
-linuxsampler gigtools zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy \
-zynthian-data zynthbox-dependency-mod-ui plasma-framework-zynthbox aeolus setbfree \
-zynaddsubfx jalv openmpt123"
+ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy zynthian-data zynthbox-dependency-mod-ui plasma-framework-zynthbox"
 
 # Install ZynthboxQML and its dependencies
 apt-get -y --allow-unauthenticated install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
@@ -300,20 +298,21 @@ mkdir /root/Pd/externals
 cd $ZYNTHIAN_SYS_DIR/scripts
 
 apt-get -yy install \
-    abgate adlplug ams-lv2 amsynth arctican-plugins-lv2 artyfx bchoppr beatslash-lv2 blop-lv2 \
+    abgate adlplug aeolus ams-lv2 amsynth arctican-plugins-lv2 artyfx bchoppr beatslash-lv2 blop-lv2 \
 	bsequencer bshapr bslizr calf-plugins caps-lv2 cv-lfo-blender-lv2 distrho-plugin-ports-lv2 \
 	dpf-plugins dragonfly-reverb drmr drowaudio-plugins-lv2 drumgizmo drumkv1-lv2 easyssp-lv2 \
-	eq10q fabla fluidsynth g2reverb geonkick gxplugins gxvoxtonebender helm hybridreverb2 \
-	infamous-plugins invada-studio-plugins-lv2 juce-opl-lv2 juced-plugins-lv2 klangfalter-lv2 \
-	lsp-plugins lufsmeter-lv2 luftikus-lv2 lv2vocoder mod-cv-plugins mod-distortion mod-pitchshifter \
-	mod-utilities moony.lv2 noise-repellent obxd-lv2 oxefmsynth padthv1-lv2 pitcheddelay-lv2 \
-	pizmidi-plugins regrader rubberband-lv2 safe-plugins samplv1-lv2 shiro-plugins sorcer surge \
-	synthv1-lv2 tal-plugins-lv2 tap-lv2 temper-lv2 teragonaudio-plugins-lv2 vitalium-lv2 \
-	wolf-shaper wolf-spectrum wolpertinger-lv2 zam-plugins zlfo \
-	zynthbox-plugin-aether-reverb zynthbox-plugin-airwin2rack zynthbox-plugin-alo zynthbox-plugin-bolliedelay zynthbox-plugin-fluidplug \
-	zynthbox-plugin-foo-yc20 zynthbox-plugin-guitarix zynthbox-plugin-gula zynthbox-plugin-gxdenoiser2 \
-	zynthbox-plugin-gxdistortionplus zynthbox-plugin-gxswitchlesswah zynthbox-plugin-mclk \
-	zynthbox-plugin-midi-display zynthbox-plugin-miniopl3 zynthbox-plugin-mod-arpeggiator \
+	eq10q fabla fluidsynth fluid-soundfont-gm fluid-soundfont-gs g2reverb geonkick gigtools gxplugins \
+	gxvoxtonebender helm hybridreverb2 infamous-plugins invada-studio-plugins-lv2 jalv juce-opl-lv2 \
+	juced-plugins-lv2 klangfalter-lv2 linuxsampler lsp-plugins lufsmeter-lv2 luftikus-lv2 lv2vocoder \
+	mod-cv-plugins mod-distortion mod-pitchshifter mod-utilities moony.lv2 noise-repellent obxd-lv2 \
+	openmpt123 oxefmsynth padthv1-lv2 pitcheddelay-lv2 pizmidi-plugins regrader rubberband-lv2 safe-plugins \
+	samplv1-lv2 setbfree shiro-plugins sorcer surge synthv1-lv2 tal-plugins-lv2 tap-lv2 temper-lv2 \
+	teragonaudio-plugins-lv2 timgm6mb-soundfont vitalium-lv2 wolf-shaper wolf-spectrum wolpertinger-lv2 \
+	zam-plugins zlfo zynaddsubfx \
+	zynthbox-plugin-aether-reverb zynthbox-plugin-airwin2rack zynthbox-plugin-alo zynthbox-plugin-bolliedelay \
+	zynthbox-plugin-fluidplug zynthbox-plugin-foo-yc20 zynthbox-plugin-guitarix zynthbox-plugin-gula \
+	zynthbox-plugin-gxdenoiser2 zynthbox-plugin-gxdistortionplus zynthbox-plugin-gxswitchlesswah \
+	zynthbox-plugin-mclk zynthbox-plugin-midi-display zynthbox-plugin-miniopl3 zynthbox-plugin-mod-arpeggiator \
 	zynthbox-plugin-mod-cabsim-ir-loader zynthbox-plugin-punk-console zynthbox-plugin-qmidiarp \
 	zynthbox-plugin-raffo zynthbox-plugin-remid zynthbox-plugin-sooperlooper-lv2-plugin \
 	zynthbox-plugin-sosynth zynthbox-plugin-stereo-mixer zynthbox-plugin-string-machine zynthbox-plugin-swh \
