@@ -142,8 +142,8 @@ pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
 ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy zynthian-data zynthbox-dependency-mod-ui plasma-framework-zynthbox"
 
-# Install ZynthboxQML and its dependencies
-apt-get -y --allow-unauthenticated install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
+# Install ZynthboxQML and its dependencies, except the plasma packages which gets autoinstalled from suggested/recommended packages (Packages with suffix `-` will be not installed)
+apt-get -y --allow-unauthenticated install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES plasma-browser-integration- plasma-desktop- plasma-desktop-data- plasma-discover- plasma-discover-backend-fwupd- plasma-discover-common- plasma-disks- plasma-integration- plasma-nm- plasma-pa- plasma-systemmonitor- plasma-thunderbolt- plasma-vault- plasma-workspace- plasma-workspace-data- plasma-workspace-wayland- polkit-kde-agent-1- powerdevil- powerdevil-data- pulseaudio- pulseaudio-module-bluetooth- pulseaudio-module-gsettings- pulseaudio-utils-
 
 #************************************************
 #------------------------------------------------
@@ -298,11 +298,16 @@ mkdir /root/Pd/externals
 #------------------------------------------------
 cd $ZYNTHIAN_SYS_DIR/scripts
 
+# Plugins not working :
+# geonkick
+# drumgizmo
+# drumkv1 : It is not directly usable. Needs access to UI to create/load samples
+
 apt-get -yy install \
     abgate adlplug aeolus ams-lv2 amsynth arctican-plugins-lv2 artyfx bchoppr beatslash-lv2 blop-lv2 \
 	bsequencer bshapr bslizr calf-plugins caps-lv2 cv-lfo-blender-lv2 distrho-plugin-ports-lv2 \
-	dpf-plugins dragonfly-reverb drmr drowaudio-plugins-lv2 drumgizmo drumkv1-lv2 easyssp-lv2 \
-	eq10q fabla fluidsynth fluid-soundfont-gm fluid-soundfont-gs g2reverb geonkick gigtools gxplugins \
+	dpf-plugins dragonfly-reverb drmr drowaudio-plugins-lv2 easyssp-lv2 \
+	eq10q fabla fluidsynth fluid-soundfont-gm fluid-soundfont-gs g2reverb  gigtools gxplugins \
 	gxvoxtonebender helm hybridreverb2 infamous-plugins invada-studio-plugins-lv2 jalv juce-opl-lv2 \
 	juced-plugins-lv2 klangfalter-lv2 linuxsampler lsp-plugins lufsmeter-lv2 luftikus-lv2 lv2vocoder \
 	mod-cv-plugins mod-distortion mod-pitchshifter mod-utilities moony.lv2 noise-repellent obxd-lv2 \
@@ -317,7 +322,7 @@ apt-get -yy install \
 	zynthbox-plugin-mod-cabsim-ir-loader zynthbox-plugin-punk-console zynthbox-plugin-qmidiarp \
 	zynthbox-plugin-raffo zynthbox-plugin-remid zynthbox-plugin-sooperlooper-lv2-plugin \
 	zynthbox-plugin-sosynth zynthbox-plugin-stereo-mixer zynthbox-plugin-string-machine zynthbox-plugin-swh \
-	zynthbox-plugin-triceratops zynthbox-plugin-vl1 zynthbox-plugin-ykchorus
+	zynthbox-plugin-triceratops zynthbox-plugin-vl1 zynthbox-plugin-ykchorus zynthbox-soundfonts
 
 # Stop & disable systemd fluidsynth service
 systemctl stop --user fluidsynth.service
