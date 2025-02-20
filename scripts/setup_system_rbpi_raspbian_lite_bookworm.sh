@@ -142,8 +142,8 @@ pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
 ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy zynthian-data zynthbox-dependency-mod-ui plasma-framework-zynthbox"
 
-# Install ZynthboxQML and its dependencies, except the plasma packages which gets autoinstalled from suggested/recommended packages (Packages with suffix `-` will be not installed)
-apt-get -y --allow-unauthenticated install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES plasma-browser-integration- plasma-desktop- plasma-desktop-data- plasma-discover- plasma-discover-backend-fwupd- plasma-discover-common- plasma-disks- plasma-integration- plasma-nm- plasma-pa- plasma-systemmonitor- plasma-thunderbolt- plasma-vault- plasma-workspace- plasma-workspace-data- plasma-workspace-wayland- polkit-kde-agent-1- powerdevil- powerdevil-data- pulseaudio- pulseaudio-module-bluetooth- pulseaudio-module-gsettings- pulseaudio-utils-
+# Install ZynthboxQML and its dependencies
+apt-get -y --allow-unauthenticated install zynthbox-meta $ZYNTHBOX_OTHER_DEPENDENCIES
 
 #************************************************
 #------------------------------------------------
