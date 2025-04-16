@@ -275,6 +275,12 @@ ln -s /usr/share/zynaddsubfx /usr/local/share
 # Create SF2 soft links
 ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
 
+# If default-GM exists then remove.
+# default-GM.sf2 is replaced by FluidR3Mono.sf3 (added in zynthian-soundfonts package) because of reduced size of sf3 plugins
+if [ -e "$ZYNTHIAN_DATA_DIR/soundfonts/sf2/default-GM.sf2" ]; then
+  rm $ZYNTHIAN_DATA_DIR/soundfonts/sf2/default-GM.sf2
+fi
+
 # Setup user config directories
 cd $ZYNTHIAN_CONFIG_DIR
 mkdir setbfree
