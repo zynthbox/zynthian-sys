@@ -222,6 +222,10 @@ systemctl disable userconfig.service
 systemctl disable apt-daily-upgrade.timer
 systemctl disable fwupd-refresh.timer
 systemctl disable NetworkManager.service
+systemctl disable vncserver0.service
+systemctl disable vncserver1.service
+systemctl disable novnc0.service
+systemctl disable novnc1.service
 systemctl --user disable pulseaudio.service
 systemctl --user disable pulseaudio-x11.service
 systemctl enable backlight
