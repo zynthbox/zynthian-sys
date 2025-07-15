@@ -142,7 +142,7 @@ pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
 ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy zynthian-data zynthbox-dependency-mod-ui plasma-framework-zynthbox"
 
-UPDATABLE_PACKAGES="$(cat updatable_packages.list)"
+UPDATABLE_PACKAGES="$(cat $ZYNTHIAN_SYS_DIR/updatable_packages.list)"
 
 # Install ZynthboxQML and its dependencies
 apt-get -y --allow-unauthenticated install $UPDATABLE_PACKAGES $ZYNTHBOX_OTHER_DEPENDENCIES
