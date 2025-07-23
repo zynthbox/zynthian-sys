@@ -17,9 +17,11 @@ arm_boost=1
 # Run on turbo mode for 60secs when starting up
 initial_turbo=60
 
+[pi4]
 # Enable UART for MIDI
 enable_uart=1
 
+[all]
 # Disable Splash Screen
 disable_splash=1
 
@@ -58,7 +60,7 @@ dtoverlay=miniuart-bt
 #OVERCLOCKING_RBPI4#
 # Fix core freq for avoiding fluctuation on SPI freq (RGB LEDs)
 core_freq=500
-core_freq_min=500
+core_freq_min=50
 [all]
 
 [pi5]
