@@ -60,7 +60,7 @@ dtoverlay=miniuart-bt
 #OVERCLOCKING_RBPI4#
 # Fix core freq for avoiding fluctuation on SPI freq (RGB LEDs)
 core_freq=500
-core_freq_min=50
+core_freq_min=500
 [all]
 
 [pi5]
