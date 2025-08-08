@@ -52,7 +52,8 @@ fi
 systemctl disable first_boot
 
 # Disable other services
-systemctl --user disable --now fluidsynth.service
+systemctl --user disable fluidsynth.service
+systemctl --user mask fluidsynth.service
 
 # Enable splash-screen
 systemctl enable splash-screen
