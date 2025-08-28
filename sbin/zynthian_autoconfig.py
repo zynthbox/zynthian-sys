@@ -41,6 +41,7 @@ logging.basicConfig(format='%(levelname)s:%(module)s.%(funcName)s: %(message)s',
 hardware_config = {
     "Z1_MAIN": ["PCM1863@0x4A", "PCM5242@0x4D", "RV3028@0x52"],
     "Z1_CONTROL": ["MCP23017@0x20", "MCP23017@0x21", "ADS1115@0x48", "ADS1115@0x49"],
+    "Z1_V1-16_CONTROL": ["MCP23017@0x20", "MCP23017@0x21", "MCP23017@0x22", "ADS1115@0x48", "ADS1115@0x49"],
 }
 
 # --------------------------------------------------------------------
@@ -95,7 +96,9 @@ def check_boards(board_names):
 
 
 def autodetect_config():
-    if check_boards(["Z1_MAIN", "Z1_CONTROL"]):
+    if check_boards(["Z1_MAIN", "Z1_V1-16_CONTROL"]):
+        config_name = "Z1_V1-16"
+    elif check_boards(["Z1_MAIN", "Z1_CONTROL"]):
         config_name = "Z1"
     else:
         config_name = "Custom"
