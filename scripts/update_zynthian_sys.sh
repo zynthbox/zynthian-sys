@@ -490,18 +490,6 @@ if [ ! -f "$ZYNTHIAN_SW_DIR/noVNC/utils/novnc_proxy" ]; then
 	ln -s "$ZYNTHIAN_SW_DIR/noVNC/utils/launch.sh" "$ZYNTHIAN_SW_DIR/noVNC/utils/novnc_proxy"
 fi
 
-# Zynthian Specific Config Files
-if [ ! -f "$ZYNTHIAN_CONFIG_DIR/system_backup_items.txt" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/config/system_backup_items.txt $ZYNTHIAN_CONFIG_DIR
-fi
-if [ ! -f "$ZYNTHIAN_CONFIG_DIR/data_backup_items.txt" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/config/data_backup_items.txt $ZYNTHIAN_CONFIG_DIR
-fi
-if [ -f "$ZYNTHIAN_CONFIG_DIR/backup_items.txt" ]; then
-	rm -f $ZYNTHIAN_CONFIG_DIR/backup_items.txt
-fi
-rm -f $ZYNTHIAN_CONFIG_DIR/zynthian_custom_config.sh
-
 # Device Custom files
 display_config_custom_dir="$ZYNTHIAN_SYS_DIR/custom/display/$DISPLAY_NAME"
 if [ -d "$display_config_custom_dir" ]; then
