@@ -24,13 +24,7 @@
 #
 # ********************************************************************
 
-import os
-import sys
-import logging
 from subprocess import check_output
-
-
-logging.basicConfig(format='%(levelname)s:%(module)s.%(funcName)s: %(message)s', stream=sys.stdout, level=logging.DEBUG)
 
 
 # --------------------------------------------------------------------
@@ -81,17 +75,14 @@ def get_i2c_chips():
 
 
 def check_boards(board_names):
-    logging.info("Checking Boards: {}".format(board_names))
     faults = []
     for bname in board_names:
         for chip in hardware_config[bname]:
             if chip not in i2c_chips:
                 faults.append(chip)
     if len(faults) > 0:
-        logging.info("ERROR: Undetected Hardware {}".format(faults))
         return False
     else:
-        logging.info("OK: All hardware has been detected!")
         return True
 
 
@@ -104,29 +95,11 @@ def autodetect_config():
         config_name = "Custom"
     return config_name
 
-# --------------------------------------------------------------------
-
 # Get list of i2c chips
 i2c_chips = get_i2c_chips()
-logging.info("Detected I2C Chips: {}".format(i2c_chips))
-
 # Detect kit version
 config_name = autodetect_config()
-logging.info("Detected {} kit!".format(config_name))
 
-# Configure Zynthian
-if config_name:
-    if config_name != os.environ.get('ZYNTHIAN_KIT_VERSION'):
-        logging.info("Configuring Zynthian for {} ...".format(config_name))
-
-        zyn_dir = os.environ.get('ZYNTHIAN_DIR', "/zynthian")
-        zsys_dir = os.environ.get('ZYNTHIAN_SYS_DIR', "/zynthian/zynthian-sys")
-        zconfig_dir = os.environ.get('ZYNTHIAN_CONFIG_DIR', "/zynthian/config")
-
-        check_output("cp -a '{}/config/zynthian_envars_{}.sh' '{}/zynthian_envars.sh'".format(zsys_dir, config_name, zconfig_dir), shell=True)
-    else:
-        logging.info("Zynthian already configured for {}.".format(config_name))
-else:
-    logging.info("Autoconfig for this HW is not available.")
-
-# --------------------------------------------------------------------
+# Print the detected kit name
+# This will be used to determine which envars file to load by zynthian_envars.sh
+print(config_name)
