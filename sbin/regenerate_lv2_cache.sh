@@ -1,10 +1,6 @@
 #!/bin/bash
 
-if [ -d "$ZYNTHIAN_CONFIG_DIR" ]; then
-	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-else
-	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
-fi
+source "$ZYNTHIAN_SYS_DIR/config/zynthian_envars.sh"
 
 echo "Regenerating cache LV2 ..."
 cd $ZYNTHIAN_UI_DIR/zyngine

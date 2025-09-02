@@ -1,1 +1,0 @@
-/zynthian/zynthian-sys/config/zynthian_envars.sh

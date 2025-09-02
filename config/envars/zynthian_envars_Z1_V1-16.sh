@@ -24,3 +24,6 @@
 
 source /zynthian/zynthian-sys/config/zynthian_envars_Z1.sh
 export ZYNTHIAN_KIT_VERSION="Z1_V1-16"
+
+# Zynthian Wiring Config
+export ZYNTHIAN_WIRING_LAYOUT="Z1_V1-16"

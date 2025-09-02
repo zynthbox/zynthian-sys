@@ -2,12 +2,10 @@
 
 # Hardware Autoconfig
 echo -e "### FIRST BOOT SETUP : $(date)\n" >> /root/first_boot.log
-echo -e "\nRunning autoconfig..." >> /root/first_boot.log
-python3 /zynthian/zynthian-sys/sbin/zynthian_autoconfig.py 2>&1 >> /root/first_boot.log
 
 # Load Config Envars
 echo -e "\nLoading config envars" >> /root/first_boot.log
-source "/zynthian/config/zynthian_envars.sh"
+source "/zynthian/zynthian-sys/config/zynthian_envars.sh"
 
 if [ -n "$XRANDR_ROTATE" ]; then
     echo -e "\nDisplay rotation set to $XRANDR_ROTATE" >> /root/first_boot.log

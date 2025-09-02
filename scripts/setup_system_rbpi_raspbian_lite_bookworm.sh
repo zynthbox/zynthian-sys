@@ -22,7 +22,7 @@
 # 
 #******************************************************************************
 
-source zynthian_envars.sh
+source /zynthian/zynthian-sys/config/zynthian_envars.sh
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -194,12 +194,6 @@ if [ "$ZYNTHIAN_CHANGE_HOSTNAME" == "yes" ]; then
     sed -i -e "s/127\.0\.1\.1.*$/127.0.1.1\tzynthbox/" /etc/hosts
 fi
 
-# Copy default envars
-cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
-
-# Copy default engine edit pages config
-cp -a $ZYNTHIAN_SYS_DIR/config/control_page.conf $ZYNTHIAN_CONFIG_DIR
-
 # Run configuration script
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
@@ -242,7 +236,7 @@ systemctl enable zynthian-webconf-fmserver
 systemctl enable rfkill-unblock-all
 
 # Setup loading of Zynthian Environment variables ...
-echo "source $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" >> /root/.bashrc
+echo "source $ZYNTHIAN_SYS_DIR/zynthian-sys/config/zynthian_envars.sh" >> /root/.bashrc
 # => Shell & Login Config
 echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 
@@ -373,6 +367,4 @@ echo "Build Date: $(date +'%d-%b-%Y')" >> /zynthian/build_info.txt
 
 # Clean
 apt-get -y autoremove # Remove unneeded packages
-if [[ "$ZYNTHIAN_SETUP_APT_CLEAN" == "yes" ]]; then # Clean apt cache (if instructed via zynthian_envars.sh)
-    apt-get clean
-fi
+apt-get clean

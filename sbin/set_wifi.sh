@@ -4,11 +4,7 @@
 # Load Environment Variables
 #------------------------------------------------------------------------------
 
-if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
-    source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-else
-    source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
-fi
+source "$ZYNTHIAN_SYS_DIR/config/zynthian_envars.sh"
 
 if [ -z "$1" ]; then
 	wifi_mode=$ZYNTHIAN_WIFI_MODE

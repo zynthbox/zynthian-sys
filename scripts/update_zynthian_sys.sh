@@ -41,11 +41,7 @@ if [ -z "$ZYNTHIAN_CONFIG_DIR" -o -z "$ZYNTHIAN_SYS_DIR" ]; then
 	export ZYNTHIAN_SYS_DIR="/zynthian/zynthian-sys"
 fi
 
-if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
-	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-else
-	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
-fi
+source "$ZYNTHIAN_SYS_DIR/config/zynthian_envars.sh"
 
 #------------------------------------------------------------------------------
 
@@ -270,30 +266,11 @@ fi
 # Zynthian Config 
 #------------------------------------------------------------------------------
 
-# Copy default envars file
-if [ ! -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh $ZYNTHIAN_CONFIG_DIR
-fi
-
-# Copy engine edit page config
-if [ ! -f "$ZYNTHIAN_CONFIG_DIR/control_page.conf" ]; then
-	cp -a $ZYNTHIAN_SYS_DIR/config/control_page.conf $ZYNTHIAN_CONFIG_DIR
-fi
-
 # Install zynthian repository public key
 if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
 	apt-key add $ZYNTHIAN_SYS_DIR/etc/apt/pubkeys/zynthian.pub
 fi
 
-# Fix some paths in config file
-sed -i -e "s/zynthian-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
-sed -i -e "s/zynthian-my-data\/midi-profiles/config\/midi-profiles/g" $ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh
-
-# Fix/Setup MIDI-profiles data directory
-cd $ZYNTHIAN_CONFIG_DIR
-if [ -d "$ZYNTHIAN_MY_DATA_DIR/midi-profiles" ]; then
-	mv "$ZYNTHIAN_MY_DATA_DIR/midi-profiles" .
-fi
 if [ ! -d "midi-profiles" ]; then
 	mkdir "midi-profiles"
 	cp "$ZYNTHIAN_SYS_DIR/config/default_midi_profile.sh" "midi-profiles/default.sh"
@@ -499,11 +476,6 @@ fi
 soundcard_config_custom_dir="$ZYNTHIAN_SYS_DIR/custom/soundcard/$SOUNDCARD_NAME"
 if [ -d "$soundcard_config_custom_dir" ]; then
 	custom_config "$soundcard_config_custom_dir"
-fi
-
-# Fix Soundcard Mixer Control List => TO BE REMOVED IN THE FUTURE!!!
-if [ -f "/proc/stat" ]; then
-	$ZYNTHIAN_SYS_DIR/sbin/fix_soundcard_mixer_ctrls.py
 fi
 
 # AudioInjector Alsa Mixer Customization

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /zynthian/config/zynthian_envars.sh
+source /zynthian/zynthian-sys/config/zynthian_envars.sh
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'

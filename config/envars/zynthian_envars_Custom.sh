@@ -48,8 +48,5 @@ export DISPLAY_HEIGHT=""
 export FRAMEBUFFER="/dev/fb0"
 export DISPLAY_KERNEL_OPTIONS=""
 
-# MIDI system configuration
-export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/config/midi-profiles/default.sh"
-
 # Extra features
 export ZYNTHIAN_AUBIONOTES_OPTIONS="-O complex -t 0.5 -s -88  -p yinfft -l 0.5"

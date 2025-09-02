@@ -22,11 +22,7 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
-if [ -f "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh" ]; then
-	source "$ZYNTHIAN_CONFIG_DIR/zynthian_envars.sh"
-else
-	source "$ZYNTHIAN_SYS_DIR/scripts/zynthian_envars.sh"
-fi
+source "$ZYNTHIAN_SYS_DIR/config/zynthian_envars.sh"
 
 #------------------------------------------------------------------------------
 # Fixing some paths & locations ...

@@ -76,8 +76,8 @@ export ZYNTHIAN_PLUGINS_SRC_DIR="$ZYNTHIAN_SW_DIR/plugins"
 export LV2_PATH="/usr/lib/lv2:/usr/lib/aarch64-linux-gnu/lv2:/usr/local/lib/lv2:$ZYNTHIAN_PLUGINS_DIR/lv2:$ZYNTHIAN_DATA_DIR/presets/lv2:$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 export VST3_PATH="/usr/lib/vst3:/usr/local/lib/vst3/"
 
-# Setup / Build Options
-export ZYNTHIAN_SETUP_APT_CLEAN="TRUE" # Set TRUE to clean /var/cache/apt during build, FALSE to leave alone
+# MIDI system configuration
+export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/config/midi-profiles/default.sh"
 
 # Activate Python virtual environment
 if [ -f "$ZYNTHIAN_DIR/venv/bin/activate" ]; then

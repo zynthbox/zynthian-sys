@@ -34,8 +34,8 @@ import zynconf
 #--------------------------------------------------------------------
 
 input_envars_file = sys.argv[1]z
-envars_file = "{}/zynthian_envars.sh".format(os.environ.get('ZYNTHIAN_CONFIG_DIR',"/zynthian/config"))
-envars_backup_file = "{}/zynthian_envars_backup.sh".format(os.environ.get('ZYNTHIAN_CONFIG_DIR',"/zynthian/config"))
+envars_file = "{}/config/zynthian_envars.sh".format(os.environ.get('ZYNTHIAN_SYS_DIR',"/zynthian/zynthian-sys"))
+envars_backup_file = "{}/config/zynthian_envars_backup.sh".format(os.environ.get('ZYNTHIAN_SYS_DIR',"/zynthian/zynthian-sys"))
 
 if os.path.isfile(input_envars_file):
 	try:
