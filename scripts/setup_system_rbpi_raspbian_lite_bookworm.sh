@@ -236,7 +236,7 @@ systemctl enable zynthian-webconf-fmserver
 systemctl enable rfkill-unblock-all
 
 # Setup loading of Zynthian Environment variables ...
-echo "source $ZYNTHIAN_SYS_DIR/zynthian-sys/config/zynthian_envars.sh" >> /root/.bashrc
+echo "source $ZYNTHIAN_SYS_DIR/config/zynthian_envars.sh" >> /root/.bashrc
 # => Shell & Login Config
 echo "source $ZYNTHIAN_SYS_DIR/etc/profile.zynthian" >> /root/.profile
 
