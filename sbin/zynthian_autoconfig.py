@@ -44,33 +44,38 @@ hardware_config = {
 
 
 def get_i2c_chips():
-    out = check_output("i2cdetect -y 1", shell=True).decode().split("\n")
-    if len(out) > 3:
-        res = []
-        for i in range(0, 8):
-            parts = out[i+1][4:].split(" ")
-            for j in range(0, 16):
-                try:
-                    adr = i * 16 + j
-                    #logging.info("Detecting at {:02X} => {}".format(adr, parts[j]))
-                    if parts[j] != "--":
-                        if 0x20 <= adr <= 0x27:
-                            res.append("MCP23017@0x{:02X}".format(adr))
-                        elif 0x48 <= adr <= 0x49:
-                            res.append("ADS1115@0x{:02X}".format(adr))
-                        elif adr == 0x4A:
-                            res.append("PCM1863@0x{:02X}".format(adr))
-                        elif adr == 0x4D:
-                            res.append("PCM5242@0x{:02X}".format(adr))
-                        elif adr == 0x52:
-                            res.append("RV3028@0x{:02X}".format(adr))
-                        #elif adr == 0x60 and parts[j] == "UU":
-                        elif adr == 0x60:
-                            res.append("TPA6130@0x{:02X}".format(adr))
-                        elif 0x61 <= adr <= 0x64:
-                            res.append("MCP4728@0x{:02X}".format(adr))
-                except:
-                    pass
+    res = []
+    try:
+        out = check_output("i2cdetect -y 1", shell=True).decode().split("\n")
+        if len(out) > 3:
+            for i in range(0, 8):
+                parts = out[i+1][4:].split(" ")
+                for j in range(0, 16):
+                    try:
+                        adr = i * 16 + j
+                        #logging.info("Detecting at {:02X} => {}".format(adr, parts[j]))
+                        if parts[j] != "--":
+                            if 0x20 <= adr <= 0x27:
+                                res.append("MCP23017@0x{:02X}".format(adr))
+                            elif 0x48 <= adr <= 0x49:
+                                res.append("ADS1115@0x{:02X}".format(adr))
+                            elif adr == 0x4A:
+                                res.append("PCM1863@0x{:02X}".format(adr))
+                            elif adr == 0x4D:
+                                res.append("PCM5242@0x{:02X}".format(adr))
+                            elif adr == 0x52:
+                                res.append("RV3028@0x{:02X}".format(adr))
+                            #elif adr == 0x60 and parts[j] == "UU":
+                            elif adr == 0x60:
+                                res.append("TPA6130@0x{:02X}".format(adr))
+                            elif 0x61 <= adr <= 0x64:
+                                res.append("MCP4728@0x{:02X}".format(adr))
+                    except:
+                        pass
+    except:
+        # Ignore all errors that are likely to happen if i2cdetect is not available
+        # For any failed case, return the list 
+        pass
     return res
 
 
