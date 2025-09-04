@@ -265,6 +265,9 @@ fi
 #------------------------------------------------------------------------------
 # Zynthian Config 
 #------------------------------------------------------------------------------
+if [ ! -d "$ZYNTHIAN_CONFIG_DIR" ]; then
+	mkdir -p "$ZYNTHIAN_CONFIG_DIR"
+fi
 
 # Install zynthian repository public key
 if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
