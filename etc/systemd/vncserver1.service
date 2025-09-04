@@ -10,7 +10,7 @@ Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
 Environment=PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin
 Environment=HOME=/root
 
-ExecStart=/usr/bin/vncserver -localhost no -rfbauth /root/.vnc/passwd :1
+ExecStart=/usr/bin/vncserver -localhost no :1
 ExecStartPost=/bin/sh -c 'export DISPLAY=:1; env > /root/.remote_display_env'
 
 ExecStop=/usr/bin/vncserver -kill :1
