@@ -268,6 +268,7 @@ fi
 if [ ! -d "$ZYNTHIAN_CONFIG_DIR" ]; then
 	mkdir -p "$ZYNTHIAN_CONFIG_DIR"
 fi
+cd $ZYNTHIAN_CONFIG_DIR
 
 # Install zynthian repository public key
 if [ ! -f "/etc/apt/sources.list.d/zynthian.list" ]; then
@@ -280,7 +281,6 @@ if [ ! -d "midi-profiles" ]; then
 fi
 
 # Fix/Setup Default Jalv LV2-plugin list
-cd $ZYNTHIAN_CONFIG_DIR
 if [ ! -d "jalv" ]; then
 	mkdir "jalv"
 fi
