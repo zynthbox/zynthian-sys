@@ -23,6 +23,7 @@
 # ****************************************************************************
 
 export ZYNTHIAN_KIT_VERSION="Custom"
+export ZYNTHIAN_WIRING_LAYOUT="Z1_V1"
 
 # System Config
 export ZYNTHIAN_CUSTOM_BOOT_CMDLINE=""
@@ -36,7 +37,11 @@ export ZYNTHIAN_WIFI_MODE="off"
 export SOUNDCARD_NAME="RBPi Headphones"
 export SOUNDCARD_CONFIG="dtparam=audio=on\naudio_pwm_mode=2"
 export SOUNDCARD_MIXER="Headphone Left,Headphone Right"
-export JACKD_OPTIONS="--port-max 4096 -P 70 -s -d alsa -C plughw:Dummy -P plughw:Headphones -r 44100 -p 1024 -n 3 -X raw"
+if echo $RBPI_VERSION | grep -q "Raspberry Pi 5"; then
+	export JACKD_OPTIONS="--port-max 4096 -P 70 -s -d alsa -C plughw:Dummy -P plughw:vc4hdmi0 -r 44100 -p 1024 -n 3 -X raw"
+elif echo $RBPI_VERSION | grep -q "Raspberry Pi 4"; then
+	export JACKD_OPTIONS="--port-max 4096 -P 70 -s -d alsa -C plughw:Dummy -P plughw:Headphones -r 44100 -p 1024 -n 3 -X raw"
+fi
 export ZYNTHIAN_DISABLE_RBPI_AUDIO="0"
 export ZYNTHIAN_RBPI_HEADPHONES="1"
 
