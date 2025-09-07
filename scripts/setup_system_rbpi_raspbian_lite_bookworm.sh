@@ -74,7 +74,7 @@ fi
 if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
 	curl -fsSL https://repo.zynthbox.io/repo_key.pub | gpg --dearmor | tee /etc/apt/trusted.gpg.d/zynthbox.gpg
 	echo "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox.list
-	# echo "deb http://repo.zynthbox.io/kxstudio bookworm main" > /etc/apt/sources.list.d/zynthbox-kxstudio.list
+	echo "deb http://repo.zynthbox.io/kxstudio bookworm main" > /etc/apt/sources.list.d/zynthbox-kxstudio.list
 	echo "deb http://repo.zynthbox.io/deb-multimedia bookworm main" > /etc/apt/sources.list.d/zynthbox-deb-multimedia.list
 fi
 
