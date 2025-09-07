@@ -97,7 +97,7 @@ x11vnc xserver-xorg-input-evdev"
 # CLI Tools
 CLI_TOOLS_PACKAGES="raspi-config psmisc tree joe nano vim p7zip-full i2c-tools \
 fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi evtest libts-bin \
-gpiod libgpiod-dev"
+gpiod libgpiod-dev gigtools jalv linuxsampler openmpt123 setbfree zynaddsubfx"
 
 PYTHON_PACKAGES="python3 python3-dev cython3 python3-cffi python3-dbus python3-mpmath python3-pil python3-pip \
 python3-setuptools python3-numpy-dev python3-evdev 2to3 python-is-python3 python3-tk python3-pil.imagetk"
@@ -304,31 +304,83 @@ mkdir /root/Pd/externals
 #------------------------------------------------
 cd $ZYNTHIAN_SYS_DIR/scripts
 
-# Plugins not working :
-# geonkick
-# drumgizmo
-# drumkv1 : It is not directly usable. Needs access to UI to create/load samples
+# zynthbox-plugin-fluidplug \
+# fluid-soundfont-gm \
+# fluid-soundfont-gs \
 
 apt-get -yy install \
-    abgate adlplug aeolus ams-lv2 amsynth arctican-plugins-lv2 artyfx bchoppr beatslash-lv2 blop-lv2 \
-	bsequencer bshapr bslizr calf-plugins caps-lv2 cv-lfo-blender-lv2 distrho-plugin-ports-lv2 \
-	dpf-plugins dragonfly-reverb drmr drowaudio-plugins-lv2 easyssp-lv2 \
-	eq10q fabla fluidsynth fluid-soundfont-gm fluid-soundfont-gs g2reverb  gigtools gxplugins \
-	gxvoxtonebender helm hybridreverb2 infamous-plugins invada-studio-plugins-lv2 jalv juce-opl-lv2 \
-	juced-plugins-lv2 klangfalter-lv2 linuxsampler lsp-plugins lufsmeter-lv2 luftikus-lv2 lv2vocoder \
-	mod-cv-plugins mod-distortion mod-pitchshifter mod-utilities moony.lv2 noise-repellent obxd-lv2 \
-	openmpt123 oxefmsynth padthv1-lv2 pitcheddelay-lv2 pizmidi-plugins regrader rubberband-lv2 safe-plugins \
-	samplv1-lv2 setbfree shiro-plugins sorcer surge synthv1-lv2 tal-plugins-lv2 tap-lv2 temper-lv2 \
-	teragonaudio-plugins-lv2 timgm6mb-soundfont vitalium-lv2 wolf-shaper wolf-spectrum wolpertinger-lv2 \
-	zam-plugins zlfo zynaddsubfx \
-	zynthbox-plugin-aether-reverb zynthbox-plugin-airwin2rack zynthbox-plugin-alo zynthbox-plugin-bolliedelay \
-	zynthbox-plugin-fluidplug zynthbox-plugin-foo-yc20 zynthbox-plugin-guitarix zynthbox-plugin-gula \
-	zynthbox-plugin-gxdenoiser2 zynthbox-plugin-gxdistortionplus zynthbox-plugin-gxswitchlesswah \
-	zynthbox-plugin-mclk zynthbox-plugin-midi-display zynthbox-plugin-miniopl3 zynthbox-plugin-mod-arpeggiator \
-	zynthbox-plugin-mod-cabsim-ir-loader zynthbox-plugin-punk-console zynthbox-plugin-qmidiarp \
-	zynthbox-plugin-raffo zynthbox-plugin-remid zynthbox-plugin-sooperlooper-lv2-plugin \
-	zynthbox-plugin-sosynth zynthbox-plugin-stereo-mixer zynthbox-plugin-string-machine zynthbox-plugin-swh \
-	zynthbox-plugin-triceratops zynthbox-plugin-vl1 zynthbox-plugin-ykchorus zynthbox-soundfonts
+	aeolus \
+	eq10q \
+	fluidsynth \
+	helm \
+	surge \
+	zynthbox-plugin-abgate \
+	zynthbox-plugin-adlplug \
+	zynthbox-plugin-aether-reverb \
+	zynthbox-plugin-airwin2rack \
+	zynthbox-plugin-alo \
+	zynthbox-plugin-ams-lv2 \
+	zynthbox-plugin-amsynth \
+	zynthbox-plugin-artyfx \
+	zynthbox-plugin-bchoppr \
+	zynthbox-plugin-beatslash-lv2 \
+	zynthbox-plugin-blop-lv2 \
+	zynthbox-plugin-bolliedelay \
+	zynthbox-plugin-bshapr \
+	zynthbox-plugin-bslizr \
+	zynthbox-plugin-calf-plugins \
+	zynthbox-plugin-caps-lv2 \
+	zynthbox-plugin-cv-lfo-blender-lv2 \
+	zynthbox-plugin-distrho-plugin-ports-lv2 \
+	zynthbox-plugin-dpf-plugins \
+	zynthbox-plugin-dragonfly-reverb \
+	zynthbox-plugin-drmr \
+	zynthbox-plugin-fabla \
+	zynthbox-plugin-foo-yc20 \
+	zynthbox-plugin-guitarix \
+	zynthbox-plugin-gula \
+	zynthbox-plugin-gxdenoiser2 \
+	zynthbox-plugin-gxdistortionplus \
+	zynthbox-plugin-gxplugins \
+	zynthbox-plugin-gxswitchlesswah \
+	zynthbox-plugin-infamous-plugins \
+	zynthbox-plugin-invada-studio-plugins-lv2 \
+	zynthbox-plugin-lsp-plugins \
+	zynthbox-plugin-mclk \
+	zynthbox-plugin-midi-display \
+	zynthbox-plugin-miniopl3 \
+	zynthbox-plugin-mod-arpeggiator \
+	zynthbox-plugin-mod-cabsim-ir-loader \
+	zynthbox-plugin-mod-cv-plugins \
+	zynthbox-plugin-mod-distortion \
+	zynthbox-plugin-mod-pitchshifter \
+	zynthbox-plugin-mod-utilities \
+	zynthbox-plugin-moony-lv2 \
+	zynthbox-plugin-noise-repellent \
+	zynthbox-plugin-padthv1-lv2 \
+	zynthbox-plugin-punk-console \
+	zynthbox-plugin-qmidiarp \
+	zynthbox-plugin-raffo \
+	zynthbox-plugin-regrader \
+	zynthbox-plugin-remid \
+	zynthbox-plugin-rubberband-lv2 \
+	zynthbox-plugin-shiro-plugins \
+	zynthbox-plugin-sooperlooper-lv2-plugin \
+	zynthbox-plugin-sosynth \
+	zynthbox-plugin-stereo-mixer \
+	zynthbox-plugin-string-machine \
+	zynthbox-plugin-swh \
+	zynthbox-plugin-synthv1-lv2 \
+	zynthbox-plugin-tap-lv2 \
+	zynthbox-plugin-triceratops \
+	zynthbox-plugin-vl1 \
+	zynthbox-plugin-wolf-shaper \
+	zynthbox-plugin-wolf-spectrum \
+	zynthbox-plugin-ykchorus \
+	zynthbox-plugin-zam-plugins \
+	zynthbox-plugin-zlfo \
+	zynthbox-plugins-sorcer \
+	zynthbox-soundfonts
 
 # Stop & disable systemd fluidsynth service
 systemctl stop --user fluidsynth.service
