@@ -315,12 +315,10 @@ apt-get -yy install \
 	helm \
 	surge \
 	zynthbox-plugin-abgate \
-	zynthbox-plugin-adlplug \
 	zynthbox-plugin-aether-reverb \
 	zynthbox-plugin-airwin2rack \
 	zynthbox-plugin-alo \
 	zynthbox-plugin-ams-lv2 \
-	zynthbox-plugin-amsynth \
 	zynthbox-plugin-artyfx \
 	zynthbox-plugin-bchoppr \
 	zynthbox-plugin-beatslash-lv2 \
