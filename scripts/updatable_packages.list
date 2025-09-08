@@ -1,12 +1,1 @@
-zynthbox-meta
-zynthbox-qml
-libzynthbox
-zynthbox-bootsplash
-zyncoder
-zynthian-webconf
-plasma-framework-zynthbox
-zynthbox-theme
-zynthian-sys
-zynthbox-plugin-raffo
-sunshine
-sonobus
+zynthbox-qml libzynthbox zynthbox-update-script zynthbox-soundfonts zynthbox-bootsplash zyncoder zynthian-webconf plasma-framework-zynthbox zynthbox-theme zynthian-sys zynthbox-plugin-raffo sunshine sonobus

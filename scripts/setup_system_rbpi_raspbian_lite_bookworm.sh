@@ -145,7 +145,54 @@ ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthbox-dependency-mo
 UPDATABLE_PACKAGES="$(cat $ZYNTHIAN_SYS_DIR/scripts/updatable_packages.list)"
 
 # Install ZynthboxQML and its dependencies
-apt-get -y --allow-unauthenticated install $UPDATABLE_PACKAGES $ZYNTHBOX_OTHER_DEPENDENCIES
+apt-get -y --allow-unauthenticated install \
+	bluez-alsa \
+	breeze-icon-theme \
+	jack-capture \
+	jackd2 \
+	libtag1-dev \
+	libwebkit2gtk-4.0-37 \
+	matchbox-window-manager \
+	python3-alsaaudio \
+	python3-pyside2.qtcharts \
+	python3-pyside2.qtconcurrent \
+	python3-pyside2.qtcore \
+	python3-pyside2.qtgui \
+	python3-pyside2.qthelp \
+	python3-pyside2.qtlocation \
+	python3-pyside2.qtmultimedia \
+	python3-pyside2.qtmultimediawidgets \
+	python3-pyside2.qtnetwork \
+	python3-pyside2.qtopengl \
+	python3-pyside2.qtpositioning \
+	python3-pyside2.qtprintsupport \
+	python3-pyside2.qtqml \
+	python3-pyside2.qtquick \
+	python3-pyside2.qtquickwidgets \
+	python3-pyside2.qtscript \
+	python3-pyside2.qtscripttools \
+	python3-pyside2.qtsensors \
+	python3-pyside2.qtsql \
+	python3-pyside2.qtsvg \
+	python3-pyside2.qttest \
+	python3-pyside2.qttexttospeech \
+	python3-pyside2.qtuitools \
+	python3-pyside2.qtwebchannel \
+	python3-pyside2.qtwebsockets \
+	python3-pyside2.qtwidgets \
+	python3-pyside2.qtwidgets \
+	python3-pyside2.qtx11extras \
+	python3-pyside2.qtxml \
+	python3-pyside2.qtxmlpatterns \
+	python3-xlib \
+	qml-module-org-kde-newstuff \
+	qml-module-qt-labs-folderlistmodel \
+	qml-module-qtquick-extras \
+	qml-module-qtquick-shapes \
+	qml-module-qtquick-virtualkeyboard \
+	qtvirtualkeyboard-plugin \
+	$UPDATABLE_PACKAGES \
+	$ZYNTHBOX_OTHER_DEPENDENCIES
 
 #************************************************
 #------------------------------------------------
@@ -257,7 +304,7 @@ apt-get -yy install \
 	zynthbox-dependency-lvtk-v1 zynthbox-dependency-mod-browsepy \
 	zynthbox-dependency-mod-host zynthbox-dependency-mod-ttymidi zynthbox-dependency-mod-ui \
 	zynthbox-dependency-njconnect zynthbox-dependency-ntk zynthbox-dependency-preset2lv2 \
-	zynthbox-dependency-python3-lilv zynthbox-dependency-sfizz zynthbox-dependency-squishbox-sf2 zynthbox-dependency-touchosc2midi \
+	zynthbox-dependency-python3-lilv zynthbox-dependency-sfizz zynthbox-dependency-touchosc2midi \
 	zynthbox-dependency-xmodits
 
 # zynthbox-dependency-lvtk-v2 : v2 fails to install as it tries to overwrite files with the same name as v1
@@ -377,8 +424,7 @@ apt-get -yy install \
 	zynthbox-plugin-ykchorus \
 	zynthbox-plugin-zam-plugins \
 	zynthbox-plugin-zlfo \
-	zynthbox-plugins-sorcer \
-	zynthbox-soundfonts
+	zynthbox-plugins-sorcer
 
 # Stop & disable systemd fluidsynth service
 systemctl stop --user fluidsynth.service
