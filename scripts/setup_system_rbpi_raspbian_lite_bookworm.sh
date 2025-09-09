@@ -74,8 +74,6 @@ fi
 if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
 	curl -fsSL https://repo.zynthbox.io/repo_key.pub | gpg --dearmor | tee /etc/apt/trusted.gpg.d/zynthbox.gpg
 	echo "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox.list
-	echo "deb http://repo.zynthbox.io/kxstudio bookworm main" > /etc/apt/sources.list.d/zynthbox-kxstudio.list
-	echo "deb http://repo.zynthbox.io/deb-multimedia bookworm main" > /etc/apt/sources.list.d/zynthbox-deb-multimedia.list
 fi
 
 apt-get -y update -oAcquire::AllowInsecureRepositories=true
@@ -96,8 +94,7 @@ x11vnc xserver-xorg-input-evdev"
 
 # CLI Tools
 CLI_TOOLS_PACKAGES="raspi-config psmisc tree joe nano vim p7zip-full i2c-tools \
-fbi scrot mpg123  mplayer xloadimage imagemagick fbcat abcmidi evtest libts-bin \
-gpiod libgpiod-dev gigtools jalv linuxsampler openmpt123 setbfree zynaddsubfx"
+fbi scrot xloadimage imagemagick fbcat abcmidi evtest libts-bin gpiod libgpiod-dev openmpt123"
 
 PYTHON_PACKAGES="python3 python3-dev cython3 python3-cffi python3-dbus python3-mpmath python3-pil python3-pip \
 python3-setuptools python3-numpy-dev python3-evdev 2to3 python-is-python3 python3-tk python3-pil.imagetk"
@@ -351,16 +348,14 @@ mkdir /root/Pd/externals
 #------------------------------------------------
 cd $ZYNTHIAN_SYS_DIR/scripts
 
-# zynthbox-plugin-fluidplug \
-# fluid-soundfont-gm \
-# fluid-soundfont-gs \
-
 apt-get -yy install \
 	aeolus \
-	eq10q \
 	fluidsynth \
 	helm \
+	jalv \
+	setbfree \
 	surge \
+	zynaddsubfx \
 	zynthbox-plugin-abgate \
 	zynthbox-plugin-aether-reverb \
 	zynthbox-plugin-airwin2rack \
@@ -381,6 +376,7 @@ apt-get -yy install \
 	zynthbox-plugin-dragonfly-reverb \
 	zynthbox-plugin-drmr \
 	zynthbox-plugin-fabla \
+	zynthbox-plugin-fluidplug \
 	zynthbox-plugin-foo-yc20 \
 	zynthbox-plugin-guitarix \
 	zynthbox-plugin-gula \
@@ -426,9 +422,9 @@ apt-get -yy install \
 	zynthbox-plugin-zlfo \
 	zynthbox-plugins-sorcer
 
-# Stop & disable systemd fluidsynth service
-systemctl stop --user fluidsynth.service
-systemctl mask --user fluidsynth.service
+# Stop & disable systemd fluidsynth and pulseaudio service
+systemctl disable --user fluidsynth.service pulseaudio.service pulseaudio.socket pulseaudio-x11.service
+systemctl mask --user fluidsynth.service pulseaudio.service pulseaudio.socket pulseaudio-x11.service
 
 #************************************************
 #------------------------------------------------
