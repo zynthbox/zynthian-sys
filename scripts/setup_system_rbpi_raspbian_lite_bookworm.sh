@@ -143,7 +143,6 @@ UPDATABLE_PACKAGES="$(cat $ZYNTHIAN_SYS_DIR/scripts/updatable_packages.list)"
 
 # Install ZynthboxQML and its dependencies
 apt-get -y --allow-unauthenticated install \
-	bluez-alsa \
 	breeze-icon-theme \
 	jack-capture \
 	jackd2 \
