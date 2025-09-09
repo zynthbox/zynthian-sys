@@ -354,7 +354,6 @@ apt-get -yy install \
 	helm \
 	jalv \
 	setbfree \
-	surge \
 	zynaddsubfx \
 	zynthbox-plugin-abgate \
 	zynthbox-plugin-aether-reverb \
@@ -411,6 +410,7 @@ apt-get -yy install \
 	zynthbox-plugin-stereo-mixer \
 	zynthbox-plugin-string-machine \
 	zynthbox-plugin-swh \
+	zynthbox-plugin-surge \
 	zynthbox-plugin-synthv1-lv2 \
 	zynthbox-plugin-tap-lv2 \
 	zynthbox-plugin-triceratops \
