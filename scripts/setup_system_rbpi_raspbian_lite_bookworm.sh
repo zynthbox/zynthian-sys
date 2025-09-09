@@ -419,8 +419,7 @@ apt-get -yy install \
 	zynthbox-plugin-wolf-spectrum \
 	zynthbox-plugin-ykchorus \
 	zynthbox-plugin-zam-plugins \
-	zynthbox-plugin-zlfo \
-	zynthbox-plugins-sorcer
+	zynthbox-plugin-zlfo
 
 # Stop & disable systemd fluidsynth and pulseaudio service
 systemctl disable --user fluidsynth.service pulseaudio.service pulseaudio.socket pulseaudio-x11.service
