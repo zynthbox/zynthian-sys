@@ -95,7 +95,7 @@ def autodetect_config():
     if check_boards(["Z1_MAIN", "Z1_V1-16_CONTROL"]):
         config_name = "Z1_V1-16"
     elif check_boards(["Z1_MAIN", "Z1_CONTROL"]):
-        config_name = "Z1"
+        config_name = "Z1_V1"
     else:
         config_name = "Custom"
     return config_name

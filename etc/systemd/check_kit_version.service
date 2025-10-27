@@ -1,0 +1,10 @@
+[Unit]
+Description=Check Kit Version changed
+After=first_boot.service
+
+[Service]
+Type=oneshot
+ExecStart=#ZYNTHIAN_SYS_DIR#/scripts/check_kit_version.sh
+
+[Install]
+WantedBy=multi-user.target

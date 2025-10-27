@@ -575,6 +575,20 @@ sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/syst
 sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
+# Check Kit Version service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/check_kit_version.service
+
+# Start custom systemd services
+systemctl enable check_kit_version
+
+#--------------------------------------------------------------------------------
+# Write the kit version in /zynthian/config/.kit_version to detect changes in kit
+#--------------------------------------------------------------------------------
+# Store the detected kit version
+KIT_VERSION_FILE="$ZYNTHIAN_CONFIG_DIR/.kit_version"
+DETECTED_KIT=$(python3 /zynthian/zynthian-sys/sbin/zynthian_autoconfig.py)
+echo "$DETECTED_KIT" > "$KIT_VERSION_FILE"
+echo "Stored kit version $DETECTED_KIT to $KIT_VERSION_FILE" | systemd-cat -t check_kit_version -p info
 
 # Zynthian apt repository
 if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ]; then
