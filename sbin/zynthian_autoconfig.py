@@ -33,9 +33,10 @@ from subprocess import check_output
 
 
 hardware_config = {
-    "Z1_MAIN": ["PCM1863@0x4A", "PCM5242@0x4D", "RV3028@0x52"],
+    "Z1_MAIN": ["PCM1863@0x4A", "PCM5242@0x4D", "RV3028@0x52"], # Remove after renaming the kit from Z1_V1 to Z2_V4
+    "Z2_MAIN": ["PCM1863@0x4A", "PCM5242@0x4D", "RV3028@0x52"],
     "Z1_CONTROL": ["MCP23017@0x20", "MCP23017@0x21", "ADS1115@0x48", "ADS1115@0x49"],
-    "Z1_V1-16_CONTROL": ["MCP23017@0x20", "MCP23017@0x21", "MCP23017@0x22", "ADS1115@0x48", "ADS1115@0x49"],
+    "Z2_V5_CONTROL": ["MCP23017@0x20", "MCP23017@0x21", "MCP23017@0x22", "ADS1115@0x48", "ADS1115@0x49"],
 }
 
 # --------------------------------------------------------------------
@@ -92,8 +93,8 @@ def check_boards(board_names):
 
 
 def autodetect_config():
-    if check_boards(["Z1_MAIN", "Z1_V1-16_CONTROL"]):
-        config_name = "Z1_V1-16"
+    if check_boards(["Z2_MAIN", "Z2_V5_CONTROL"]):
+        config_name = "Z2_V5"
     elif check_boards(["Z1_MAIN", "Z1_CONTROL"]):
         config_name = "Z1_V1"
     else:

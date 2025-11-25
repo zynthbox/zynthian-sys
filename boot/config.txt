@@ -66,4 +66,7 @@ core_freq_min=500
 [pi5]
 # Enable tty0 on RPi5
 dtoverlay=uart0-pi5
+
+# Ensure we allow high current draw for the usb sockets
+usb_max_current_enable=1
 [all]
