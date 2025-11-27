@@ -46,7 +46,7 @@ export ZYNTHIAN_RBPI_HEADPHONES="0"
 export JACKD_OPTIONS="--port-max 4096 -P 70 -s -S -d alsa -S -d hw:sndrpihifiberry -r 48000 -p 256 -n 2 -i 2 -o 2 -X raw"
 
 #Display Config
-export DISPLAY_NAME="Waveshare 1280x800 LCD DSI (E)"
+export DISPLAY_NAME="Waveshare 1280x800 LCD DSI"
 export DISPLAY_CONFIG="dtoverlay=vc4-kms-v3d\ndtoverlay=vc4-kms-dsi-waveshare-panel,8_0_inch"
 export DISPLAY_WIDTH="1280"
 export DISPLAY_HEIGHT="800"
