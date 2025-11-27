@@ -244,9 +244,9 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	echo "DISPLAY CONFIG => $DISPLAY_CONFIG"
 	sed -i -e "s/#DISPLAY_CONFIG#/$DISPLAY_CONFIG/g" "$BOOT_CONFIG_FPATH"
 
-	# Configure RTC for Z1 main boards
+	# Configure RTC for 2 main boards
 	# TODO => see /zynthian-sys/sbin/configure_rtc.sh!!!
-	if [[ ( $ZYNTHIAN_KIT_VERSION == "Z1"* ) ]]; then
+	if [[ ( $ZYNTHIAN_KIT_VERSION == "Z2"* ) ]]; then
 		export ZYNTHIAN_CUSTOM_CONFIG="dtoverlay=i2c-rtc,rv3028\n"$ZYNTHIAN_CUSTOM_CONFIG
 	fi
 
@@ -367,8 +367,8 @@ fi
 #--------------------------------------
 # Bootsplash Config
 #--------------------------------------
-if [[ $ZYNTHIAN_KIT_VERSION == "Z1_V1" ]]; then
-	# If device is Z1_V1, change extro video to miko
+if [[ $ZYNTHIAN_KIT_VERSION == Z2* ]]; then
+	# If device is Z2, change extro video to miko
 	sed -i "s/extroVideo=.*/extroVideo=\/usr\/share\/zynthbox-bootsplash\/miko-extro.mp4/" /root/.config/zynthbox/zynthbox-qml.conf
 fi
 

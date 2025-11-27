@@ -22,11 +22,11 @@
 # For a full copy of the GNU General Public License see the LICENSE.txt file.
 # ****************************************************************************
 
-export ZYNTHIAN_KIT_VERSION="Z1_V1"
+export ZYNTHIAN_KIT_VERSION="Z2_V4"
 export GPIO_CHIP_DEVICE="/dev/gpiochip4"
 
 # Zynthian Wiring Config
-export ZYNTHIAN_WIRING_LAYOUT="Z1_V1"
+export ZYNTHIAN_WIRING_LAYOUT="Z2_V4"
 
 # System Config
 export XRANDR_ROTATE="inverted"
@@ -38,7 +38,7 @@ export ZYNTHIAN_DISABLE_OTG="0"
 export ZYNTHIAN_WIFI_MODE="off"
 
 #Audio Config
-export SOUNDCARD_NAME="Z1 ADAC"
+export SOUNDCARD_NAME="Z2 ADAC"
 export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadcpro\nforce_eeprom_read=0"
 export SOUNDCARD_MIXER="PGA_Gain_Left,PGA_Gain_Right,ADC_Left_Input,ADC_Right_Input,Digital_0,Digital_1"
 export ZYNTHIAN_DISABLE_RBPI_AUDIO="0"
@@ -46,8 +46,8 @@ export ZYNTHIAN_RBPI_HEADPHONES="0"
 export JACKD_OPTIONS="--port-max 4096 -P 70 -s -S -d alsa -S -d hw:sndrpihifiberry -r 48000 -p 256 -n 2 -i 2 -o 2 -X raw"
 
 #Display Config
-export DISPLAY_NAME="Z1 Display"
-export DISPLAY_CONFIG="hdmi_force_hotplug:0=0\nhdmi_force_hotplug:1=1\nhdmi_drive:1=1\nhdmi_group:1=2\nhdmi_mode:1=87\nhdmi_cvt:1 1024 600 60 6 0 0 0\ndtoverlay=vc4-kms-v3d\ndtoverlay=goodix_z1"
+export DISPLAY_NAME="Z2 Display"
+export DISPLAY_CONFIG="hdmi_force_hotplug:0=0\nhdmi_force_hotplug:1=1\nhdmi_drive:1=1\nhdmi_group:1=2\nhdmi_mode:1=87\nhdmi_cvt:1 1024 600 60 6 0 0 0\ndtoverlay=vc4-kms-v3d\ndtoverlay=goodix_z2"
 export DISPLAY_WIDTH="1024"
 export DISPLAY_HEIGHT="600"
 export FRAMEBUFFER="/dev/fb0"

@@ -23,7 +23,7 @@
 # ****************************************************************************
 
 export ZYNTHIAN_KIT_VERSION="Custom"
-export ZYNTHIAN_WIRING_LAYOUT="Z1_V1"
+export ZYNTHIAN_WIRING_LAYOUT="DUMMIES"
 
 # System Config
 export ZYNTHIAN_CUSTOM_BOOT_CMDLINE=""

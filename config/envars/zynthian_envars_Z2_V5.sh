@@ -38,7 +38,7 @@ export ZYNTHIAN_DISABLE_OTG="0"
 export ZYNTHIAN_WIFI_MODE="off"
 
 #Audio Config
-export SOUNDCARD_NAME="Z1 ADAC"
+export SOUNDCARD_NAME="Z2 ADAC"
 export SOUNDCARD_CONFIG="dtoverlay=hifiberry-dacplusadcpro\nforce_eeprom_read=0"
 export SOUNDCARD_MIXER="PGA_Gain_Left,PGA_Gain_Right,ADC_Left_Input,ADC_Right_Input,Digital_0,Digital_1"
 export ZYNTHIAN_DISABLE_RBPI_AUDIO="0"
