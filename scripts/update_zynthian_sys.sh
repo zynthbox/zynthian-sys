@@ -586,7 +586,7 @@ systemctl enable check_kit_version
 #--------------------------------------------------------------------------------
 # Store the detected kit version
 KIT_VERSION_FILE="$ZYNTHIAN_CONFIG_DIR/.kit_version"
-DETECTED_KIT=$(python3 /zynthian/zynthian-sys/sbin/zynthian_autoconfig.py)
+DETECTED_KIT=$(python3 /zynthian/zynthian-sys/sbin/detect_zynthbox_kit.py)
 echo "$DETECTED_KIT" > "$KIT_VERSION_FILE"
 echo "Stored kit version $DETECTED_KIT to $KIT_VERSION_FILE" | systemd-cat -t check_kit_version -p info
 

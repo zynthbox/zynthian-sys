@@ -1,12 +1,10 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 # ********************************************************************
-# ZYNTHIAN PROJECT: Zynthian Hardware Autoconfig
 #
-# Auto-detect & config some hardware configurations
+# Detect zynthbox kit version (Based on zynthian_autoconfig.py by Fernando)
 #
-# Copyright (C) 2023 Fernando Moyano <jofemodo@zynthian.org>
-# Copyright (C) 2024 Anupam Basak <anupam.basak27@gmail.com>
+# Copyright (C) 2025 Anupam Basak <anupam.basak27@gmail.com>
 #
 # ********************************************************************
 #
@@ -25,13 +23,12 @@
 # ********************************************************************
 
 from subprocess import check_output
+from pathlib import Path
 
 
 # --------------------------------------------------------------------
-# Hardware's config for several boards:
+# Hardware config for boards:
 # --------------------------------------------------------------------
-
-
 hardware_config = {
     "Z2_MAIN": ["PCM1863@0x4A", "PCM5242@0x4D", "RV3028@0x52"],
     "Z2_V4_CONTROL": ["MCP23017@0x20", "MCP23017@0x21", "ADS1115@0x48", "ADS1115@0x49"],
@@ -41,8 +38,6 @@ hardware_config = {
 # --------------------------------------------------------------------
 # Functions
 # --------------------------------------------------------------------
-
-
 def get_i2c_chips():
     res = []
     try:
@@ -91,20 +86,32 @@ def check_boards(board_names):
         return True
 
 
-def autodetect_config():
+def autodetect_kit():
     if check_boards(["Z2_MAIN", "Z2_V5_CONTROL"]):
-        config_name = "Z2_V5"
+        kit_version = "Z2_V5"
     elif check_boards(["Z2_MAIN", "Z2_V4_CONTROL"]):
-        config_name = "Z2_V4"
+        kit_version = "Z2_V4"
     else:
-        config_name = "Custom"
-    return config_name
+        kit_version = "Custom"
+    return kit_version
 
 # Get list of i2c chips
 i2c_chips = get_i2c_chips()
 # Detect kit version
-config_name = autodetect_config()
+forced_kit_version_file = Path("/zynthian/config/.forced_kit_version")
+try:
+    if forced_kit_version_file.exists():
+        with open(forced_kit_version_file, "r") as f:
+            version = f.read().strip()
+        if version in ["Z2_V4", "Z2_V5"]:
+            kit_version = version
+        else:
+            kit_version = "Custom"
+    else:
+        kit_version = autodetect_kit()
+except:
+    kit_version = "Custom"
 
 # Print the detected kit name
 # This will be used to determine which envars file to load by zynthian_envars.sh
-print(config_name)
+print(kit_version)

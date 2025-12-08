@@ -25,7 +25,7 @@
 source "/zynthian/zynthian-sys/config/envars/zynthian_envars.common.sh"
 
 # Detect kit and source respective envars file
-DETECTED_KIT=$(python3 /zynthian/zynthian-sys/sbin/zynthian_autoconfig.py)
+DETECTED_KIT=$(python3 /zynthian/zynthian-sys/sbin/detect_zynthbox_kit.py)
 ENVARS_FILE="/zynthian/zynthian-sys/config/envars/zynthian_envars_${DETECTED_KIT}.sh"
 if [[ -f "$ENVARS_FILE" ]]; then
     source "$ENVARS_FILE"
