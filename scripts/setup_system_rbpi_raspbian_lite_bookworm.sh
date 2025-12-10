@@ -346,7 +346,7 @@ mkdir /root/Pd/externals
 #------------------------------------------------
 cd $ZYNTHIAN_SYS_DIR/scripts
 
-apt-get -yy install \
+apt-get -yy --no-install-recommends install \
 	aeolus \
 	fluidsynth \
 	helm \
