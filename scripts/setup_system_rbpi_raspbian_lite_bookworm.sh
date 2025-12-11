@@ -76,6 +76,14 @@ if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO
 	echo "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox.list
 fi
 
+# Copy "etc" config files
+# This is already there in the update_zynthian_sys script
+# but not required packages getting installed as others dependency 
+# below since the preference is copied at a later state.
+# Keeping this duplicate copy here and if it works then might need to reconsider
+# where to do the copy of the system configs
+cp -a $ZYNTHIAN_SYS_DIR/etc/apt/preferences.d/* /etc/apt/preferences.d
+
 apt-get -y update -oAcquire::AllowInsecureRepositories=true
 apt-get -y dist-upgrade
 apt-get -y autoremove
