@@ -428,6 +428,7 @@ apt-get -yy --no-install-recommends install \
 	zynthbox-plugin-zlfo
 
 # Stop & disable systemd fluidsynth and pulseaudio service
+echo "Trying to disable services using user $USER"
 systemctl disable --user fluidsynth.service pulseaudio.service pulseaudio.socket pulseaudio-x11.service
 systemctl mask --user fluidsynth.service pulseaudio.service pulseaudio.socket pulseaudio-x11.service
 
