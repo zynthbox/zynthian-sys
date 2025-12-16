@@ -76,13 +76,8 @@ if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO
 	echo "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox.list
 fi
 
-# Copy "etc" config files
-# This is already there in the update_zynthian_sys script
-# but not required packages getting installed as others dependency 
-# below since the preference is copied at a later state.
-# Keeping this duplicate copy here and if it works then might need to reconsider
-# where to do the copy of the system configs
-cp -a $ZYNTHIAN_SYS_DIR/etc/apt/preferences.d/* /etc/apt/preferences.d
+# Run to copy the apt preferences so that pulseaudio is not installable
+$ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
 apt-get -y update -oAcquire::AllowInsecureRepositories=true
 apt-get -y dist-upgrade
@@ -272,8 +267,6 @@ systemctl disable vncserver0.service
 systemctl disable vncserver1.service
 systemctl disable novnc0.service
 systemctl disable novnc1.service
-systemctl --user disable pulseaudio.service
-systemctl --user disable pulseaudio-x11.service
 systemctl enable backlight
 systemctl enable cpu-performance
 systemctl enable wifi-setup
@@ -427,10 +420,6 @@ apt-get -yy --no-install-recommends install \
 	zynthbox-plugin-zam-plugins \
 	zynthbox-plugin-zlfo
 
-# Stop & disable systemd fluidsynth and pulseaudio service
-echo "Trying to disable services using user $USER"
-systemctl disable --user fluidsynth.service pulseaudio.service pulseaudio.socket pulseaudio-x11.service
-systemctl mask --user fluidsynth.service pulseaudio.service pulseaudio.socket pulseaudio-x11.service
 
 #************************************************
 #------------------------------------------------

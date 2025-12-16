@@ -49,10 +49,6 @@ fi
 # Disable first_boot service
 systemctl disable first_boot
 
-# Disable other services
-systemctl disable --user fluidsynth.service pulseaudio.service pulseaudio.socket pulseaudio-x11.service
-systemctl mask --user fluidsynth.service pulseaudio.service pulseaudio.socket pulseaudio-x11.service
-
 # Enable splash-screen
 systemctl enable splash-screen
 
