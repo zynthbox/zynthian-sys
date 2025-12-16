@@ -402,8 +402,6 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# WIFI Network
 	#rm -f /etc/wpa_supplicant/wpa_supplicant.conf
 	cp -an $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf $ZYNTHIAN_CONFIG_DIR
-	# Copy policy-rc.d
-	cp -a $ZYNTHIAN_SYS_DIR/usr/sbin/* /usr/sbin
 fi
 
 

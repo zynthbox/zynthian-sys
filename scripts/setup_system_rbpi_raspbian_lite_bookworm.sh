@@ -420,6 +420,9 @@ apt-get -yy --no-install-recommends install \
 	zynthbox-plugin-zam-plugins \
 	zynthbox-plugin-zlfo
 
+# Stop & disable systemd fluidsynth and pulseaudio service
+systemctl disable --global fluidsynth.service
+systemctl mask --global fluidsynth.service
 
 #************************************************
 #------------------------------------------------
