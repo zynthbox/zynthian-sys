@@ -37,3 +37,8 @@ fi
 if [ -f "/zynthian/config/zynthian_envars.user.sh" ]; then
     source "/zynthian/config/zynthian_envars.user.sh"
 fi
+
+# If FORCED_ZYNTHIAN_WIRING_LAYOUT is set in user envars file, update WIRING LAYOUT to forced value
+if [[ -n "$FORCED_ZYNTHIAN_WIRING_LAYOUT" && "$FORCED_ZYNTHIAN_WIRING_LAYOUT" != "AUTO_DETECT" ]]; then
+    export ZYNTHIAN_WIRING_LAYOUT="$FORCED_ZYNTHIAN_WIRING_LAYOUT"
+fi
