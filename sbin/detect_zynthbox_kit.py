@@ -24,6 +24,7 @@
 
 from subprocess import check_output
 from pathlib import Path
+import re
 
 
 # --------------------------------------------------------------------
@@ -97,20 +98,25 @@ def autodetect_kit():
 
 # Get list of i2c chips
 i2c_chips = get_i2c_chips()
-# Detect kit version
-forced_kit_version_file = Path("/zynthian/config/.forced_kit_version")
+
+# When a kit needs to be forced, user envars will have the value set to FORCED_ZYNTHIAN_KIT_VERSION variable
+# Read the user envars file and check if the value is set to a specific kit or AUTO_DETECT
+# If set to some value other than AUTO_DETECT, return the forced kit version otherwise autodetect and returned detect kit version
+user_envars_file = Path("/zynthian/config/zynthian_envars.user.sh")
+kit_version = None
 try:
-    if forced_kit_version_file.exists():
-        with open(forced_kit_version_file, "r") as f:
-            version = f.read().strip()
-        if version in ["Z2_V4", "Z2_V5"]:
-            kit_version = version
-        else:
-            kit_version = "Custom"
-    else:
-        kit_version = autodetect_kit()
-except:
-    kit_version = "Custom"
+    if user_envars_file.exists():
+        data = user_envars_file.read_text()
+        forced_kit_match = re.search(r'export FORCED_ZYNTHIAN_KIT_VERSION="(.+)"', data)
+        if forced_kit_match is not None:
+            forced_kit_version = forced_kit_match.group(1)
+            if forced_kit_version != "AUTO_DETECT":
+                kit_version = forced_kit_version
+except: pass
+
+# If a kit was not forced or some unknown error occured while trying to read forced kit, fall back to autodetected kit version
+if kit_version is None:
+    kit_version = autodetect_kit()
 
 # Print the detected kit name
 # This will be used to determine which envars file to load by zynthian_envars.sh
