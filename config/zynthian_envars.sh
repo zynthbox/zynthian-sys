@@ -25,6 +25,7 @@
 source "/zynthian/zynthian-sys/config/envars/zynthian_envars.common.sh"
 
 # Detect kit and source respective envars file
+# detect_zynthbox_kit script will read FORCED_ZYNTHIAN_KIT_VERSION value and will return forced kit version if a value is set
 DETECTED_KIT=$(python3 /zynthian/zynthian-sys/sbin/detect_zynthbox_kit.py)
 ENVARS_FILE="/zynthian/zynthian-sys/config/envars/zynthian_envars_${DETECTED_KIT}.sh"
 if [[ -f "$ENVARS_FILE" ]]; then
