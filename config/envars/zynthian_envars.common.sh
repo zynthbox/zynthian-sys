@@ -45,7 +45,6 @@ elif echo $RBPI_VERSION | grep -q "Raspberry Pi 4"; then
 fi
 
 # Zynthian UI Config
-export ZYNTHIAN_UI_ENABLE_CURSOR="0"
 export ZYNTHIAN_UI_SNAPSHOT_MIXER_SETTINGS="0"
 export ZYNTHIAN_UI_SWITCH_BOLD_MS="300"
 export ZYNTHIAN_UI_SWITCH_LONG_MS="2000000"
