@@ -45,12 +45,6 @@ elif echo $RBPI_VERSION | grep -q "Raspberry Pi 4"; then
 fi
 
 # Zynthian UI Config
-export ZYNTHIAN_UI_COLOR_BG="#000000"
-export ZYNTHIAN_UI_COLOR_TX="#ffffff"
-export ZYNTHIAN_UI_COLOR_ON="#ff0000"
-export ZYNTHIAN_UI_COLOR_PANEL_BG="#3a424d"
-export ZYNTHIAN_UI_FONT_FAMILY="Audiowide"
-export ZYNTHIAN_UI_FONT_SIZE="18"
 export ZYNTHIAN_UI_ENABLE_CURSOR="0"
 export ZYNTHIAN_UI_TOUCH_WIDGETS="0"
 export ZYNTHIAN_UI_RESTORE_LAST_STATE="1"
