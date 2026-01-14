@@ -140,7 +140,7 @@ MOD_UI_PIP3_PACKAGES="pyserial pystache aggdraw pycrypto"
 pip3 install --upgrade pip
 pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
-ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy zynthian-data zynthbox-dependency-mod-ui plasma-framework-zynthbox"
+ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy zynthian-data zynthbox-dependency-mod-ui plasma-framework"
 
 UPDATABLE_PACKAGES="$(cat $ZYNTHIAN_SYS_DIR/scripts/updatable_packages.list)"
 
