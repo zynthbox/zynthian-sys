@@ -209,8 +209,6 @@ fi
 mkdir "$ZYNTHIAN_SW_DIR"
 
 # Create needed directories
-mkdir -p "$ZYNTHIAN_DATA_DIR/soundfonts/sfz"
-mkdir -p "$ZYNTHIAN_DATA_DIR/soundfonts/gig"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/lv2"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
@@ -218,7 +216,6 @@ mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/generative"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
-mkdir -p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/gig"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
 #mkdir -p "$ZYNTHIAN_MY_DATA_DIR/capture"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
@@ -313,16 +310,6 @@ apt-get -yy install \
 
 #Fix soft link to zynbanks, for working as included on zynthian-data repository
 ln -s /usr/share/zynaddsubfx /usr/local/share
-
-# Install Fluidsynth & SF2 SondFonts
-# Create SF2 soft links
-ln -s /usr/share/sounds/sf2/*.sf2 $ZYNTHIAN_DATA_DIR/soundfonts/sf2
-
-# If default-GM exists then remove.
-# default-GM.sf2 is replaced by FluidR3Mono.sf3 (added in zynthian-soundfonts package) because of reduced size of sf3 plugins
-if [ -e "$ZYNTHIAN_DATA_DIR/soundfonts/sf2/default-GM.sf2" ]; then
-  rm $ZYNTHIAN_DATA_DIR/soundfonts/sf2/default-GM.sf2
-fi
 
 # Setup user config directories
 cd $ZYNTHIAN_CONFIG_DIR
