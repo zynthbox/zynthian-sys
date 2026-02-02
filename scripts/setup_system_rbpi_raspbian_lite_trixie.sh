@@ -343,6 +343,7 @@ cd $ZYNTHIAN_SYS_DIR/scripts
 # zynthbox-plugin-mod-arpeggiator \
 # zynthbox-plugin-mod-cabsim-ir-loader \
 # zynthbox-plugin-mod-cv-plugins \
+# zynthbox-plugin-mod-pitchshifter \
 # zynthbox-plugin-moony-lv2 \
 # zynthbox-plugin-noise-repellent \
 # zynthbox-plugin-punk-console \
@@ -380,7 +381,6 @@ apt-get -yy --no-install-recommends install \
 	zynthbox-plugin-gxdistortionplus \
 	zynthbox-plugin-gxplugins \
 	zynthbox-plugin-mod-distortion \
-	zynthbox-plugin-mod-pitchshifter \
 	zynthbox-plugin-mod-utilities \
 	zynthbox-plugin-padthv1-lv2 \
 	zynthbox-plugin-raffo \
