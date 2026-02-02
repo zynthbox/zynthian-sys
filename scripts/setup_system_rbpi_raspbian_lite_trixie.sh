@@ -78,7 +78,7 @@ apt-get -y autoremove
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
 SYSTEM_PACKAGES="systemd avahi-daemon usbutils udisks2 udevil exfatprogs \
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
-xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq firmware-brcm80211 firmware-atheros \
+xdotool wpasupplicant wireless-tools iw dnsmasq firmware-brcm80211 firmware-atheros \
 firmware-realtek atmel-firmware firmware-misc-nonfree shiki-colors-xfwm-theme fonts-freefont-ttf \
 x11vnc xserver-xorg-input-evdev"
 
@@ -137,7 +137,7 @@ UPDATABLE_PACKAGES="$(cat $ZYNTHIAN_SYS_DIR/scripts/updatable_packages.list)"
 apt-get -y --allow-unauthenticated install \
 	breeze-icon-theme \
 	libtag1-dev \
-	libwebkit2gtk-4.0-37 \
+	libwebkit2gtk-4.1-0 \
 	matchbox-window-manager \
 	python3-alsaaudio \
 	python3-pyside2.qtconcurrent \
