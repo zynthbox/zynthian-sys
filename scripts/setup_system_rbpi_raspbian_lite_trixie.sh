@@ -276,14 +276,14 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 # Install zynthbox dependencies:
 apt-get -yy install \
 	aubio-tools libaubio-dev lilv-utils liblilv-dev  python3-jack-client python3-liblo pyliblo-utils \
-	python3-mutagen python3-terminado python3-ujson qjackctl novnc zynthbox-dependency-dxsyx zynthbox-dependency-faust \
-	zynthbox-dependency-lvtk-v1 zynthbox-dependency-mod-browsepy \
-	zynthbox-dependency-mod-host zynthbox-dependency-mod-ttymidi zynthbox-dependency-mod-ui \
-	zynthbox-dependency-njconnect zynthbox-dependency-ntk zynthbox-dependency-preset2lv2 \
-	zynthbox-dependency-python3-lilv zynthbox-dependency-sfizz zynthbox-dependency-touchosc2midi \
+	python3-mutagen python3-terminado python3-ujson qjackctl novnc \
+	zynthbox-dependency-lvtk-v1 \
+	zynthbox-dependency-mod-host zynthbox-dependency-mod-ttymidi \
+	zynthbox-dependency-ntk zynthbox-dependency-preset2lv2 \
+	python3-lilv zynthbox-dependency-sfizz \
 	zynthbox-dependency-xmodits
 
-# zynthbox-dependency-lvtk-v2 : v2 fails to install as it tries to overwrite files with the same name as v1
+# zynthbox-dependency-mod-browsepy, zynthbox-dependency-mod-ui, zynthbox-dependency-njconnect, zynthbox-dependency-touchosc2midi : Disabled for trixie. Check and create package only if needed.
 
 #************************************************
 #------------------------------------------------
@@ -317,6 +317,49 @@ mkdir /root/Pd/externals
 #------------------------------------------------
 cd $ZYNTHIAN_SYS_DIR/scripts
 
+# The following plugins are disabled for trixie as they are not used anymore:
+# zynthbox-plugin-aether-reverb \
+# zynthbox-plugin-airwin2rack \
+# zynthbox-plugin-alo \
+# zynthbox-plugin-ams-lv2 \
+# zynthbox-plugin-bchoppr \
+# zynthbox-plugin-beatslash-lv2 \
+# zynthbox-plugin-blop-lv2 \
+# zynthbox-plugin-bolliedelay \
+# zynthbox-plugin-bshapr \
+# zynthbox-plugin-bslizr \
+# zynthbox-plugin-caps-lv2 \
+# zynthbox-plugin-cv-lfo-blender-lv2 \
+# zynthbox-plugin-drmr \
+# zynthbox-plugin-gula \
+# zynthbox-plugin-gxdenoiser2 \	
+# zynthbox-plugin-gxswitchlesswah \
+# zynthbox-plugin-infamous-plugins \
+# zynthbox-plugin-invada-studio-plugins-lv2 \
+# zynthbox-plugin-lsp-plugins \
+# zynthbox-plugin-mclk \
+# zynthbox-plugin-midi-display \
+# zynthbox-plugin-miniopl3 \
+# zynthbox-plugin-mod-arpeggiator \
+# zynthbox-plugin-mod-cabsim-ir-loader \
+# zynthbox-plugin-mod-cv-plugins \
+# zynthbox-plugin-moony-lv2 \
+# zynthbox-plugin-noise-repellent \
+# zynthbox-plugin-punk-console \
+# zynthbox-plugin-qmidiarp \
+# zynthbox-plugin-regrader \
+# zynthbox-plugin-remid \
+# zynthbox-plugin-rubberband-lv2 \
+# zynthbox-plugin-sooperlooper-lv2-plugin \
+# zynthbox-plugin-sosynth \
+# zynthbox-plugin-stereo-mixer \
+# zynthbox-plugin-swh \
+# zynthbox-plugin-triceratops \
+# zynthbox-plugin-vl1 \
+# zynthbox-plugin-wolf-shaper \
+# zynthbox-plugin-wolf-spectrum \
+# zynthbox-plugin-zlfo
+	
 apt-get -yy --no-install-recommends install \
 	aeolus \
 	fluidsynth \
@@ -325,70 +368,29 @@ apt-get -yy --no-install-recommends install \
 	setbfree \
 	zynaddsubfx \
 	zynthbox-plugin-abgate \
-	zynthbox-plugin-aether-reverb \
-	zynthbox-plugin-airwin2rack \
-	zynthbox-plugin-alo \
-	zynthbox-plugin-ams-lv2 \
 	zynthbox-plugin-artyfx \
-	zynthbox-plugin-bchoppr \
-	zynthbox-plugin-beatslash-lv2 \
-	zynthbox-plugin-blop-lv2 \
-	zynthbox-plugin-bolliedelay \
-	zynthbox-plugin-bshapr \
-	zynthbox-plugin-bslizr \
 	zynthbox-plugin-calf-plugins \
-	zynthbox-plugin-caps-lv2 \
-	zynthbox-plugin-cv-lfo-blender-lv2 \
 	zynthbox-plugin-distrho-plugin-ports-lv2 \
 	zynthbox-plugin-dpf-plugins \
 	zynthbox-plugin-dragonfly-reverb \
-	zynthbox-plugin-drmr \
 	zynthbox-plugin-fabla \
 	zynthbox-plugin-fluidplug \
 	zynthbox-plugin-foo-yc20 \
 	zynthbox-plugin-guitarix \
-	zynthbox-plugin-gula \
-	zynthbox-plugin-gxdenoiser2 \
 	zynthbox-plugin-gxdistortionplus \
 	zynthbox-plugin-gxplugins \
-	zynthbox-plugin-gxswitchlesswah \
-	zynthbox-plugin-infamous-plugins \
-	zynthbox-plugin-invada-studio-plugins-lv2 \
-	zynthbox-plugin-lsp-plugins \
-	zynthbox-plugin-mclk \
-	zynthbox-plugin-midi-display \
-	zynthbox-plugin-miniopl3 \
-	zynthbox-plugin-mod-arpeggiator \
-	zynthbox-plugin-mod-cabsim-ir-loader \
-	zynthbox-plugin-mod-cv-plugins \
 	zynthbox-plugin-mod-distortion \
 	zynthbox-plugin-mod-pitchshifter \
 	zynthbox-plugin-mod-utilities \
-	zynthbox-plugin-moony-lv2 \
-	zynthbox-plugin-noise-repellent \
 	zynthbox-plugin-padthv1-lv2 \
-	zynthbox-plugin-punk-console \
-	zynthbox-plugin-qmidiarp \
 	zynthbox-plugin-raffo \
-	zynthbox-plugin-regrader \
-	zynthbox-plugin-remid \
-	zynthbox-plugin-rubberband-lv2 \
 	zynthbox-plugin-shiro-plugins \
-	zynthbox-plugin-sooperlooper-lv2-plugin \
-	zynthbox-plugin-sosynth \
-	zynthbox-plugin-stereo-mixer \
 	zynthbox-plugin-string-machine \
-	zynthbox-plugin-swh \
 	zynthbox-plugin-surge \
 	zynthbox-plugin-synthv1-lv2 \
 	zynthbox-plugin-tap-lv2 \
-	zynthbox-plugin-triceratops \
-	zynthbox-plugin-vl1 \
-	zynthbox-plugin-wolf-shaper \
-	zynthbox-plugin-wolf-spectrum \
 	zynthbox-plugin-ykchorus \
-	zynthbox-plugin-zam-plugins \
-	zynthbox-plugin-zlfo
+	zynthbox-plugin-zam-plugins
 
 # Stop & disable systemd fluidsynth and pulseaudio service
 systemctl disable --global fluidsynth.service
