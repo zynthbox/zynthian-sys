@@ -87,7 +87,7 @@ CLI_TOOLS_PACKAGES="raspi-config psmisc tree joe nano vim p7zip-full i2c-tools \
 fbi scrot xloadimage imagemagick fbcat abcmidi evtest libts-bin gpiod libgpiod-dev openmpt123"
 
 PYTHON_PACKAGES="python3 python3-dev cython3 python3-cffi python3-dbus python3-mpmath python3-pil python3-pip \
-python3-setuptools python3-numpy-dev python3-evdev python-is-python3"
+python3-setuptools python3-numpy-dev python3-evdev python-is-python3 python3-taglib"
 
 apt-get -y -o Dpkg::Options::="--force-confdef" install $SYSTEM_PACKAGES $CLI_TOOLS_PACKAGES $PYTHON_PACKAGES
 
@@ -122,8 +122,8 @@ python3 -m venv venv --system-site-packages
 source "$ZYNTHIAN_DIR/venv/bin/activate"
 
 PIP3_PACKAGES="tornado tornado_xstatic tornadostreamform websocket-client jsonpickle oyaml psutil pexpect requests mido python-rtmidi python-magic XStatic-term.js"
-ZYNTHBOX_PIP3_PACKAGES="soundfile pytaglib==2.1.0 pynput adafruit-circuitpython-neopixel-spi"
-MOD_UI_PIP3_PACKAGES="pyserial pystache aggdraw pycrypto"
+ZYNTHBOX_PIP3_PACKAGES="soundfile pynput adafruit-circuitpython-neopixel-spi"
+MOD_UI_PIP3_PACKAGES="pyserial pystache aggdraw"
 pip3 install --upgrade pip
 pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
