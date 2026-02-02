@@ -74,13 +74,13 @@ apt-get -y autoremove
 
 # System
 # Removed the following packages for trixie as they are not needed anymore:
-# dhcpcd-dbus
+# dhcpcd-dbus -> install dhcpcd instead since it is not available in trixie
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
 SYSTEM_PACKAGES="systemd avahi-daemon usbutils udisks2 udevil exfatprogs \
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xdotool wpasupplicant wireless-tools iw dnsmasq firmware-brcm80211 firmware-atheros \
 firmware-realtek atmel-firmware firmware-misc-nonfree shiki-colors-xfwm-theme fonts-freefont-ttf \
-x11vnc xserver-xorg-input-evdev"
+x11vnc xserver-xorg-input-evdev dhcpcd"
 
 # CLI Tools
 CLI_TOOLS_PACKAGES="raspi-config psmisc tree joe nano vim p7zip-full i2c-tools \
