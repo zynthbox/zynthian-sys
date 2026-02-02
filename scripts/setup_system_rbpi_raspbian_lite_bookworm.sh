@@ -38,18 +38,11 @@ export DEBIAN_FRONTEND=noninteractive
 # Update System & Firmware
 #------------------------------------------------
 
-# Hold kernel version 
-#apt-mark hold raspberrypi-kernel
-
 # Update System
 apt-get -y update --allow-releaseinfo-change
 
 # Install required dependencies if needed
 apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common parted dirmngr rpi-eeprom gpgv ca-certificates
-#htpdate
-
-# Adjust System Date/Time
-#htpdate -s www.pool.ntp.org wikipedia.org google.com
 
 # Update Firmware
 if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
@@ -59,16 +52,6 @@ fi
 #------------------------------------------------
 # Add Repositories
 #------------------------------------------------
-
-# deb-multimedia repo
-# wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2024.9.1_all.deb
-# sudo dpkg -i deb-multimedia-keyring_2024.9.1_all.deb
-# rm -f deb-multimedia-keyring_2024.9.1_all.deb
-
-# KXStudio
-# wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.1.0_all.deb
-# dpkg -i kxstudio-repos_11.1.0_all.deb
-# rm -f kxstudio-repos_11.1.0_all.deb
 
 # Zynthbox
 if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
