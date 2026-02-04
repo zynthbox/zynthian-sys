@@ -129,7 +129,7 @@ pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
 # Removed the following packages for trixie as they are not used anymore:
 # zynthbox-dependency-mod-browsepy, zynthbox-dependency-mod-ui
-ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthian-data plasma-framework"
+ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthian-data plasma-framework zynthbox-virtualkeyboard-theme"
 
 UPDATABLE_PACKAGES="$(cat $ZYNTHIAN_SYS_DIR/scripts/updatable_packages.list)"
 

@@ -402,6 +402,9 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# WIFI Network
 	#rm -f /etc/wpa_supplicant/wpa_supplicant.conf
 	cp -an $ZYNTHIAN_SYS_DIR/etc/wpa_supplicant/wpa_supplicant.conf $ZYNTHIAN_CONFIG_DIR
+
+	# Copy the xorg config files
+	cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/* /etc/X11/xorg.conf.d
 fi
 
 
@@ -423,8 +426,6 @@ fi
 if [ ! -d "/etc/X11/xorg.conf.d" ]; then
 	mkdir /etc/X11/xorg.conf.d
 fi
-# cp -a $ZYNTHIAN_SYS_DIR/etc/X11/xorg.conf.d/99-fbdev.conf /etc/X11/xorg.conf.d
-# sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/X11/xorg.conf.d/99-fbdev.conf
 
 # Copy fonts to system directory
 rsync -r --del $ZYNTHIAN_UI_DIR/fonts/* /usr/share/fonts/truetype
