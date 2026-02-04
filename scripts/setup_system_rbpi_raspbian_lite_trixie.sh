@@ -111,7 +111,7 @@ lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf0-dev libboost-sys
 libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
 libfreetype-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk3-module \
 libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
-libxkbcommon-x11-dev libssl-dev libtag1-dev libkf5plasma-dev"
+libxkbcommon-x11-dev libssl-dev libtag1-dev libkf5plasma-dev plasma-workspace"
 EXTRA_PACKAGES="jack-midi-clock midisport-firmware"
 
 apt-get -y --no-install-recommends install $BUILD_TOOLS_PACKAGES $AV_LIBS_PACKAGES $LIBS_PACKAGES $EXTRA_PACKAGES
