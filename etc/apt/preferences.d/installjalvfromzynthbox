@@ -1,0 +1,3 @@
+Package: jalv
+Pin: release o=Debian
+Pin-Priority: -1
