@@ -65,7 +65,7 @@ fi
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
 apt-get -y update -oAcquire::AllowInsecureRepositories=true
-# apt-get -y dist-upgrade
+apt-get -y dist-upgrade
 apt-get -y autoremove
 
 #------------------------------------------------
