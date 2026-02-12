@@ -1,0 +1,3 @@
+Package: jack-example-tools
+Pin: release o=Debian
+Pin-Priority: -1
