@@ -98,7 +98,7 @@ qt5-qmake gobjc++ ruby rake xsltproc vorbis-tools zenity"
 # AV Libraries => WARNING It should be changed on every new debian version!!
 AV_LIBS_PACKAGES="libavformat-dev libavcodec-dev ffmpeg"
 # Libraries
-LIBS_PACKAGES="jackd2 libjack-jackd2-dev jack-example-tools libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-headers \
+LIBS_PACKAGES="pipewire-jack jack-example-tools libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-headers \
 libncurses-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
 libasound2-dev dbus-x11 a2jmidid libffi-dev fontconfig-config \
 libfontconfig1-dev libxft-dev libexpat1-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
@@ -255,7 +255,6 @@ systemctl disable novnc1.service
 systemctl enable backlight
 systemctl enable cpu-performance
 systemctl enable wifi-setup
-systemctl enable jack2
 systemctl enable mod-ttymidi
 systemctl enable a2jmidid
 systemctl enable zynthbox-qml
