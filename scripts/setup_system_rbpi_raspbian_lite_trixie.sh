@@ -38,18 +38,11 @@ export DEBIAN_FRONTEND=noninteractive
 # Update System & Firmware
 #------------------------------------------------
 
-# Hold kernel version 
-#apt-mark hold raspberrypi-kernel
-
 # Update System
 apt-get -y update --allow-releaseinfo-change
 
 # Install required dependencies if needed
-apt-get -y install apt-utils apt-transport-https rpi-update sudo software-properties-common parted dirmngr rpi-eeprom gpgv ca-certificates
-#htpdate
-
-# Adjust System Date/Time
-#htpdate -s www.pool.ntp.org wikipedia.org google.com
+apt-get -y install apt-utils apt-transport-https rpi-update sudo  parted dirmngr rpi-eeprom gpgv ca-certificates
 
 # Update Firmware
 if [ "$ZYNTHIAN_INCLUDE_RPI_UPDATE" == "yes" ]; then
@@ -59,16 +52,6 @@ fi
 #------------------------------------------------
 # Add Repositories
 #------------------------------------------------
-
-# deb-multimedia repo
-# wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2024.9.1_all.deb
-# sudo dpkg -i deb-multimedia-keyring_2024.9.1_all.deb
-# rm -f deb-multimedia-keyring_2024.9.1_all.deb
-
-# KXStudio
-# wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.1.0_all.deb
-# dpkg -i kxstudio-repos_11.1.0_all.deb
-# rm -f kxstudio-repos_11.1.0_all.deb
 
 # Zynthbox
 if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
@@ -89,18 +72,18 @@ apt-get -y autoremove
 
 # System
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
-SYSTEM_PACKAGES="systemd avahi-daemon dhcpcd-dbus usbutils udisks2 udevil exfatprogs \
+SYSTEM_PACKAGES="systemd avahi-daemon usbutils udisks2 udevil exfatprogs \
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
-xdotool cpufrequtils wpasupplicant wireless-tools iw dnsmasq firmware-brcm80211 firmware-atheros \
+xdotool wpasupplicant wireless-tools iw dnsmasq firmware-brcm80211 firmware-atheros \
 firmware-realtek atmel-firmware firmware-misc-nonfree shiki-colors-xfwm-theme fonts-freefont-ttf \
-x11vnc xserver-xorg-input-evdev"
+x11vnc xserver-xorg-input-evdev dhcpcd"
 
 # CLI Tools
 CLI_TOOLS_PACKAGES="raspi-config psmisc tree joe nano vim p7zip-full i2c-tools \
 fbi scrot xloadimage imagemagick fbcat abcmidi evtest libts-bin gpiod libgpiod-dev openmpt123"
 
 PYTHON_PACKAGES="python3 python3-dev cython3 python3-cffi python3-dbus python3-mpmath python3-pil python3-pip \
-python3-setuptools python3-numpy-dev python3-evdev 2to3 python-is-python3 python3-tk python3-pil.imagetk"
+python3-setuptools python3-numpy-dev python3-evdev python-is-python3 python3-taglib"
 
 apt-get -y -o Dpkg::Options::="--force-confdef" install $SYSTEM_PACKAGES $CLI_TOOLS_PACKAGES $PYTHON_PACKAGES
 
@@ -115,16 +98,16 @@ qt5-qmake gobjc++ ruby rake xsltproc vorbis-tools zenity"
 # AV Libraries => WARNING It should be changed on every new debian version!!
 AV_LIBS_PACKAGES="libavformat-dev libavcodec-dev ffmpeg"
 # Libraries
-LIBS_PACKAGES="libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-headers \
-libncurses5-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
+LIBS_PACKAGES="jackd2 libjack-jackd2-dev jack-example-tools libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-headers \
+libncurses-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
 libasound2-dev dbus-x11 a2jmidid libffi-dev fontconfig-config \
-libfontconfig1-dev libxft-dev libexpat-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
-libglibmm-2.4-dev libeigen3-dev libsndfile-dev libsamplerate-dev libarmadillo-dev libreadline-dev \
-lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf-dev libboost-system-dev libzita-convolver-dev \
+libfontconfig1-dev libxft-dev libexpat1-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
+libglibmm-2.4-dev libeigen3-dev libsndfile1-dev libsamplerate0-dev libarmadillo-dev libreadline-dev \
+lv2-c++-tools libxi-dev libgtk2.0-dev libgtkmm-2.4-dev liblrdf0-dev libboost-system-dev libzita-convolver-dev \
 libzita-resampler-dev fonts-roboto libxcursor-dev libxinerama-dev mesa-common-dev libgl1-mesa-dev \
-libfreetype6-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk-module \
-libcanberra-gtk3-module libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
-libxkbcommon-x11-dev libssl-dev libtag1-dev"
+libfreetype-dev  libswscale-dev  qtbase5-dev qtdeclarative5-dev libcanberra-gtk3-module \
+libxcb-cursor-dev libgtk-3-dev libxcb-util0-dev libxcb-keysyms1-dev libxcb-xkb-dev \
+libxkbcommon-x11-dev libssl-dev libtag1-dev libkf5plasma-dev plasma-workspace"
 EXTRA_PACKAGES="jack-midi-clock midisport-firmware"
 
 apt-get -y --no-install-recommends install $BUILD_TOOLS_PACKAGES $AV_LIBS_PACKAGES $LIBS_PACKAGES $EXTRA_PACKAGES
@@ -135,59 +118,67 @@ python3 -m venv venv --system-site-packages
 source "$ZYNTHIAN_DIR/venv/bin/activate"
 
 PIP3_PACKAGES="tornado tornado_xstatic tornadostreamform websocket-client jsonpickle oyaml psutil pexpect requests mido python-rtmidi python-magic XStatic-term.js"
-ZYNTHBOX_PIP3_PACKAGES="soundfile pytaglib==2.1.0 pynput adafruit-circuitpython-neopixel-spi"
-MOD_UI_PIP3_PACKAGES="pyserial pystache aggdraw pycrypto"
+ZYNTHBOX_PIP3_PACKAGES="soundfile pynput adafruit-circuitpython-neopixel-spi"
+MOD_UI_PIP3_PACKAGES="pyserial pystache aggdraw"
 pip3 install --upgrade pip
 pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
-ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthbox-dependency-mod-browsepy zynthian-data zynthbox-dependency-mod-ui plasma-framework"
+ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthian-data plasma-framework zynthbox-virtualkeyboard-theme"
 
 UPDATABLE_PACKAGES="$(cat $ZYNTHIAN_SYS_DIR/scripts/updatable_packages.list)"
 
 # Install ZynthboxQML and its dependencies
 apt-get -y --allow-unauthenticated install \
 	breeze-icon-theme \
-	jack-capture \
 	libtag1-dev \
-	libwebkit2gtk-4.0-37 \
+	libwebkit2gtk-4.1-0 \
 	matchbox-window-manager \
 	python3-alsaaudio \
-	python3-pyside2.qtcharts \
 	python3-pyside2.qtconcurrent \
 	python3-pyside2.qtcore \
 	python3-pyside2.qtgui \
 	python3-pyside2.qthelp \
-	python3-pyside2.qtlocation \
 	python3-pyside2.qtmultimedia \
 	python3-pyside2.qtmultimediawidgets \
 	python3-pyside2.qtnetwork \
 	python3-pyside2.qtopengl \
-	python3-pyside2.qtpositioning \
+	python3-pyside2.qtopenglfunctions \
 	python3-pyside2.qtprintsupport \
 	python3-pyside2.qtqml \
 	python3-pyside2.qtquick \
-	python3-pyside2.qtquickwidgets \
-	python3-pyside2.qtscript \
-	python3-pyside2.qtscripttools \
-	python3-pyside2.qtsensors \
 	python3-pyside2.qtsql \
 	python3-pyside2.qtsvg \
 	python3-pyside2.qttest \
-	python3-pyside2.qttexttospeech \
 	python3-pyside2.qtuitools \
 	python3-pyside2.qtwebchannel \
+	python3-pyside2.qtwebengine \
+	python3-pyside2.qtwebenginecore \
+	python3-pyside2.qtwebenginewidgets \
 	python3-pyside2.qtwebsockets \
 	python3-pyside2.qtwidgets \
-	python3-pyside2.qtwidgets \
-	python3-pyside2.qtx11extras \
 	python3-pyside2.qtxml \
 	python3-pyside2.qtxmlpatterns \
+	python3-pyside6.qt3danimation \
+	python3-pyside6.qt3dcore \
+	python3-pyside6.qt3dextras \
+	python3-pyside6.qt3dinput \
+	python3-pyside6.qt3dlogic \
+	python3-pyside6.qt3drender \
+	python3-pyside6.qtasyncio \
+	python3-pyside6.qtbluetooth \
+	python3-pyside6.qtcharts \
+	python3-pyside6.qtconcurrent \
+	python3-pyside6.qtcore \
+	python3-pyside6.qtdatavisualization \
+	python3-pyside6.qtdbus \
+	python3-pyside6.qtdesigner \
 	python3-xlib \
 	qml-module-org-kde-newstuff \
 	qml-module-qt-labs-folderlistmodel \
 	qml-module-qtquick-extras \
 	qml-module-qtquick-shapes \
 	qml-module-qtquick-virtualkeyboard \
+	qml-module-qtmultimedia \
 	qtvirtualkeyboard-plugin \
 	$UPDATABLE_PACKAGES \
 	$ZYNTHBOX_OTHER_DEPENDENCIES
@@ -214,10 +205,7 @@ mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/generative"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
-mkdir -p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
-mkdir -p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
-#mkdir -p "$ZYNTHIAN_MY_DATA_DIR/capture"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
 mkdir -p "$ZYNTHIAN_PLUGINS_DIR/lv2"
 
@@ -293,14 +281,13 @@ $ZYNTHIAN_SYS_DIR/scripts/set_first_boot.sh
 # Install zynthbox dependencies:
 apt-get -yy install \
 	aubio-tools libaubio-dev lilv-utils liblilv-dev  python3-jack-client python3-liblo pyliblo-utils \
-	python3-mutagen python3-terminado python3-ujson qjackctl novnc zynthbox-dependency-dxsyx zynthbox-dependency-faust \
-	zynthbox-dependency-lvtk-v1 zynthbox-dependency-mod-browsepy \
-	zynthbox-dependency-mod-host zynthbox-dependency-mod-ttymidi zynthbox-dependency-mod-ui \
-	zynthbox-dependency-njconnect zynthbox-dependency-ntk zynthbox-dependency-preset2lv2 \
-	zynthbox-dependency-python3-lilv zynthbox-dependency-sfizz zynthbox-dependency-touchosc2midi \
+	python3-mutagen python3-terminado python3-ujson qjackctl novnc \
+	zynthbox-dependency-lvtk-v1 \
+	zynthbox-dependency-mod-host zynthbox-dependency-mod-ttymidi \
+	zynthbox-dependency-ntk zynthbox-dependency-preset2lv2 \
+	python3-lilv zynthbox-dependency-sfizz \
 	zynthbox-dependency-xmodits
 
-# zynthbox-dependency-lvtk-v2 : v2 fails to install as it tries to overwrite files with the same name as v1
 
 #************************************************
 #------------------------------------------------
@@ -342,70 +329,28 @@ apt-get -yy --no-install-recommends install \
 	setbfree \
 	zynaddsubfx \
 	zynthbox-plugin-abgate \
-	zynthbox-plugin-aether-reverb \
-	zynthbox-plugin-airwin2rack \
-	zynthbox-plugin-alo \
-	zynthbox-plugin-ams-lv2 \
 	zynthbox-plugin-artyfx \
-	zynthbox-plugin-bchoppr \
-	zynthbox-plugin-beatslash-lv2 \
-	zynthbox-plugin-blop-lv2 \
-	zynthbox-plugin-bolliedelay \
-	zynthbox-plugin-bshapr \
-	zynthbox-plugin-bslizr \
 	zynthbox-plugin-calf-plugins \
-	zynthbox-plugin-caps-lv2 \
-	zynthbox-plugin-cv-lfo-blender-lv2 \
 	zynthbox-plugin-distrho-plugin-ports-lv2 \
 	zynthbox-plugin-dpf-plugins \
 	zynthbox-plugin-dragonfly-reverb \
-	zynthbox-plugin-drmr \
 	zynthbox-plugin-fabla \
 	zynthbox-plugin-fluidplug \
 	zynthbox-plugin-foo-yc20 \
 	zynthbox-plugin-guitarix \
-	zynthbox-plugin-gula \
-	zynthbox-plugin-gxdenoiser2 \
 	zynthbox-plugin-gxdistortionplus \
 	zynthbox-plugin-gxplugins \
-	zynthbox-plugin-gxswitchlesswah \
-	zynthbox-plugin-infamous-plugins \
-	zynthbox-plugin-invada-studio-plugins-lv2 \
-	zynthbox-plugin-lsp-plugins \
-	zynthbox-plugin-mclk \
-	zynthbox-plugin-midi-display \
-	zynthbox-plugin-miniopl3 \
-	zynthbox-plugin-mod-arpeggiator \
-	zynthbox-plugin-mod-cabsim-ir-loader \
-	zynthbox-plugin-mod-cv-plugins \
 	zynthbox-plugin-mod-distortion \
-	zynthbox-plugin-mod-pitchshifter \
 	zynthbox-plugin-mod-utilities \
-	zynthbox-plugin-moony-lv2 \
-	zynthbox-plugin-noise-repellent \
 	zynthbox-plugin-padthv1-lv2 \
-	zynthbox-plugin-punk-console \
-	zynthbox-plugin-qmidiarp \
 	zynthbox-plugin-raffo \
-	zynthbox-plugin-regrader \
-	zynthbox-plugin-remid \
-	zynthbox-plugin-rubberband-lv2 \
 	zynthbox-plugin-shiro-plugins \
-	zynthbox-plugin-sooperlooper-lv2-plugin \
-	zynthbox-plugin-sosynth \
-	zynthbox-plugin-stereo-mixer \
 	zynthbox-plugin-string-machine \
-	zynthbox-plugin-swh \
 	zynthbox-plugin-surge \
 	zynthbox-plugin-synthv1-lv2 \
 	zynthbox-plugin-tap-lv2 \
-	zynthbox-plugin-triceratops \
-	zynthbox-plugin-vl1 \
-	zynthbox-plugin-wolf-shaper \
-	zynthbox-plugin-wolf-spectrum \
 	zynthbox-plugin-ykchorus \
-	zynthbox-plugin-zam-plugins \
-	zynthbox-plugin-zlfo
+	zynthbox-plugin-zam-plugins
 
 # Stop & disable systemd fluidsynth and pulseaudio service
 systemctl disable --global fluidsynth.service
