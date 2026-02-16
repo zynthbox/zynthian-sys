@@ -42,8 +42,6 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get -y update --allow-releaseinfo-change
 
 # Install required dependencies if needed
-# Remove the following packages for trixie as they are not needed anymore:
-# software-properties-common
 apt-get -y install apt-utils apt-transport-https rpi-update sudo  parted dirmngr rpi-eeprom gpgv ca-certificates
 
 # Update Firmware
@@ -73,8 +71,6 @@ apt-get -y autoremove
 #------------------------------------------------
 
 # System
-# Removed the following packages for trixie as they are not needed anymore:
-# dhcpcd-dbus -> install dhcpcd instead since it is not available in trixie
 apt-get -y remove --purge isc-dhcp-client triggerhappy logrotate dphys-swapfile
 SYSTEM_PACKAGES="systemd avahi-daemon usbutils udisks2 udevil exfatprogs \
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
@@ -127,8 +123,6 @@ MOD_UI_PIP3_PACKAGES="pyserial pystache aggdraw"
 pip3 install --upgrade pip
 pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
-# Removed the following packages for trixie as they are not used anymore:
-# zynthbox-dependency-mod-browsepy, zynthbox-dependency-mod-ui
 ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthian-data plasma-framework zynthbox-virtualkeyboard-theme"
 
 UPDATABLE_PACKAGES="$(cat $ZYNTHIAN_SYS_DIR/scripts/updatable_packages.list)"
@@ -211,10 +205,7 @@ mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/zynaddsubfx/XMZ"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/mod-ui/pedalboards"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/generative"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/presets/puredata/synths"
-# mkdir -p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sf2"
-# mkdir -p "$ZYNTHIAN_MY_DATA_DIR/soundfonts/sfz"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/snapshots/000"
-#mkdir -p "$ZYNTHIAN_MY_DATA_DIR/capture"
 mkdir -p "$ZYNTHIAN_MY_DATA_DIR/preset-favorites"
 mkdir -p "$ZYNTHIAN_PLUGINS_DIR/lv2"
 
@@ -297,7 +288,6 @@ apt-get -yy install \
 	python3-lilv zynthbox-dependency-sfizz \
 	zynthbox-dependency-xmodits
 
-# zynthbox-dependency-mod-browsepy, zynthbox-dependency-mod-ui, zynthbox-dependency-njconnect, zynthbox-dependency-touchosc2midi : Disabled for trixie. Check and create package only if needed.
 
 #************************************************
 #------------------------------------------------
@@ -331,50 +321,6 @@ mkdir /root/Pd/externals
 #------------------------------------------------
 cd $ZYNTHIAN_SYS_DIR/scripts
 
-# The following plugins are disabled for trixie as they are not used anymore:
-# zynthbox-plugin-aether-reverb \
-# zynthbox-plugin-airwin2rack \
-# zynthbox-plugin-alo \
-# zynthbox-plugin-ams-lv2 \
-# zynthbox-plugin-bchoppr \
-# zynthbox-plugin-beatslash-lv2 \
-# zynthbox-plugin-blop-lv2 \
-# zynthbox-plugin-bolliedelay \
-# zynthbox-plugin-bshapr \
-# zynthbox-plugin-bslizr \
-# zynthbox-plugin-caps-lv2 \
-# zynthbox-plugin-cv-lfo-blender-lv2 \
-# zynthbox-plugin-drmr \
-# zynthbox-plugin-gula \
-# zynthbox-plugin-gxdenoiser2 \	
-# zynthbox-plugin-gxswitchlesswah \
-# zynthbox-plugin-infamous-plugins \
-# zynthbox-plugin-invada-studio-plugins-lv2 \
-# zynthbox-plugin-lsp-plugins \
-# zynthbox-plugin-mclk \
-# zynthbox-plugin-midi-display \
-# zynthbox-plugin-miniopl3 \
-# zynthbox-plugin-mod-arpeggiator \
-# zynthbox-plugin-mod-cabsim-ir-loader \
-# zynthbox-plugin-mod-cv-plugins \
-# zynthbox-plugin-mod-pitchshifter \
-# zynthbox-plugin-moony-lv2 \
-# zynthbox-plugin-noise-repellent \
-# zynthbox-plugin-punk-console \
-# zynthbox-plugin-qmidiarp \
-# zynthbox-plugin-regrader \
-# zynthbox-plugin-remid \
-# zynthbox-plugin-rubberband-lv2 \
-# zynthbox-plugin-sooperlooper-lv2-plugin \
-# zynthbox-plugin-sosynth \
-# zynthbox-plugin-stereo-mixer \
-# zynthbox-plugin-swh \
-# zynthbox-plugin-triceratops \
-# zynthbox-plugin-vl1 \
-# zynthbox-plugin-wolf-shaper \
-# zynthbox-plugin-wolf-spectrum \
-# zynthbox-plugin-zlfo
-	
 apt-get -yy --no-install-recommends install \
 	aeolus \
 	fluidsynth \
