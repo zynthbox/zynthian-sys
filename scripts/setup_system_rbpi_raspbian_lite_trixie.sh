@@ -59,6 +59,13 @@ if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO
 	echo "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox.list
 fi
 
+# Setup unstable repo sourceline
+# Zynthbox
+if [ ! -z "$ZYNTHIANOS_UNSTABLE_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_UNSTABLE_REPO_SOURCELINE" ]; then
+	curl -fsSL https://repo.zynthbox.io/repo_key.pub | gpg --dearmor | tee /etc/apt/trusted.gpg.d/zynthbox.gpg
+	echo "$ZYNTHIANOS_UNSTABLE_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox-unstable.list
+fi
+
 # Run to copy the apt preferences so that pulseaudio is not installable
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
