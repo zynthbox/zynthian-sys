@@ -267,7 +267,7 @@ systemctl mask --global jack2
 systemctl enable --user pipewire.service
 systemctl enable mod-ttymidi
 systemctl enable a2jmidid
-systemctl enable zynthbox-qml
+systemctl enable --user zynthbox-qml
 systemctl enable zynthian-webconf
 systemctl enable zynthian-webconf-fmserver
 systemctl enable rfkill-unblock-all
