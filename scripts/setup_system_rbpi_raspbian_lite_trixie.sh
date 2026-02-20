@@ -262,6 +262,9 @@ systemctl disable novnc1.service
 systemctl enable backlight
 systemctl enable cpu-performance
 systemctl enable wifi-setup
+systemctl disable jack2
+systemctl mask --global jack2
+systemctl enable --user pipewire.service
 systemctl enable mod-ttymidi
 systemctl enable a2jmidid
 systemctl enable zynthbox-qml
