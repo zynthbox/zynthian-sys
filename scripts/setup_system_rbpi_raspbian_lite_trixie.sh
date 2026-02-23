@@ -235,6 +235,9 @@ fi
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
+# Enable lingering for user service to run except user session
+loginctl enable-linger root
+
 # Configure Systemd Services
 systemctl daemon-reload
 systemctl --user daemon-reload
