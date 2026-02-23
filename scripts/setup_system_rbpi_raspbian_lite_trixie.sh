@@ -105,7 +105,7 @@ qt5-qmake gobjc++ ruby rake xsltproc vorbis-tools zenity"
 # AV Libraries => WARNING It should be changed on every new debian version!!
 AV_LIBS_PACKAGES="libavformat-dev libavcodec-dev ffmpeg"
 # Libraries
-LIBS_PACKAGES="pipewire-jack jack-example-tools libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-headers \
+LIBS_PACKAGES="jack-example-tools libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-headers \
 libncurses-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
 libasound2-dev dbus-x11 a2jmidid libffi-dev fontconfig-config \
 libfontconfig1-dev libxft-dev libexpat1-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
@@ -130,7 +130,7 @@ MOD_UI_PIP3_PACKAGES="pyserial pystache aggdraw"
 pip3 install --upgrade pip
 pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
-ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthian-data plasma-framework zynthbox-virtualkeyboard-theme"
+ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthian-data plasma-framework zynthbox-virtualkeyboard-theme pipewire-jack wireplumber"
 
 UPDATABLE_PACKAGES="$(cat $ZYNTHIAN_SYS_DIR/scripts/updatable_packages.list)"
 
@@ -237,6 +237,7 @@ $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
 # Configure Systemd Services
 systemctl daemon-reload
+systemctl --user daemon-reload
 systemctl enable dhcpcd
 systemctl enable avahi-daemon
 systemctl disable raspi-config
@@ -262,12 +263,13 @@ systemctl disable novnc1.service
 systemctl enable backlight
 systemctl enable cpu-performance
 systemctl enable wifi-setup
-systemctl disable jack2
+systemctl disable --global jack2
 systemctl mask --global jack2
 systemctl enable --user pipewire.service
+systemctl enable --user wireplumber.service
 systemctl enable mod-ttymidi
 systemctl enable a2jmidid
-systemctl enable --user zynthbox-qml
+systemctl enable --global zynthbox-qml
 systemctl enable zynthian-webconf
 systemctl enable zynthian-webconf-fmserver
 systemctl enable rfkill-unblock-all
