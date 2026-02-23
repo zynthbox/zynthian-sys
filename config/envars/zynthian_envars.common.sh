@@ -68,6 +68,9 @@ export VST3_PATH="/usr/lib/vst3:/usr/local/lib/vst3/"
 # MIDI system configuration
 export ZYNTHIAN_SCRIPT_MIDI_PROFILE="/zynthian/config/midi-profiles/default.sh"
 
+# Pipewire JACK library path
+export LD_LIBRARY_PATH='/usr/${LIB}/pipewire-0.3/jack'"${LD_LIBRARY_PATH+":$LD_LIBRARY_PATH"}"
+
 # Activate Python virtual environment
 if [ -f "$ZYNTHIAN_DIR/venv/bin/activate" ]; then
 	source "$ZYNTHIAN_DIR/venv/bin/activate"
