@@ -265,8 +265,8 @@ systemctl enable cpu-performance
 systemctl enable wifi-setup
 systemctl disable --global jack2
 systemctl mask --global jack2
-systemctl enable --user pipewire.service
-systemctl enable --user wireplumber.service
+systemctl enable --global pipewire.service
+systemctl enable --global wireplumber.service
 systemctl enable mod-ttymidi
 systemctl enable a2jmidid
 systemctl enable --global zynthbox-qml
