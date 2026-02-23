@@ -376,6 +376,11 @@ fi
 # System Config
 #--------------------------------------
 
+# Create systemd user override directory
+if [ ! -d "/root/.config/systemd/user/" ]; then
+	mkdir -p "/root/.config/systemd/user/"
+fi
+
 if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# Copy "etc" config files
 	cp -a $ZYNTHIAN_SYS_DIR/etc/apt/sources.list.d/* /etc/apt/sources.list.d
