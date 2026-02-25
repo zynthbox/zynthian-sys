@@ -1,6 +1,5 @@
 [Unit]
 Description=Tune CPU performance
-Before=jack2.service
 
 [Service]
 Type=oneshot

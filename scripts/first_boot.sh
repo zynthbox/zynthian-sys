@@ -7,6 +7,11 @@ echo -e "### FIRST BOOT SETUP : $(date)\n" >> /root/first_boot.log
 echo -e "\nLoading config envars" >> /root/first_boot.log
 source "/zynthian/zynthian-sys/config/zynthian_envars.sh"
 
+# DSI display on trixie does not turn on after bootloader
+# Try to turn on display before starting application
+# FIXME : DISPLAY should automatically turn on during boot and should turn off after powering off
+xrandr --output DSI-1-2 --mode 1280x800 || true
+
 if [ -n "$XRANDR_ROTATE" ]; then
     echo -e "\nDisplay rotation set to $XRANDR_ROTATE" >> /root/first_boot.log
     xrandr -o $XRANDR_ROTATE
@@ -45,6 +50,9 @@ if [[ "$(ls -1q | wc -l)" -lt 20 ]]; then
     cd $ZYNTHIAN_UI_DIR/zyngine
     python3 ./zynthian_vst3.py
 fi
+
+# Enable lingering for user service to run except user session
+loginctl enable-linger root
 
 # Disable first_boot service
 systemctl disable first_boot

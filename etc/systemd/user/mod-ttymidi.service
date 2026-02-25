@@ -1,8 +1,7 @@
 [Unit]
 Description=MOD ttymidi
-#BindsTo=jack2.service
-After=jack2.service
-Requires=jack2.service
+After=pipewire.service
+Requires=pipewire.service
 
 [Service]
 Environment=HOME=/root
@@ -14,4 +13,4 @@ RestartSec=1
 CPUQuota=20%
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

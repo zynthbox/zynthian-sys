@@ -31,4 +31,3 @@ Slice=session.slice
 [Install]
 Also=pipewire.socket
 WantedBy=default.target
-Alias=audio.service
