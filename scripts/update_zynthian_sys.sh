@@ -587,6 +587,45 @@ sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zyn
 # Check Kit Version service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/check_kit_version.service
 
+# Configure Systemd Services
+systemctl daemon-reload
+systemctl --user daemon-reload
+systemctl enable dhcpcd
+systemctl enable avahi-daemon
+systemctl disable raspi-config
+systemctl disable cron
+systemctl disable rsyslog
+systemctl disable ntp
+systemctl disable htpdate
+systemctl disable wpa_supplicant
+systemctl disable hostapd
+systemctl disable dnsmasq
+systemctl disable unattended-upgrades
+systemctl disable apt-daily.timer
+systemctl disable getty@tty1.service
+systemctl disable splash-screen
+systemctl disable userconfig.service
+systemctl disable apt-daily-upgrade.timer
+systemctl disable fwupd-refresh.timer
+systemctl disable NetworkManager.service
+systemctl disable vncserver0.service
+systemctl disable vncserver1.service
+systemctl disable novnc0.service
+systemctl disable novnc1.service
+systemctl enable backlight
+systemctl enable cpu-performance
+systemctl enable wifi-setup
+systemctl disable jack2
+systemctl mask jack2
+systemctl enable --global pipewire.service
+systemctl enable --global wireplumber.service
+systemctl enable --global mod-ttymidi
+systemctl enable --global a2jmidid
+systemctl enable --global zynthbox-qml
+systemctl enable zynthian-webconf
+systemctl enable zynthian-webconf-fmserver
+systemctl enable rfkill-unblock-all
+
 # Start custom systemd services
 systemctl enable check_kit_version
 

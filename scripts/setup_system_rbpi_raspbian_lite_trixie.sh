@@ -235,45 +235,6 @@ fi
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
-# Configure Systemd Services
-systemctl daemon-reload
-systemctl --user daemon-reload
-systemctl enable dhcpcd
-systemctl enable avahi-daemon
-systemctl disable raspi-config
-systemctl disable cron
-systemctl disable rsyslog
-systemctl disable ntp
-systemctl disable htpdate
-systemctl disable wpa_supplicant
-systemctl disable hostapd
-systemctl disable dnsmasq
-systemctl disable unattended-upgrades
-systemctl disable apt-daily.timer
-systemctl disable getty@tty1.service
-systemctl disable splash-screen
-systemctl disable userconfig.service
-systemctl disable apt-daily-upgrade.timer
-systemctl disable fwupd-refresh.timer
-systemctl disable NetworkManager.service
-systemctl disable vncserver0.service
-systemctl disable vncserver1.service
-systemctl disable novnc0.service
-systemctl disable novnc1.service
-systemctl enable backlight
-systemctl enable cpu-performance
-systemctl enable wifi-setup
-systemctl disable --global jack2
-systemctl mask --global jack2
-systemctl enable --global pipewire.service
-systemctl enable --global wireplumber.service
-systemctl enable mod-ttymidi
-systemctl enable a2jmidid
-systemctl enable --global zynthbox-qml
-systemctl enable zynthian-webconf
-systemctl enable zynthian-webconf-fmserver
-systemctl enable rfkill-unblock-all
-
 # Setup loading of Zynthian Environment variables ...
 echo "source $ZYNTHIAN_SYS_DIR/config/zynthian_envars.sh" >> /root/.bashrc
 # => Shell & Login Config
