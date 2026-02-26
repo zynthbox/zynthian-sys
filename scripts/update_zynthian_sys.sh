@@ -404,6 +404,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -an $ZYNTHIAN_SYS_DIR/etc/vim/* /etc/vim
 	cp -a $ZYNTHIAN_SYS_DIR/etc/update-motd.d/* /etc/update-motd.d
 	cp -a $ZYNTHIAN_SYS_DIR/etc/wireplumber/ /etc/wireplumber
+	cp -a $ZYNTHIAN_SYS_DIR/etc/pipewire/ /etc/pipewire
 	# WIFI Hotspot
 	cp -an $ZYNTHIAN_SYS_DIR/etc/hostapd/* /etc/hostapd
 	cp -a $ZYNTHIAN_SYS_DIR/etc/dnsmasq.conf /etc
