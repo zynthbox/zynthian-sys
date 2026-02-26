@@ -628,6 +628,10 @@ systemctl enable rfkill-unblock-all
 # Start custom systemd services
 systemctl enable check_kit_version
 
+# Enable lingering for user service to run except user session
+# This is already done in first boot. This is for existing image updates that didn't have lingering enabled
+loginctl enable-linger root
+
 #--------------------------------------------------------------------------------
 # Write the kit version in /zynthian/config/.kit_version to detect changes in kit
 #--------------------------------------------------------------------------------
