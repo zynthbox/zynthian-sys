@@ -6,8 +6,8 @@ Requires=pipewire.service
 [Service]
 Environment=HOME=/root
 WorkingDirectory=/root
-ExecStart=/usr/local/bin/ttymidi -s /dev/ttyAMA0 -b 38400
-ExecStartPre=jack_wait -w
+ExecStart=/usr/bin/pw-jack /usr/local/bin/ttymidi -s /dev/ttyAMA0 -b 38400
+ExecStartPre=/usr/bin/pw-jack jack_wait -w
 Restart=always
 RestartSec=1
 CPUQuota=20%

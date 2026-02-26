@@ -6,8 +6,8 @@ Requires=pipewire.service
 [Service]
 Environment=HOME=/root
 WorkingDirectory=/root
-ExecStart=/usr/bin/a2jmidid
-ExecStartPre=jack_wait -w
+ExecStart=/usr/bin/pw-jack /usr/bin/a2jmidid
+ExecStartPre=/usr/bin/pw-jack jack_wait -w
 Restart=always
 RestartSec=1
 TimeoutSec=5
