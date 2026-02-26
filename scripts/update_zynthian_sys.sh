@@ -376,6 +376,11 @@ fi
 # System Config
 #--------------------------------------
 
+# Create systemd user override directory
+if [ ! -d "/root/.config/systemd/user/" ]; then
+	mkdir -p "/root/.config/systemd/user/"
+fi
+
 if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	# Copy "etc" config files
 	cp -a $ZYNTHIAN_SYS_DIR/etc/apt/sources.list.d/* /etc/apt/sources.list.d
@@ -386,6 +391,8 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -an $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
 	cp -an $ZYNTHIAN_SYS_DIR/etc/security/* /etc/security
 	cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
+	cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/user/* /etc/systemd/user
+	cp -a $ZYNTHIAN_SYS_DIR/root/.config/systemd/user/* /root/.config/systemd/user/
 	cp -a $ZYNTHIAN_SYS_DIR/etc/system.conf /etc/systemd/
 	cp -a $ZYNTHIAN_SYS_DIR/etc/system.conf.d /etc/systemd/system.conf.d
 	cp -a $ZYNTHIAN_SYS_DIR/etc/sysctl.d/* /etc/sysctl.d
@@ -396,6 +403,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/etc/modprobe.d/* /etc/modprobe.d
 	cp -an $ZYNTHIAN_SYS_DIR/etc/vim/* /etc/vim
 	cp -a $ZYNTHIAN_SYS_DIR/etc/update-motd.d/* /etc/update-motd.d
+	cp -a $ZYNTHIAN_SYS_DIR/etc/wireplumber/ /etc/wireplumber
 	# WIFI Hotspot
 	cp -an $ZYNTHIAN_SYS_DIR/etc/hostapd/* /etc/hostapd
 	cp -a $ZYNTHIAN_SYS_DIR/etc/dnsmasq.conf /etc
@@ -528,10 +536,6 @@ sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/syst
 # Jackd service
 sed -i -e "s/#JACKD_OPTIONS#/$JACKD_OPTIONS_ESC/g" /etc/systemd/system/jack2.service
 sed -i -e "s/#LV2_PATH#/$LV2_PATH_ESC/g" /etc/systemd/system/jack2.service
-# a2jmidid service
-sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/a2jmidid.service
-# mod-ttymidi service
-sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/mod-ttymidi.service
 # Aubionotes service
 sed -i -e "s/#ZYNTHIAN_AUBIONOTES_OPTIONS#/$ZYNTHIAN_AUBIONOTES_OPTIONS_ESC/g" /etc/systemd/system/aubionotes.service
 sed -i -e "s/#JACKD_BIN_PATH#/$JACKD_BIN_PATH_ESC/g" /etc/systemd/system/aubionotes.service
@@ -567,17 +571,56 @@ sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/novnc
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/novnc1.service
 sed -i -e "s/#ZYNTHIAN_SW_DIR#/$ZYNTHIAN_SW_DIR_ESC/g" /etc/systemd/system/novnc1.service
 # Zynthbox QML Service
-sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/system/zynthbox-qml.service
-sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthbox-qml.service
-sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/system/zynthbox-qml.service
-sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthbox-qml.service
-sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthbox-qml.service
+sed -i -e "s/#FRAMEBUFFER#/$FRAMEBUFFER_ESC/g" /etc/systemd/user/zynthbox-qml.service
+sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/user/zynthbox-qml.service
+sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/user/zynthbox-qml.service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/user/zynthbox-qml.service
+sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/user/zynthbox-qml.service
 # Zynthian Webconf Service
 sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
 # Check Kit Version service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/check_kit_version.service
+
+# Configure Systemd Services
+systemctl daemon-reload
+systemctl --user daemon-reload
+systemctl enable dhcpcd
+systemctl enable avahi-daemon
+systemctl disable raspi-config
+systemctl disable cron
+systemctl disable rsyslog
+systemctl disable ntp
+systemctl disable htpdate
+systemctl disable wpa_supplicant
+systemctl disable hostapd
+systemctl disable dnsmasq
+systemctl disable unattended-upgrades
+systemctl disable apt-daily.timer
+systemctl disable getty@tty1.service
+systemctl disable splash-screen
+systemctl disable userconfig.service
+systemctl disable apt-daily-upgrade.timer
+systemctl disable fwupd-refresh.timer
+systemctl disable NetworkManager.service
+systemctl disable vncserver0.service
+systemctl disable vncserver1.service
+systemctl disable novnc0.service
+systemctl disable novnc1.service
+systemctl enable backlight
+systemctl enable cpu-performance
+systemctl enable wifi-setup
+systemctl disable jack2
+systemctl mask jack2
+systemctl enable --global pipewire.service
+systemctl enable --global wireplumber.service
+systemctl enable --global mod-ttymidi
+systemctl enable --global a2jmidid
+systemctl enable --global zynthbox-qml
+systemctl enable zynthian-webconf
+systemctl enable zynthian-webconf-fmserver
+systemctl enable rfkill-unblock-all
 
 # Start custom systemd services
 systemctl enable check_kit_version

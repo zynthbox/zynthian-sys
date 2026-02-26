@@ -1,7 +1,7 @@
 [Unit]
 Description=Zynthbox QML UI
-After=jack2.service splash-screen.service
-Requires=jack2.service
+After=pipewire.service splash-screen.service
+Requires=pipewire.service
 
 [Service]
 Environment=PATH=/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin:/bin:/usr/bin:/sbin:/usr/sbin
@@ -25,4 +25,4 @@ TimeoutSec=5
 #CPUAffinity=3
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

@@ -59,6 +59,13 @@ if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO
 	echo "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox.list
 fi
 
+# Setup unstable repo sourceline
+# Zynthbox
+if [ ! -z "$ZYNTHIANOS_UNSTABLE_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_UNSTABLE_REPO_SOURCELINE" ]; then
+	curl -fsSL https://repo.zynthbox.io/repo_key.pub | gpg --dearmor | tee /etc/apt/trusted.gpg.d/zynthbox.gpg
+	echo "$ZYNTHIANOS_UNSTABLE_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox-unstable.list
+fi
+
 # Run to copy the apt preferences so that pulseaudio is not installable
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
 
@@ -98,7 +105,7 @@ qt5-qmake gobjc++ ruby rake xsltproc vorbis-tools zenity"
 # AV Libraries => WARNING It should be changed on every new debian version!!
 AV_LIBS_PACKAGES="libavformat-dev libavcodec-dev ffmpeg"
 # Libraries
-LIBS_PACKAGES="jackd2 libjack-jackd2-dev jack-example-tools libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-headers \
+LIBS_PACKAGES="jack-example-tools libfftw3-dev libmxml-dev zlib1g-dev fluid libfltk1.3-dev libfltk1.3-compat-headers \
 libncurses-dev liblo-dev dssi-dev libjpeg-dev libxpm-dev libcairo2-dev libglu1-mesa-dev \
 libasound2-dev dbus-x11 a2jmidid libffi-dev fontconfig-config \
 libfontconfig1-dev libxft-dev libexpat1-dev libglib2.0-dev libgettextpo-dev libsqlite3-dev \
@@ -123,7 +130,7 @@ MOD_UI_PIP3_PACKAGES="pyserial pystache aggdraw"
 pip3 install --upgrade pip
 pip3 install $PIP3_PACKAGES $ZYNTHBOX_PIP3_PACKAGES $MOD_UI_PIP3_PACKAGES
 
-ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthian-data plasma-framework zynthbox-virtualkeyboard-theme"
+ZYNTHBOX_OTHER_DEPENDENCIES="zynthbox-dependency-mod-host zynthian-data plasma-framework zynthbox-virtualkeyboard-theme pipewire-jack wireplumber"
 
 UPDATABLE_PACKAGES="$(cat $ZYNTHIAN_SYS_DIR/scripts/updatable_packages.list)"
 
@@ -227,41 +234,6 @@ fi
 # Run configuration script
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_data.sh
 $ZYNTHIAN_SYS_DIR/scripts/update_zynthian_sys.sh
-
-# Configure Systemd Services
-systemctl daemon-reload
-systemctl enable dhcpcd
-systemctl enable avahi-daemon
-systemctl disable raspi-config
-systemctl disable cron
-systemctl disable rsyslog
-systemctl disable ntp
-systemctl disable htpdate
-systemctl disable wpa_supplicant
-systemctl disable hostapd
-systemctl disable dnsmasq
-systemctl disable unattended-upgrades
-systemctl disable apt-daily.timer
-systemctl disable getty@tty1.service
-systemctl disable splash-screen
-systemctl disable userconfig.service
-systemctl disable apt-daily-upgrade.timer
-systemctl disable fwupd-refresh.timer
-systemctl disable NetworkManager.service
-systemctl disable vncserver0.service
-systemctl disable vncserver1.service
-systemctl disable novnc0.service
-systemctl disable novnc1.service
-systemctl enable backlight
-systemctl enable cpu-performance
-systemctl enable wifi-setup
-systemctl enable jack2
-systemctl enable mod-ttymidi
-systemctl enable a2jmidid
-systemctl enable zynthbox-qml
-systemctl enable zynthian-webconf
-systemctl enable zynthian-webconf-fmserver
-systemctl enable rfkill-unblock-all
 
 # Setup loading of Zynthian Environment variables ...
 echo "source $ZYNTHIAN_SYS_DIR/config/zynthian_envars.sh" >> /root/.bashrc
