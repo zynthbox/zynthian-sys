@@ -611,12 +611,15 @@ systemctl disable novnc1.service
 systemctl enable backlight
 systemctl enable cpu-performance
 systemctl enable wifi-setup
-systemctl disable jack2
-systemctl mask jack2
 systemctl enable --global pipewire.service
 systemctl enable --global wireplumber.service
 systemctl enable --global mod-ttymidi
 systemctl enable --global a2jmidid
+# Disable the system service that is present in the older image versions
+systemctl disable jack2
+systemctl disable zynthbox-qml
+systemctl disable a2jmidid
+systemctl disable mod-ttymidi
 systemctl enable --global zynthbox-qml
 systemctl enable zynthian-webconf
 systemctl enable zynthian-webconf-fmserver
