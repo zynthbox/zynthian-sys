@@ -1,0 +1,12 @@
+[Unit]
+Description=Turn on Rainbow LEDs
+Before=basic.target
+After=local-fs.target sysinit.target
+DefaultDependencies=no
+
+[Service]
+Type=oneshot
+ExecStart=/zynthian/zynthbox-qml/rainbow-leds.sh
+
+[Install]
+WantedBy=basic.target

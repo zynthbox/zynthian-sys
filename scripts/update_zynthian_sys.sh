@@ -626,6 +626,8 @@ systemctl enable zynthian-webconf
 systemctl enable zynthian-webconf-fmserver
 systemctl enable rfkill-unblock-all
 
+# Enable Rainbow LEDs
+systemctl enable rainbow-leds
 # Start custom systemd services
 systemctl enable check_kit_version
 
