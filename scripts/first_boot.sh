@@ -7,6 +7,13 @@ echo -e "### FIRST BOOT SETUP : $(date)\n" >> /root/first_boot.log
 echo -e "\nLoading config envars" >> /root/first_boot.log
 source "/zynthian/zynthian-sys/config/zynthian_envars.sh"
 
+# Load dtoverlays for Z2 DSI display
+if [[ "$ZYNTHIAN_KIT_VERSION" == "Z2_V4" || "$ZYNTHIAN_KIT_VERSION" == "Z2_V5" ]]; then
+    echo -e "\nLoading dtoverlays for Z2 DSI display" >> /root/first_boot.log
+    dtoverlay vc4-kms-v3d
+    dtoverlay vc4-kms-dsi-waveshare-panel,8_0_inch
+fi
+
 # DSI display on trixie does not turn on after bootloader
 # Try to turn on display before starting application
 # FIXME : DISPLAY should automatically turn on during boot and should turn off after powering off
