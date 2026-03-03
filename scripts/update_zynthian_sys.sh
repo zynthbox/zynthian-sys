@@ -578,9 +578,9 @@ sed -i -e "s/#ZYNTHIAN_UI_DIR#/$ZYNTHIAN_UI_DIR_ESC/g" /etc/systemd/user/zynthbo
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/user/zynthbox-qml.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/user/zynthbox-qml.service
 # Zynthian Webconf Service
-sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
-sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
-sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/zynthian-webconf.service
+sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/user/zynthian-webconf.service
+sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/user/zynthian-webconf.service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/user/zynthian-webconf.service
 # Check Kit Version service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/system/check_kit_version.service
 
@@ -622,8 +622,9 @@ systemctl disable zynthbox-qml
 systemctl disable a2jmidid
 systemctl disable mod-ttymidi
 systemctl enable --global zynthbox-qml
-systemctl enable zynthian-webconf
-systemctl enable zynthian-webconf-fmserver
+systemctl disable zynthian-webconf
+systemctl disable zynthian-webconf-fmserver
+systemctl enable --global zynthian-webconf
 systemctl enable rfkill-unblock-all
 
 # Enable Rainbow LEDs
