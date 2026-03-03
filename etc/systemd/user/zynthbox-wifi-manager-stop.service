@@ -1,0 +1,13 @@
+[Unit]
+Description=Stop Zynthbox WIFI Manager
+
+[Service]
+Type=forking
+Environment=ZYNTHIAN_SYS_DIR=#ZYNTHIAN_SYS_DIR#
+Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
+Environment=PATH=/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin:/bin:/usr/bin:/sbin:/usr/sbin
+Environment=HOME=/root
+ExecStart=#ZYNTHIAN_SYS_DIR#/sbin/set_wifi.sh off
+
+[Install]
+WantedBy=default.target
