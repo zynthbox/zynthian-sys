@@ -390,7 +390,7 @@ if [ -z "$NO_ZYNTHIAN_UPDATE" ]; then
 	cp -a $ZYNTHIAN_SYS_DIR/etc/network/* /etc/network
 	cp -an $ZYNTHIAN_SYS_DIR/etc/dbus-1/* /etc/dbus-1
 	cp -an $ZYNTHIAN_SYS_DIR/etc/security/* /etc/security
-	cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/* /etc/systemd/system
+	cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/system/* /etc/systemd/system
 	cp -a $ZYNTHIAN_SYS_DIR/etc/systemd/user/* /etc/systemd/user
 	cp -a $ZYNTHIAN_SYS_DIR/root/.config/systemd/user/* /root/.config/systemd/user/
 	cp -a $ZYNTHIAN_SYS_DIR/etc/system.conf /etc/systemd/
