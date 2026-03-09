@@ -355,9 +355,8 @@ rm -f /etc/ssh/sshd_config.d/rename_user.conf
 apt-mark hold raspberrypi-sys-mods
 touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
-# Create build_info.txt
-echo "Build Version: $(cat $ZYNTHIAN_SYS_DIR/IMAGE_VERSION.txt)" >> /zynthian/build_info.txt
-echo "Build Date: $(date +'%d-%b-%Y')" >> /zynthian/build_info.txt
+# Add the version info in the os-release file
+echo "ZYNTHBOX_IMAGE_BUILD_DATETIME=$ZYNTHBOX_IMAGE_BUILD_DATETIME" >> /etc/os-release
 
 # Clean
 apt-get -y autoremove # Remove unneeded packages
