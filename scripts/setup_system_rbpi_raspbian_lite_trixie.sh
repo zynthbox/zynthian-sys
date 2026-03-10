@@ -54,16 +54,16 @@ fi
 #------------------------------------------------
 
 # Zynthbox
-if [ ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
+if [ ! -z "$ZYNTHBOXOS_ZYNTHBOX_REPO_KEY_URL" -a ! -z "$ZYNTHBOXOS_ZYNTHBOX_REPO_SOURCELINE" ]; then
 	curl -fsSL https://repo.zynthbox.io/repo_key.pub | gpg --dearmor | tee /etc/apt/trusted.gpg.d/zynthbox.gpg
-	echo "$ZYNTHIANOS_ZYNTHBOX_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox.list
+	echo "$ZYNTHBOXOS_ZYNTHBOX_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox.list
 fi
 
 # Setup unstable repo sourceline
 # Zynthbox
-if [ ! -z "$ZYNTHIANOS_UNSTABLE_REPO_KEY_URL" -a ! -z "$ZYNTHIANOS_UNSTABLE_REPO_SOURCELINE" ]; then
+if [ ! -z "$ZYNTHBOXOS_UNSTABLE_REPO_KEY_URL" -a ! -z "$ZYNTHBOXOS_UNSTABLE_REPO_SOURCELINE" ]; then
 	curl -fsSL https://repo.zynthbox.io/repo_key.pub | gpg --dearmor | tee /etc/apt/trusted.gpg.d/zynthbox.gpg
-	echo "$ZYNTHIANOS_UNSTABLE_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox-unstable.list
+	echo "$ZYNTHBOXOS_UNSTABLE_REPO_SOURCELINE" > /etc/apt/sources.list.d/zynthbox-unstable.list
 fi
 
 # Run to copy the apt preferences so that pulseaudio is not installable
@@ -356,7 +356,7 @@ apt-mark hold raspberrypi-sys-mods
 touch /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # Add the version info in the os-release file
-echo "ZYNTHBOX_IMAGE_BUILD_DATETIME=$ZYNTHBOX_IMAGE_BUILD_DATETIME" >> /etc/os-release
+echo "ZYNTHBOXOS_IMAGE_BUILD_DATETIME=$ZYNTHBOXOS_IMAGE_BUILD_DATETIME" >> /etc/os-release
 
 # Clean
 apt-get -y autoremove # Remove unneeded packages
