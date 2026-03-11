@@ -42,8 +42,3 @@ sed -i "s/ZYNTHBOXOS_BUILD_VERSION=.*/ZYNTHBOXOS_BUILD_VERSION=$NEW_VERSION/" "$
 sed -i "s/ZYNTHBOXOS_BUILD_DATETIME=.*/ZYNTHBOXOS_BUILD_DATETIME=$CURRENT_DATETIME/" "$VERSION_FILE"
 
 echo "Version bumped: $CURRENT_VERSION → $NEW_VERSION"
-
-# Commit the change
-git add "$VERSION_FILE"
-git commit -m "Bump version to $NEW_VERSION"
-git push
