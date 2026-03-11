@@ -1,12 +1,12 @@
 #!/bin/bash
 
-VERSION_FILE="ZYNTHBOX_OS_BUILD_VERSION"
+VERSION_FILE="ZYNTHBOXOS_BUILD_VERSION"
 
 # Extract version number (remove 'v' prefix for processing)
-CURRENT_VERSION=$(grep '^ZYNTHBOX_OS_BUILD_VERSION=' "$VERSION_FILE" | cut -d'=' -f2 | sed 's/^v//')
+CURRENT_VERSION=$(grep '^ZYNTHBOXOS_BUILD_VERSION=' "$VERSION_FILE" | cut -d'=' -f2 | sed 's/^v//')
 
 # Update datetime
-CURRENT_DATETIME=$(date +%Y-%m-%d_%H:%M)
+CURRENT_DATETIME=$(date +%Y-%m-%d_%H%M)
 
 # Split into parts (MAJOR.MINOR.PATCH)
 IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
@@ -36,10 +36,10 @@ esac
 NEW_VERSION="$MAJOR.$MINOR.$PATCH"
 
 # Replace old version with new version in file
-sed -i "s/ZYNTHBOX_OS_BUILD_VERSION=.*/ZYNTHBOX_OS_BUILD_VERSION=$NEW_VERSION/" "$VERSION_FILE"
+sed -i "s/ZYNTHBOXOS_BUILD_VERSION=.*/ZYNTHBOXOS_BUILD_VERSION=$NEW_VERSION/" "$VERSION_FILE"
 
 # Update the build datetime in file
-sed -i "s/ZYNTHBOX_OS_BUILD_DATETIME=.*/ZYNTHBOX_OS_BUILD_DATETIME=$CURRENT_DATETIME/" "$VERSION_FILE"
+sed -i "s/ZYNTHBOXOS_BUILD_DATETIME=.*/ZYNTHBOXOS_BUILD_DATETIME=$CURRENT_DATETIME/" "$VERSION_FILE"
 
 echo "Version bumped: $CURRENT_VERSION → $NEW_VERSION"
 

@@ -10,9 +10,9 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
  
 printf "\n${RED} ##########################${NC}       ----------------------------------------
-${RED}#                          #${NC}      Image Build Date:  $ZYNTHBOXOS_BUILD_DATETIME
+${RED}#                          #${NC}      Image Build Date:  $ZYNTHBOXOS_IMAGE_BUILD_DATETIME
 ${RED}#            ##            #${NC}      OS Build Version:  $ZYNTHBOXOS_BUILD_VERSION
-${RED}#      ##   #  #   ##      #${NC}      OS Build Date:     $ZYNTHBOX_OS_BUILD_DATETIME
+${RED}#      ##   #  #   ##      #${NC}      OS Build Date:     $ZYNTHBOXOS_BUILD_DATETIME
 ${RED}#     #  #  #  #  #  #     #${NC}      ----------------------------------------
 ${RED}###   #  #  #  #  #  #   ###${NC}      Kit:               ${GREEN}$ZYNTHIAN_KIT_VERSION${NC}
 ${RED}#  #  #  #  #  #  #  #  #  #${NC}      Display:           ${GREEN}$DISPLAY_NAME${NC}
