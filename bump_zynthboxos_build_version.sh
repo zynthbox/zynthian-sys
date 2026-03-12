@@ -6,7 +6,7 @@ VERSION_FILE="ZYNTHBOXOS_BUILD_VERSION"
 CURRENT_VERSION=$(grep '^ZYNTHBOXOS_BUILD_VERSION=' "$VERSION_FILE" | cut -d'=' -f2 | sed 's/^v//')
 
 # Update datetime
-CURRENT_DATETIME=$(date +%Y-%m-%d_%H%M)
+CURRENT_DATETIME=$(date -u +%Y-%m-%d_%H%M)
 
 # Split into parts (MAJOR.MINOR.PATCH)
 IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
