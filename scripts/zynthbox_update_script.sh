@@ -38,7 +38,7 @@ PACKAGES="zynthbox-qml \
 # Running this function will install/update the listed packages
 # and also will remove the packages removed in the current image
 ###
-do_migration () {
+do_upgrade () {
     echo "### Installing packages"
 
     # Keeping this commented since new image will be used which will not have obsolete packages.
@@ -57,5 +57,5 @@ do_migration () {
         $PACKAGES
 }
 
-# Call the do_migration function
-do_migration
+# Execute argument to run one of the above functions
+"$@"
