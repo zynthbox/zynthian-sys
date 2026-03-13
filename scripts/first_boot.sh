@@ -14,10 +14,13 @@ if [[ "$ZYNTHIAN_KIT_VERSION" == "Z2_V4" || "$ZYNTHIAN_KIT_VERSION" == "Z2_V5" ]
     dtoverlay vc4-kms-dsi-waveshare-panel,8_0_inch
 fi
 
-# DSI display on trixie does not turn on after bootloader
-# Try to turn on display before starting application
-# FIXME : DISPLAY should automatically turn on during boot and should turn off after powering off
-xrandr --output DSI-1-2 --mode 1280x800 || true
+# If display width and height is set, try to turn on display with xrandr
+if [ -n "$DISPLAY_WIDTH" -a -n "$DISPLAY_HEIGHT" ]; then
+    # X11 is using wrong /dev/dri/cardX as the default card and hence display turns off when startx runs after splash
+    # Try to turn on display before starting application for the connected display or return true
+    # FIXME : startx should use correct card and display should turn on when startx runs
+    xrandr --output $(xrandr | grep -oP "(.*)(?= connected)") --mode ${DISPLAY_WIDTH}x${DISPLAY_HEIGHT} || true
+fi
 
 if [ -n "$XRANDR_ROTATE" ]; then
     echo -e "\nDisplay rotation set to $XRANDR_ROTATE" >> /root/first_boot.log
