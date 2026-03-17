@@ -668,6 +668,15 @@ else
     echo "ZYNTHBOXOS_BUILD_DATETIME=$DATETIME" >> /etc/os-release
 fi
 
+# Check if ZYNTHBOXOS_IMAGE_BUILD_DATETIME exists in os-release
+# This is set from the setup_system_rbpi_raspbian_lite_trixie.sh at image build time
+# Since for existing images ZYNTHBOXOS_IMAGE_BUILD_DATETIME will not be set, so set it to with Build Date from /zynthian/build_info.txt
+if ! grep -q "^ZYNTHBOXOS_IMAGE_BUILD_DATETIME=" /etc/os-release; then
+	IMAGE_BUILD_DATETIME=$(grep '^Build Date:' "/zynthian/build_info.txt" | cut -d: -f2- | xargs)
+	IMAGE_BUILD_DATETIME_FORMATTED=$(date -d "$IMAGE_BUILD_DATETIME" +%Y-%m-%d_%H%M)
+	echo "ZYNTHBOXOS_IMAGE_BUILD_DATETIME=$IMAGE_BUILD_DATETIME_FORMATTED" >> /etc/os-release
+fi
+
 # Zynthian apt repository
 if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ]; then
 	sed -i -e "s/zynthian-stable/zynthian-testing/g" /etc/apt/sources.list.d/zynthian.list
