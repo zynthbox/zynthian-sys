@@ -31,7 +31,9 @@ PACKAGES="zynthbox-qml \
           zynthbox-virtualkeyboard-theme \
           pipewire-jack \
           wireplumber \
-          zynthbox-soundfonts"
+          zynthbox-soundfonts \
+          qml-module-qtquick-particles2 \
+          libqt5quickparticles5"
 # REMOVED_PACKAGES="zynthbox-theme-alt"
 
 ###
