@@ -650,6 +650,24 @@ DETECTED_KIT=$(python3 /zynthian/zynthian-sys/sbin/detect_zynthbox_kit.py)
 echo "$DETECTED_KIT" > "$KIT_VERSION_FILE"
 echo "Stored kit version $DETECTED_KIT to $KIT_VERSION_FILE" | systemd-cat -t check_kit_version -p info
 
+# Store the zynthbox os version and build datetime in os-release
+VERSION=$(grep '^ZYNTHBOXOS_BUILD_VERSION=' "$ZYNTHIAN_SYS_DIR/ZYNTHBOXOS_BUILD_VERSION" | cut -d= -f2)
+DATETIME=$(grep '^ZYNTHBOXOS_BUILD_DATETIME=' "$ZYNTHIAN_SYS_DIR/ZYNTHBOXOS_BUILD_VERSION" | cut -d= -f2)
+
+# Update or append VERSION
+if grep -q "^ZYNTHBOXOS_BUILD_VERSION=" /etc/os-release; then
+    sed -i "s/^ZYNTHBOXOS_BUILD_VERSION=.*/ZYNTHBOXOS_BUILD_VERSION=$VERSION/" /etc/os-release
+else
+    echo "ZYNTHBOXOS_BUILD_VERSION=$VERSION" >> /etc/os-release
+fi
+
+# Update or append DATETIME
+if grep -q "^ZYNTHBOXOS_BUILD_DATETIME=" /etc/os-release; then
+    sed -i "s/^ZYNTHBOXOS_BUILD_DATETIME=.*/ZYNTHBOXOS_BUILD_DATETIME=$DATETIME/" /etc/os-release
+else
+    echo "ZYNTHBOXOS_BUILD_DATETIME=$DATETIME" >> /etc/os-release
+fi
+
 # Zynthian apt repository
 if [ "$ZYNTHIAN_SYS_BRANCH" != "stable" ]; then
 	sed -i -e "s/zynthian-stable/zynthian-testing/g" /etc/apt/sources.list.d/zynthian.list

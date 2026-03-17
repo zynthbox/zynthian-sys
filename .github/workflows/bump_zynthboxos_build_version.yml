@@ -1,0 +1,28 @@
+name: Bump ZynthboxOS Build Version
+
+on:
+  workflow_dispatch:   # allows manual trigger
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Run bump script
+        run: |
+          chmod +x ./bump_zynthboxos_build_version.sh
+          ./bump_zynthboxos_build_version.sh
+
+      - name: Commit and push changes
+        run: |
+          git add .
+          git commit -m "chore: bump version" || echo "No changes to commit"
+          git push
