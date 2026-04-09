@@ -16,6 +16,7 @@ Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
 # Environment=ZYNTHBOX_DEBUG=block
 # Environment=ZYNTHBOX_DEBUG=gdbserver
 WorkingDirectory=#ZYNTHIAN_UI_DIR#
+ExecStartPre=/bin/bash #ZYNTHIAN_SYS_DIR#/sbin/stop-usb-gadget.sh
 ExecStart=/usr/bin/startx ./start.sh
 TimeoutStopSec=20
 ExecStop=/usr/bin/send_osc 1370 /CUIA/EXIT_UI
