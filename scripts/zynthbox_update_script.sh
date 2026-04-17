@@ -33,7 +33,9 @@ PACKAGES="zynthbox-qml \
           wireplumber \
           zynthbox-soundfonts \
           qml-module-qtquick-particles2 \
-          libqt5quickparticles5"
+          libqt5quickparticles5 \
+          libqt5x11extras5 \
+          libkf5iconthemes5"
 # REMOVED_PACKAGES="zynthbox-theme-alt"
 
 ###
