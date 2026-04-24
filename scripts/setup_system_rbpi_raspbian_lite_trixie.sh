@@ -83,7 +83,7 @@ SYSTEM_PACKAGES="systemd avahi-daemon usbutils udisks2 udevil exfatprogs \
 xinit xserver-xorg-video-fbdev x11-xserver-utils xinput libgl1-mesa-dri tigervnc-standalone-server \
 xdotool wpasupplicant wireless-tools iw dnsmasq firmware-brcm80211 firmware-atheros \
 firmware-realtek atmel-firmware firmware-misc-nonfree shiki-colors-xfwm-theme fonts-freefont-ttf \
-x11vnc xserver-xorg-input-evdev dhcpcd"
+x11vnc xserver-xorg-input-evdev dhcpcd xorg"
 
 # CLI Tools
 CLI_TOOLS_PACKAGES="raspi-config psmisc tree joe nano vim p7zip-full i2c-tools \
