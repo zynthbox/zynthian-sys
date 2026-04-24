@@ -3,5 +3,5 @@
 # Once the version is bumped, the new version will be automatically committed to git by the script.
 # Scripts read only the last non-comment line as the version.
 
-ZYNTHBOXOS_BUILD_VERSION=0.99.22
-ZYNTHBOXOS_BUILD_DATETIME=2026-04-21_0853
+ZYNTHBOXOS_BUILD_VERSION=0.99.23
+ZYNTHBOXOS_BUILD_DATETIME=2026-04-24_0734
