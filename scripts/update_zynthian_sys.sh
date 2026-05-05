@@ -618,6 +618,7 @@ systemctl enable backlight
 systemctl enable cpu-performance
 systemctl enable wifi-setup
 systemctl enable --global pipewire.service
+systemctl enable --global pipewire-pulse.service
 systemctl enable --global wireplumber.service
 systemctl enable --global mod-ttymidi
 systemctl enable --global a2jmidid
