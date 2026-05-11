@@ -1,0 +1,7 @@
+Package: libgpiod-dev
+Pin: release o=Debian
+Pin-Priority: -1
+
+Package: libgpiod3
+Pin: release o=Debian
+Pin-Priority: -1
