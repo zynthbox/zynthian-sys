@@ -646,6 +646,7 @@ systemctl enable --global zynthian-webconf
 systemctl enable rfkill-unblock-all
 systemctl enable --global audiocontrol
 systemctl enable --global emu-tools
+systemctl enable --global midi-server
 
 # Enable Rainbow LEDs
 systemctl enable rainbow-leds
