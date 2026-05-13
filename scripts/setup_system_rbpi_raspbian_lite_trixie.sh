@@ -260,6 +260,10 @@ apt-get -yy install \
 	python3-lilv zynthbox-dependency-sfizz \
 	zynthbox-dependency-xmodits
 
+# Update nodejs version to 22.x LTS from nodesource
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+apt-get install -yy nodejs
+npm install -g pnpm
 
 #************************************************
 #------------------------------------------------

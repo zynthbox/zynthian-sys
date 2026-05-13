@@ -1,1 +1,25 @@
-zynthbox-qml libzynthbox zynthbox-soundfonts zynthbox-bootsplash zyncoder zynthian-webconf plasma-framework zynthbox-theme zynthian-sys zynthbox-docs zynthbox-plugin-raffo sunshine sonobus
+zynthbox-qml
+libzynthbox
+zynthbox-bootsplash
+zyncoder
+zynthian-webconf
+plasma-framework
+qml-module-zynthbox
+qml-style-zynthbox
+zynthian-sys
+zynthbox-plugin-raffo
+zynthbox-docs sunshine
+sonobus
+zynthbox-plugin-fabla
+zynthbox-plugin-gxplugins
+zynthbox-theme
+zynthbox-virtualkeyboard-theme
+pipewire-jack
+wireplumber
+zynthbox-soundfonts
+qml-module-qtquick-particles2
+libqt5quickparticles5
+libqt5x11extras5
+libkf5iconthemes5
+audiocontrol
+emu-tools

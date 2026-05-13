@@ -35,7 +35,9 @@ PACKAGES="zynthbox-qml \
           qml-module-qtquick-particles2 \
           libqt5quickparticles5 \
           libqt5x11extras5 \
-          libkf5iconthemes5"
+          libkf5iconthemes5 \
+          audiocontrol \
+          emu-tools"
 # REMOVED_PACKAGES="zynthbox-theme-alt"
 
 ###
@@ -52,6 +54,14 @@ do_upgrade () {
     #     echo "### Removing obsolete packages"
     #     apt-get -yy purge $REMOVED_PACKAGES
     # fi
+
+    # Update nodejs version to 22.x LTS from nodesource if version is not 22.x
+    if node --version | grep -vq "v22"; then
+        # Node version is not v22.x. Upgrade nodejs
+        curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+        apt-get install -yy nodejs
+        npm install -g pnpm
+    fi
 
     # Update all packages
     apt-get -yy install \

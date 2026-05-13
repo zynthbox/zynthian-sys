@@ -1,0 +1,16 @@
+[Unit]
+Description=Audiocontrol Server
+
+[Service]
+Environment=PATH=/usr/local/bin:#ZYNTHIAN_SYS_DIR#/sbin:/bin:/usr/bin:/sbin:/usr/sbin
+Environment=HOME=/root
+Environment=ZYNTHIAN_DIR=#ZYNTHIAN_DIR#
+Environment=ZYNTHIAN_CONFIG_DIR=#ZYNTHIAN_CONFIG_DIR#
+WorkingDirectory=#ZYNTHIAN_DIR#/zynthian-sw/audiocontrol/modules/roland-sxx0-editor/
+ExecStart=pnpm dev
+Restart=always
+RestartSec=5
+#CPUAffinity=3
+
+[Install]
+WantedBy=default.target

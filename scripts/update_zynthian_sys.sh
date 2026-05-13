@@ -588,6 +588,14 @@ sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/user
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/user/zynthbox-wifi-manager-start.service
 sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/user/zynthbox-wifi-manager-stop.service
 sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/user/zynthbox-wifi-manager-stop.service
+# Audiocontrol Service
+sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/user/audiocontrol.service
+sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/user/audiocontrol.service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/user/audiocontrol.service
+# Emu tools Service
+sed -i -e "s/#ZYNTHIAN_DIR#/$ZYNTHIAN_DIR_ESC/g" /etc/systemd/user/emu-tools.service
+sed -i -e "s/#ZYNTHIAN_CONFIG_DIR#/$ZYNTHIAN_CONFIG_DIR_ESC/g" /etc/systemd/user/emu-tools.service
+sed -i -e "s/#ZYNTHIAN_SYS_DIR#/$ZYNTHIAN_SYS_DIR_ESC/g" /etc/systemd/user/emu-tools.service
 
 # Configure Systemd Services
 systemctl daemon-reload
@@ -632,6 +640,8 @@ systemctl disable zynthian-webconf
 systemctl disable zynthian-webconf-fmserver
 systemctl enable --global zynthian-webconf
 systemctl enable rfkill-unblock-all
+systemctl enable --global audiocontrol
+systemctl enable --global emu-tools
 
 # Enable Rainbow LEDs
 systemctl enable rainbow-leds
