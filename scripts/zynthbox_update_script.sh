@@ -37,7 +37,8 @@ PACKAGES="zynthbox-qml \
           libqt5x11extras5 \
           libkf5iconthemes5 \
           audiocontrol \
-          emu-tools"
+          emu-tools \
+          midi-server"
 # REMOVED_PACKAGES="zynthbox-theme-alt"
 
 ###
